@@ -209,3 +209,29 @@ Cada cambio de la web debe responder al menos a una de estas preguntas:
 - ¿Facilita que una persona confíe y contacte?
 
 Si no cumple ninguna, probablemente es decoración, repetición o contenido que debe quedar fuera.
+
+## 9. Dirección visual provisional
+
+La nueva skin se basará en la propuesta clara/glass, incorporando formas orgánicas y capas de la propuesta más experimental. La estructura de contenido actual se conserva; esta decisión afecta únicamente al lenguaje visual.
+
+### Paleta de trabajo
+
+| Token | Valor provisional | Uso |
+|---|---|---|
+| `--paper` | `#F8F6F0` | Fondo crema principal. |
+| `--white` | `#FFFEFC` | Superficies claras y tarjetas. |
+| `--blue-pastel` | `#C9DCF4` | Color principal de superficies, ondas y bloques suaves. |
+| `--blue-ice` | `#EAF2FC` | Vidrio, fondos secundarios y transparencias. |
+| `--navy-ink` | `#163B64` | Texto, líneas y contraste. |
+| `--blue-royal-reserve` | `#2563EB` | Acento reservado para botones, indicadores y estados activos; no usar como fondo dominante. |
+
+El azul rey queda guardado como variable de reserva. El color dominante será el azul pastel, porque conserva la relación azul/blanco que Victor busca sin volver la interfaz demasiado intensa o tecnológica.
+
+### Comportamiento visual
+
+- superficies translúcidas con contraste suficiente;
+- formas orgánicas que rompen algunas cajas rectangulares;
+- imágenes que atraviesan o sobresalen ligeramente de los contenedores;
+- bordes finos y sombras suaves;
+- azul rey únicamente para guiar la atención;
+- animaciones breves de entrada, hover y desplazamiento, sin esconder contenido ni secuestrar el scroll.
