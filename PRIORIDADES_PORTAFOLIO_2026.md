@@ -53,19 +53,27 @@ No se deben inventar usuarios, ingresos, porcentajes de mejora, clientes ni resu
 
 La web necesita un título principal más específico que una suma de herramientas. El título debe decir qué tipo de contribución ofrece Victor.
 
-La dirección de trabajo actual es:
+La dirección de trabajo actual, después de priorizar automatizaciones, es:
 
+- creador de soluciones y automatizaciones digitales con IA;
 - constructor de producto digital y soluciones con IA;
-- diseñador de producto digital y prototipado asistido por IA;
-- creador de soluciones internas y automatizaciones con IA.
+- diseñador de producto digital y prototipado asistido por IA.
 
 La decisión final debe elegir una línea principal. Las demás pueden funcionar como descriptores secundarios, pero no deben competir con el titular.
 
-### Prioridad 3 — Separar claramente las dos líneas profesionales
+### Prioridad 3 — Comunicar el foco sin perder el diferenciador
 
-El perfil contiene dos líneas relacionadas, pero no idénticas:
+El foco de búsqueda será automatización con IA y soluciones internas. El 3D y los videojuegos no se presentarán por ahora como una segunda línea de servicios ni como el objetivo principal de aplicación. Se mencionarán como el origen de una forma de pensar que diferencia el trabajo:
 
-#### Línea principal: producto, soluciones y automatización
+- experiencia con interacción, UI, lógica y sistemas visuales;
+- práctica de analizar referencias antes de construir;
+- comprensión de que una herramienta forma parte de una experiencia completa;
+- familiaridad con flujos visuales y lógica basada en nodos;
+- criterio para detectar repeticiones, artefactos y decisiones genéricas de la IA.
+
+La comunicación debe evitar afirmar que Victor es programador tradicional o que domina todas las áreas del desarrollo. La formulación honesta es que combina pensamiento de sistemas, criterio visual y desarrollo asistido por IA.
+
+#### Foco profesional: producto, soluciones y automatización
 
 - MOGI;
 - herramientas internas;
@@ -76,16 +84,28 @@ El perfil contiene dos líneas relacionadas, pero no idénticas:
 - HTML, CSS, Python, Supabase, Git y GitHub;
 - Make, n8n y ManyChat.
 
-#### Línea secundaria: diseño visual, 3D y tiempo real
+#### Diferenciador de origen: diseño visual, 3D y tiempo real
 
 - Blender, Maya, 3ds Max, Substance Painter/Designer, Marmoset y ZBrush;
 - Photoshop, Affinity, DaVinci Resolve y Premiere Pro;
 - Unity y Unreal Engine;
 - videojuegos, herramientas interactivas y prototipos visuales.
 
-La primera línea debe dominar la portada y el orden de los proyectos porque es la evidencia más actual y diferenciadora. La segunda debe conservarse como una capacidad complementaria con su propio espacio visual, sin convertir la web en dos portafolios desconectados.
+La automatización debe dominar la portada, el título y el orden de los proyectos. La formación visual y de videojuegos debe aparecer como contexto que explica el criterio, no como una oferta paralela.
 
-### Prioridad 4 — Mostrar evidencia antes que promesas
+### Prioridad 4 — Responder explícitamente por qué contratar a Victor
+
+La web debe contestar esta pregunta sin usar una frase vacía de “valor diferencial”. La respuesta debe apoyarse en cinco ideas demostrables:
+
+1. **Piensa en el sistema completo:** no solo en conectar una herramienta, sino en cómo la persona entiende, usa y revisa el flujo.
+2. **Tiene criterio visual:** puede detectar interfaces repetitivas, decisiones genéricas y artefactos típicos de una salida de IA.
+3. **Trabaja desde referencias:** investiga antes de construir y compara alternativas.
+4. **Combina lógica y experiencia:** su formación en videojuegos incluyó interacción, UI, 3D, audio, mecánicas, coordinación y visión de proyecto, aunque no se presente como especialista profesional en cada área.
+5. **Usa IA con responsabilidad:** la IA acelera la investigación y la construcción, pero Victor decide, revisa, prueba y corrige.
+
+Estas ideas son una hipótesis de diferenciación hasta que los casos de estudio las demuestren con ejemplos concretos.
+
+### Prioridad 5 — Mostrar evidencia antes que promesas
 
 Cada proyecto debe tener una ficha o caso con esta estructura mínima:
 
@@ -101,7 +121,7 @@ Cada proyecto debe tener una ficha o caso con esta estructura mínima:
 
 Una lista de tecnologías no sustituye una demostración. Una imagen conceptual no debe presentarse como captura de producto.
 
-### Prioridad 5 — Mantener una voz clara y humana
+### Prioridad 6 — Mantener una voz clara y humana
 
 La IA puede ayudar a ordenar y revisar, pero el contenido debe conservar la experiencia y el criterio de Victor. La web debe evitar:
 
@@ -117,7 +137,7 @@ La IA puede ayudar a ordenar y revisar, pero el contenido debe conservar la expe
 |---|---|---|
 | Propuesta profesional clara | Parcialmente resuelta | El hero comunica producto digital, IA aplicada y prototipos, pero todavía falta elegir un título profesional único. |
 | MOGI como proyecto principal | Parcialmente resuelta | Está priorizado y descrito, pero aún no tiene un caso de estudio con evidencia primaria. |
-| Separación de las dos líneas | Parcialmente resuelta | La web distingue producto, IA y diseño/tiempo real, pero la línea secundaria todavía necesita una presentación más deliberada. |
+| Foco y diferenciador | Parcialmente resuelta | La web prioriza automatización y explica la formación visual como criterio, pero MOGI todavía debe demostrarlo con un caso real. |
 | Proyectos personales como experiencia | Resuelta a nivel de narrativa | Se presentan como proyectos y prototipos, no como empleos ficticios. |
 | Evidencia visual y funcional | Pendiente | Faltan capturas, vídeo, demo pública o páginas individuales de los proyectos. |
 | Estado y limitaciones | Parcialmente resuelta | MOGI aparece “en validación”; falta detallar qué está operativo y qué no. |
@@ -129,7 +149,7 @@ La IA puede ayudar a ordenar y revisar, pero el contenido debe conservar la expe
 
 La arquitectura actual es válida como base:
 
-1. propuesta principal;
+1. propuesta principal de automatización;
 2. índice visible;
 3. trabajo seleccionado;
 4. capacidades;
@@ -146,7 +166,7 @@ No hace falta rehacer toda la web por completo. Las siguientes mejoras deben con
 - elegir el título profesional principal;
 - elegir la familia de vacantes prioritaria;
 - confirmar qué línea debe ocupar el primer plano;
-- convertir la segunda línea en una sección complementaria claramente identificada.
+- explicar la formación visual como diferenciador, no como una segunda línea de servicios.
 
 ### Fase B — Caso MOGI
 

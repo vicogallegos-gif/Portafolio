@@ -131,6 +131,13 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .capability-card p { max-width: 290px; margin: 0; color: var(--ink-soft); font-size: 13px; line-height: 1.7; }
 .tag-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 32px; }
 .capability-card-accent .tag-list span { border-color: #aebe8e; color: #516044; }
+.differentiator { display: grid; grid-template-columns: .85fr 1.15fr; gap: 80px; margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--line); }
+.differentiator h3 { max-width: 430px; margin: 0; font-size: clamp(2rem, 3.5vw, 3.3rem); line-height: .98; letter-spacing: -.07em; }
+.differentiator-copy { max-width: 570px; }
+.differentiator-copy p { margin: 0; color: var(--ink-soft); font-size: 15px; line-height: 1.75; }
+.differentiator-copy p + p { margin-top: 16px; }
+.differentiator-points { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 27px; }
+.differentiator-points span { padding: 8px 10px; border: 1px solid var(--line); color: #727a79; font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: .03em; text-transform: uppercase; }
 
 .section-process { background: var(--blue); color: #fff; }
 .section-heading-row-light { margin-bottom: 58px; }
@@ -185,6 +192,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   .work-card-featured .work-card-visual { height: 100%; }
   .capability-grid { grid-template-columns: 1fr; }
   .capability-card { min-height: auto; }
+  .differentiator { grid-template-columns: 1fr; gap: 28px; }
   .process-grid { grid-template-columns: repeat(2, 1fr); }
   .process-step:nth-child(2) { border-right: 0; }
   .process-step:nth-child(n+3) { border-top: 1px solid #4b6b72; }
@@ -229,6 +237,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   .work-note .text-link { grid-column: 2; }
   .capability-card { padding: 22px; }
   .capability-label { margin-bottom: 38px; }
+  .differentiator { gap: 23px; margin-top: 52px; }
   .process-grid { grid-template-columns: 1fr; }
   .process-step, .process-step + .process-step, .process-step:nth-child(3) { min-height: auto; padding: 22px 0; border-right: 0; border-top: 1px solid #4b6b72; }
   .process-step:first-child { border-top: 0; }
