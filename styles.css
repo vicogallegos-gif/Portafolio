@@ -62,7 +62,7 @@ img { max-width: 100%; }
 .menu-toggle { display: none; border: 0; background: none; cursor: pointer; }
 
 .hero { position: relative; padding-top: 44px; padding-bottom: 0; overflow: hidden; }
-.hero::after { position: absolute; top: 26px; right: -154px; z-index: 0; width: 360px; height: 360px; border: 1px solid rgba(37, 99, 235, .16); border-radius: 48% 52% 63% 37%; content: ''; pointer-events: none; transform: rotate(22deg); animation: float-shape 18s ease-in-out infinite; }
+.hero::after { position: absolute; top: -68px; right: -212px; z-index: 0; width: 430px; height: 430px; border: 1px solid rgba(37, 99, 235, .14); border-radius: 46% 54% 61% 39%; content: ''; pointer-events: none; transform: rotate(22deg); animation: float-shape 18s ease-in-out infinite; }
 .work-type, .mono-label, .work-card-top, .work-status, .visual-topline, .visual-bottom, .interest-label { margin: 0; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 .eyebrow { display: flex; align-items: center; gap: 9px; color: var(--blue-royal); }
 .eyebrow-dot { width: 7px; height: 7px; display: inline-block; border-radius: 50%; background: var(--blue-royal); box-shadow: 0 0 0 5px rgba(37, 99, 235, .12); }
@@ -70,6 +70,7 @@ img { max-width: 100%; }
 h1, h2, h3, p { text-wrap: balance; }
 h1, h2, h3 { font-family: 'Outfit', system-ui, sans-serif; }
 .hero-name { max-width: 650px; margin: 0 0 23px; color: var(--ink); font-family: 'Outfit', system-ui, sans-serif; font-size: clamp(2.4rem, 3.8vw, 4.4rem); line-height: .94; letter-spacing: -.08em; font-weight: 800; }
+.hero-name-accent { color: var(--blue-royal); }
 .hero-role { max-width: 560px; margin: 0 0 25px; color: var(--ink-soft); font-family: 'Outfit', system-ui, sans-serif; font-size: clamp(1.1rem, 1.6vw, 1.45rem); font-weight: 600; letter-spacing: -.025em; line-height: 1.25; }
 .hero-lede { max-width: 500px; margin: 29px 0 0; color: var(--ink-soft); font-size: 16px; line-height: 1.8; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 34px; }
@@ -234,8 +235,8 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   .nav-contact { margin-top: 8px; text-align: center; }
   .hero { padding-top: 31px; }
   .hero-grid { gap: 42px; padding: 52px 0 60px; }
-  .hero::after { top: 12px; right: -205px; width: 330px; height: 330px; }
-  .hero-name { margin-bottom: 20px; font-size: 13px; }
+  .hero::after { top: -35px; right: -218px; width: 360px; height: 360px; }
+  .hero-name { margin-bottom: 20px; font-size: clamp(2.25rem, 12vw, 3.5rem); }
   .hero-role { margin-bottom: 21px; font-size: 1.08rem; }
   .hero-lede { font-size: 15px; }
   .hero-art { min-height: 475px; border-radius: 38px 38px 17px 38px; }
