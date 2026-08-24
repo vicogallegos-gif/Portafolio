@@ -101,7 +101,7 @@ document.querySelectorAll('[data-project-folder]').forEach((folder) => {
         let selectionSlot = 0;
         pageItems.forEach((item) => {
           if (item === page) return;
-          item.style.setProperty('--selection-y', `${-140 + selectionSlot * 56}px`);
+          item.style.setProperty('--selection-y', `${-190 + selectionSlot * 70}px`);
           item.style.setProperty('--selection-z', String(selectionSlot + 2));
           selectionSlot += 1;
         });
