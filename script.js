@@ -34,3 +34,19 @@ if ('IntersectionObserver' in window) {
   revealItems.forEach((item) => item.classList.add('is-visible'));
 }
 
+document.querySelectorAll('[data-project-folder]').forEach((folder) => {
+  const trigger = folder.querySelector('.project-folder-trigger');
+  const pages = folder.querySelector('.project-folder-pages');
+  const label = folder.querySelector('[data-folder-label]');
+
+  if (!trigger || !pages || !label) return;
+
+  trigger.addEventListener('click', () => {
+    const isOpen = folder.classList.toggle('is-open');
+
+    trigger.setAttribute('aria-expanded', String(isOpen));
+    trigger.setAttribute('aria-label', `${isOpen ? 'Cerrar' : 'Abrir'} carpeta MOGI`);
+    pages.setAttribute('aria-hidden', String(!isOpen));
+    label.textContent = isOpen ? 'Cerrar carpeta' : 'Abrir carpeta';
+  });
+});
