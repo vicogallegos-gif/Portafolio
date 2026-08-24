@@ -284,6 +284,8 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   .work-card-featured { display: block; }
   .work-card-featured .work-card-visual { height: auto; border-radius: 0 0 26px 26px; }
   .work-card { min-height: 420px; }
+  .folder-frame { min-height: 525px; }
+  .folder-cover { flex-basis: 315px; min-height: 315px; }
   .capability-card { padding: 22px; }
   .capability-label { margin-bottom: 38px; }
   .work-card-featured { border-radius: 34px 15px 34px 15px; }
