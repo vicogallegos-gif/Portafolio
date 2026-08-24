@@ -95,10 +95,10 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .project-folder-back::before { position: absolute; top: -31px; left: calc(50% - 110px); width: 220px; height: 34px; border: 1px solid rgba(14, 41, 72, .32); border-bottom: 0; border-radius: 19px 19px 0 0; background: inherit; content: ''; }
 .project-folder-pages { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 .project-folder-page { --closed-y: 0px; --open-y: -360px; --selected-tab-y: -116px; position: absolute; top: 420px; min-height: 152px; padding: 19px 30px 22px; overflow: hidden; border: 1px solid rgba(22, 59, 100, .18); border-radius: 18px 18px 10px 10px; background: #fffefc; box-shadow: 0 15px 34px rgba(22, 59, 100, .08); color: var(--ink); transform: translateY(var(--closed-y)); transform-origin: center bottom; transition: transform .62s cubic-bezier(.2, 1.18, .32, 1), min-height .62s cubic-bezier(.22, 1, .36, 1), background-color .38s ease, border-color .38s ease, box-shadow .38s ease, color .38s ease; will-change: transform; }
-.project-folder-page-1 { --closed-y: 0px; --open-y: -360px; --selected-tab-y: -190px; --tab-left: 15%; right: 8%; left: 8%; z-index: 1; }
-.project-folder-page-2 { --closed-y: 12px; --open-y: -255px; --selected-tab-y: -136px; --tab-left: 35%; right: 6%; left: 6%; z-index: 2; }
-.project-folder-page-3 { --closed-y: 24px; --open-y: -150px; --selected-tab-y: -82px; --tab-left: 58%; right: 4%; left: 4%; z-index: 3; }
-.project-folder-page-4 { --closed-y: 36px; --open-y: -45px; --selected-tab-y: -28px; --tab-left: 73%; right: 2%; left: 2%; z-index: 4; }
+.project-folder-page-1 { --closed-y: 0px; --open-y: -360px; --selected-tab-y: -248px; --tab-left: 15%; right: 8%; left: 8%; z-index: 1; }
+.project-folder-page-2 { --closed-y: 12px; --open-y: -255px; --selected-tab-y: -194px; --tab-left: 35%; right: 6%; left: 6%; z-index: 2; }
+.project-folder-page-3 { --closed-y: 24px; --open-y: -150px; --selected-tab-y: -140px; --tab-left: 58%; right: 4%; left: 4%; z-index: 3; }
+.project-folder-page-4 { --closed-y: 36px; --open-y: -45px; --selected-tab-y: -86px; --tab-left: 73%; right: 2%; left: 2%; z-index: 4; }
 .project-folder-page-heading { display: flex; justify-content: space-between; gap: 20px; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .project-folder-page-heading { margin-bottom: 12px; color: var(--blue-royal); }
 .project-folder-page-heading span:last-child { color: var(--ink-soft); }
@@ -287,10 +287,10 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   .project-folder-back { top: 360px; right: 1%; left: 1%; }
   .project-folder-back::before { left: calc(50% - 78px); width: 156px; }
   .project-folder-page { top: 370px; min-height: 118px; padding: 13px 16px 14px; }
-  .project-folder-page-1 { --open-y: -320px; --selected-tab-y: -150px; }
-  .project-folder-page-2 { --open-y: -230px; --selected-tab-y: -108px; }
-  .project-folder-page-3 { --open-y: -140px; --selected-tab-y: -66px; }
-  .project-folder-page-4 { --open-y: -50px; --selected-tab-y: -24px; }
+  .project-folder-page-1 { --open-y: -320px; --selected-tab-y: -210px; }
+  .project-folder-page-2 { --open-y: -230px; --selected-tab-y: -168px; }
+  .project-folder-page-3 { --open-y: -140px; --selected-tab-y: -126px; }
+  .project-folder-page-4 { --open-y: -50px; --selected-tab-y: -84px; }
   .project-folder.has-selection .project-folder-page:not(.is-selected)::before { width: 86px; }
   .project-folder-page-heading { margin-bottom: 10px; font-size: 7px; }
   .project-folder-page-body { grid-template-columns: 1fr; gap: 3px; }
