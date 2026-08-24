@@ -33,3 +33,13 @@ if ('IntersectionObserver' in window) {
 } else {
   revealItems.forEach((item) => item.classList.add('is-visible'));
 }
+
+document.querySelectorAll('.folder-toggle').forEach((toggle) => {
+  toggle.addEventListener('click', () => {
+    const folder = toggle.closest('.work-folder');
+    const isOpen = folder.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.querySelector('span').textContent = isOpen ? 'Cerrar breakdown' : 'Ver breakdown';
+    toggle.querySelector('b').textContent = isOpen ? '−' : '+';
+  });
+});
