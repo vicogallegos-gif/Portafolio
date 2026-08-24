@@ -118,12 +118,12 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .folder-cover::after { position: absolute; right: -60px; bottom: -115px; width: 220px; height: 220px; border: 1px solid rgba(234, 242, 252, .35); border-radius: 50%; box-shadow: 0 0 0 17px rgba(234, 242, 252, .07), 0 0 0 34px rgba(234, 242, 252, .04); content: ''; }
 .folder-cover-tab { position: absolute; top: -1px; left: 28px; z-index: 1; padding: 8px 14px 7px; border: 1px solid rgba(234, 242, 252, .3); border-top: 0; border-radius: 0 0 10px 10px; background: var(--navy-deep); color: var(--blue-pastel); font-size: 9px; font-weight: 700; letter-spacing: .1em; }
 .folder-cover .work-card-heading, .folder-cover h3, .folder-cover > p, .folder-toggle { position: relative; z-index: 1; }
-.folder-cover .work-card-heading { width: 100%; margin-top: 42px; }
+.folder-cover .work-card-heading { position: absolute; top: 42px; right: 25px; left: 25px; width: auto; margin: 0; }
 .folder-cover .work-type { color: var(--blue-pastel); }
 .folder-cover .work-status { color: #dbe9fa; }
-.folder-cover h3 { margin: 23px 0 13px; font-family: 'Outfit', system-ui, sans-serif; font-size: clamp(2.5rem, 4vw, 3.7rem); line-height: .9; letter-spacing: -.08em; }
-.folder-cover > p { max-width: 390px; margin: 0; color: #d4e2f1; font-size: 13px; line-height: 1.7; }
-.folder-toggle { display: inline-flex; align-items: center; gap: 12px; margin-top: 20px; padding: 0; border: 0; background: transparent; color: #fff; cursor: pointer; font: inherit; font-size: 11px; font-weight: 700; }
+.folder-cover h3 { position: absolute; top: 94px; left: 25px; margin: 0; font-family: 'Outfit', system-ui, sans-serif; font-size: clamp(2.5rem, 4vw, 3.7rem); line-height: .9; letter-spacing: -.08em; }
+.folder-cover > p { position: absolute; top: 153px; right: 25px; left: 25px; max-width: 390px; margin: 0; color: #d4e2f1; font-size: 13px; line-height: 1.7; }
+.folder-toggle { position: absolute; top: 224px; left: 25px; display: inline-flex; align-items: center; gap: 12px; margin: 0; padding: 0; border: 0; background: transparent; color: #fff; cursor: pointer; font: inherit; font-size: 11px; font-weight: 700; }
 .folder-toggle b { display: inline-grid; width: 22px; height: 22px; place-items: center; border: 1px solid rgba(234, 242, 252, .48); border-radius: 50%; color: var(--blue-pastel); font-size: 15px; font-weight: 400; }
 .work-folder:hover .folder-sheet-problem, .work-folder.is-open .folder-sheet-problem { transform: translate(-18px, -27px) rotate(-2deg); box-shadow: 0 21px 42px rgba(22, 59, 100, .1); }
 .work-folder:hover .folder-sheet-flow, .work-folder.is-open .folder-sheet-flow { transform: translate(22px, -43px) rotate(1.8deg); box-shadow: 0 21px 42px rgba(22, 59, 100, .1); }
