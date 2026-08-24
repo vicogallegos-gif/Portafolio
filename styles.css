@@ -101,7 +101,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .work-card-featured:hover { background: #1d4a79; }
 .work-folder { min-height: 490px; overflow: visible; border: 0; border-radius: 0; background: transparent; box-shadow: none; color: var(--ink); transition: none; }
 .work-folder:hover { background: transparent; box-shadow: none; transform: none; }
-.folder-frame { position: relative; min-height: 490px; }
+.folder-frame { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 490px; }
 .folder-sheets { position: absolute; inset: 0; z-index: 1; overflow: visible; }
 .folder-sheet { position: absolute; right: 18px; left: 18px; display: flex; flex-direction: column; justify-content: flex-start; min-height: 94px; padding: 18px 22px 20px; border: 1px solid rgba(22, 59, 100, .18); border-radius: 18px 18px 14px 14px; background: rgba(255, 254, 252, .94); box-shadow: 0 14px 32px rgba(22, 59, 100, .07); color: var(--ink); transition: transform .45s cubic-bezier(.2, .8, .2, 1), box-shadow .45s ease; }
 .folder-sheet::after { position: absolute; top: -1px; width: 116px; height: 21px; border: 1px solid rgba(22, 59, 100, .18); border-bottom: 0; border-radius: 14px 14px 0 0; background: inherit; content: ''; }
@@ -113,11 +113,11 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .folder-sheet-stack { top: 115px; z-index: 4; transform: translate(9px, 0) rotate(.8deg); }
 .folder-tab { position: relative; z-index: 1; margin-bottom: 9px; color: var(--blue-royal); font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .folder-sheet strong { position: relative; z-index: 1; max-width: 330px; font-family: 'Outfit', system-ui, sans-serif; font-size: 15px; line-height: 1.08; letter-spacing: -.04em; }
-.folder-cover { position: absolute; right: 0; bottom: 0; left: 0; z-index: 5; display: flex; flex-direction: column; align-items: flex-start; min-height: 280px; padding: 26px 25px 23px; overflow: hidden; border: 1px solid rgba(14, 41, 72, .42); border-radius: 43px 19px 43px 19px; background: var(--navy); color: #fff; box-shadow: 0 22px 45px rgba(22, 59, 100, .18); transition: box-shadow .45s ease; }
+.folder-cover { position: relative; z-index: 5; display: flex; flex: 0 0 280px; flex-direction: column; align-items: flex-start; min-height: 280px; padding: 26px 25px 23px; overflow: hidden; border: 1px solid rgba(14, 41, 72, .42); border-radius: 43px 19px 43px 19px; background: var(--navy); color: #fff; box-shadow: 0 22px 45px rgba(22, 59, 100, .18); transition: box-shadow .45s ease; }
 .folder-cover::before { position: absolute; top: 50px; right: -40px; width: 210px; height: 170px; border: 1px solid rgba(234, 242, 252, .34); border-radius: 48% 52% 60% 40%; content: ''; transform: rotate(22deg); }
 .folder-cover::after { position: absolute; right: -60px; bottom: -115px; width: 220px; height: 220px; border: 1px solid rgba(234, 242, 252, .35); border-radius: 50%; box-shadow: 0 0 0 17px rgba(234, 242, 252, .07), 0 0 0 34px rgba(234, 242, 252, .04); content: ''; }
 .folder-cover-tab { position: absolute; top: -1px; left: 28px; z-index: 1; padding: 8px 14px 7px; border: 1px solid rgba(234, 242, 252, .3); border-top: 0; border-radius: 0 0 10px 10px; background: var(--navy-deep); color: var(--blue-pastel); font-size: 9px; font-weight: 700; letter-spacing: .1em; }
-.folder-cover-content { position: absolute; inset: 0; z-index: 1; padding: 68px 25px 23px; }
+.folder-cover-content { position: relative; z-index: 1; width: 100%; padding: 42px 0 0; }
 .folder-cover .work-card-heading, .folder-cover h3, .folder-cover-content > p, .folder-toggle { position: static; }
 .folder-cover .work-card-heading { width: 100%; margin: 0 0 23px; }
 .folder-cover .work-type { color: var(--blue-pastel); }
