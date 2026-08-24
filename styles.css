@@ -103,7 +103,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .work-folder:hover { background: transparent; box-shadow: none; transform: none; }
 .folder-frame { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 490px; }
 .folder-sheets { position: absolute; inset: 0; z-index: 1; overflow: visible; }
-.folder-sheet { position: absolute; right: 18px; left: 18px; display: flex; flex-direction: column; justify-content: flex-start; min-height: 78px; padding: 14px 22px 15px; border: 1px solid rgba(22, 59, 100, .18); border-radius: 18px 18px 14px 14px; background: rgba(255, 254, 252, .94); box-shadow: 0 14px 32px rgba(22, 59, 100, .07); color: var(--ink); transition: transform .45s cubic-bezier(.2, .8, .2, 1), box-shadow .45s ease; }
+.folder-sheet { position: absolute; right: 18px; left: 18px; display: flex; flex-direction: column; justify-content: flex-start; min-height: 58px; padding: 11px 18px 10px; border: 1px solid rgba(22, 59, 100, .18); border-radius: 18px 18px 14px 14px; background: rgba(255, 254, 252, .94); box-shadow: 0 14px 32px rgba(22, 59, 100, .07); color: var(--ink); transition: transform .45s cubic-bezier(.2, .8, .2, 1), box-shadow .45s ease; }
 .folder-sheet::after { position: absolute; top: -1px; width: 116px; height: 21px; border: 1px solid rgba(22, 59, 100, .18); border-bottom: 0; border-radius: 14px 14px 0 0; background: inherit; content: ''; }
 .folder-sheet:nth-child(odd)::after { left: 28px; }
 .folder-sheet:nth-child(even)::after { right: 28px; }
@@ -111,8 +111,8 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .folder-sheet-flow { top: 49px; z-index: 2; transform: translate(7px, 0) rotate(.5deg); }
 .folder-sheet-system { top: 82px; z-index: 3; transform: translate(-5px, 0) rotate(-.35deg); }
 .folder-sheet-stack { top: 115px; z-index: 4; transform: translate(9px, 0) rotate(.8deg); }
-.folder-tab { position: relative; z-index: 1; margin-bottom: 9px; color: var(--blue-royal); font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-.folder-sheet strong { position: relative; z-index: 1; max-width: 330px; font-family: 'Outfit', system-ui, sans-serif; font-size: 14px; line-height: 1.08; letter-spacing: -.04em; }
+.folder-tab { position: relative; z-index: 1; margin-bottom: 5px; color: var(--blue-royal); font-size: 8px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.folder-sheet strong { position: relative; z-index: 1; max-width: 330px; font-family: 'Outfit', system-ui, sans-serif; font-size: 12.5px; line-height: 1.08; letter-spacing: -.04em; white-space: nowrap; }
 .folder-cover { position: relative; z-index: 5; display: flex; flex: 0 0 280px; flex-direction: column; align-items: flex-start; min-height: 280px; padding: 26px 25px 23px; overflow: hidden; border: 1px solid rgba(14, 41, 72, .42); border-radius: 43px 19px 43px 19px; background: var(--navy); color: #fff; box-shadow: 0 22px 45px rgba(22, 59, 100, .18); transition: box-shadow .45s ease; }
 .folder-cover::before { position: absolute; top: 50px; right: -40px; width: 210px; height: 170px; border: 1px solid rgba(234, 242, 252, .34); border-radius: 48% 52% 60% 40%; content: ''; transform: rotate(22deg); }
 .folder-cover::after { position: absolute; right: -60px; bottom: -115px; width: 220px; height: 220px; border: 1px solid rgba(234, 242, 252, .35); border-radius: 50%; box-shadow: 0 0 0 17px rgba(234, 242, 252, .07), 0 0 0 34px rgba(234, 242, 252, .04); content: ''; }
