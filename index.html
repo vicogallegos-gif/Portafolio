@@ -12,8 +12,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=folder-geometry-v2" />
-    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="styles.css?v=folder-system-v1" />
+    <script defer src="script.js?v=folder-system-v1"></script>
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -68,54 +68,48 @@
 
           <div class="project-folder-stage" data-reveal>
             <article class="project-folder" data-project-folder>
-              <div class="project-folder-back" aria-hidden="true">
-                <span>Proyecto 01</span>
-              </div>
+              <div class="project-folder-back" aria-hidden="true"></div>
 
               <div id="mogi-folder-pages" class="project-folder-pages" aria-hidden="true">
-                <section class="project-folder-page project-folder-page-1">
+                <section class="project-folder-page project-folder-page-1" data-folder-page>
                   <div class="project-folder-page-heading"><span>01 / Problema</span><span>Placeholder</span></div>
                   <div class="project-folder-page-body">
                     <h4>Operación comercial</h4>
                     <p>Contenido pendiente de documentar.</p>
                   </div>
+                  <button class="project-folder-page-hit" type="button" aria-label="Ver el problema que aborda MOGI"></button>
                 </section>
-                <section class="project-folder-page project-folder-page-2">
+                <section class="project-folder-page project-folder-page-2" data-folder-page>
                   <div class="project-folder-page-heading"><span>02 / Flujos</span><span>Placeholder</span></div>
                   <div class="project-folder-page-body">
                     <h4>Proceso principal</h4>
                     <p>Contenido pendiente de documentar.</p>
                   </div>
+                  <button class="project-folder-page-hit" type="button" aria-label="Ver los flujos principales de MOGI"></button>
                 </section>
-                <section class="project-folder-page project-folder-page-3">
+                <section class="project-folder-page project-folder-page-3" data-folder-page>
                   <div class="project-folder-page-heading"><span>03 / Decisiones</span><span>Placeholder</span></div>
                   <div class="project-folder-page-body">
                     <h4>Criterio de producto</h4>
                     <p>Contenido pendiente de documentar.</p>
                   </div>
+                  <button class="project-folder-page-hit" type="button" aria-label="Ver las decisiones de producto de MOGI"></button>
                 </section>
-                <section class="project-folder-page project-folder-page-4">
+                <section class="project-folder-page project-folder-page-4" data-folder-page>
                   <div class="project-folder-page-heading"><span>04 / Stack</span><span>Placeholder</span></div>
                   <div class="project-folder-page-body">
                     <h4>Tecnologías</h4>
                     <p>Contenido pendiente de documentar.</p>
                   </div>
+                  <button class="project-folder-page-hit" type="button" aria-label="Ver las tecnologías utilizadas en MOGI"></button>
                 </section>
               </div>
 
               <div class="project-folder-front-tab" aria-hidden="true"></div>
 
               <div class="project-folder-front">
-                <div class="project-folder-meta">
-                  <span>Producto digital</span>
-                  <span>En validación</span>
-                </div>
                 <h3>MOGI</h3>
                 <p>Una herramienta para organizar prospección y operación comercial.</p>
-                <span class="project-folder-cue" aria-hidden="true">
-                  <span data-folder-label>Abrir carpeta</span>
-                  <b>+</b>
-                </span>
               </div>
 
               <button

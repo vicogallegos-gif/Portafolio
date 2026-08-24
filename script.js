@@ -37,16 +37,63 @@ if ('IntersectionObserver' in window) {
 document.querySelectorAll('[data-project-folder]').forEach((folder) => {
   const trigger = folder.querySelector('.project-folder-trigger');
   const pages = folder.querySelector('.project-folder-pages');
-  const label = folder.querySelector('[data-folder-label]');
+  const pageItems = [...folder.querySelectorAll('[data-folder-page]')];
+  const pageButtons = pageItems.map((page) => page.querySelector('.project-folder-page-hit'));
+  let motionTimer;
 
-  if (!trigger || !pages || !label) return;
+  if (!trigger || !pages) return;
+
+  const setPageAccess = (isOpen) => {
+    pageButtons.forEach((button) => {
+      if (button) button.tabIndex = isOpen ? 0 : -1;
+    });
+  };
+
+  const clearSelection = () => {
+    folder.classList.remove('has-selection');
+    pageItems.forEach((page) => page.classList.remove('is-selected'));
+    pageButtons.forEach((button) => button?.setAttribute('aria-pressed', 'false'));
+  };
+
+  const runMotionState = (state, duration) => {
+    window.clearTimeout(motionTimer);
+    folder.classList.remove('is-opening', 'is-closing');
+    void folder.offsetWidth;
+    folder.classList.add(state);
+    motionTimer = window.setTimeout(() => folder.classList.remove(state), duration);
+  };
+
+  setPageAccess(false);
 
   trigger.addEventListener('click', () => {
-    const isOpen = folder.classList.toggle('is-open');
+    const isOpen = !folder.classList.contains('is-open');
+
+    clearSelection();
+    folder.classList.toggle('is-open', isOpen);
+    runMotionState(isOpen ? 'is-opening' : 'is-closing', isOpen ? 1380 : 920);
 
     trigger.setAttribute('aria-expanded', String(isOpen));
     trigger.setAttribute('aria-label', `${isOpen ? 'Cerrar' : 'Abrir'} carpeta MOGI`);
     pages.setAttribute('aria-hidden', String(!isOpen));
-    label.textContent = isOpen ? 'Cerrar carpeta' : 'Abrir carpeta';
+    setPageAccess(isOpen);
+  });
+
+  pageItems.forEach((page, index) => {
+    const button = pageButtons[index];
+    if (!button) return;
+
+    button.setAttribute('aria-pressed', 'false');
+    button.addEventListener('click', () => {
+      if (!folder.classList.contains('is-open')) return;
+
+      const willSelect = !page.classList.contains('is-selected');
+      clearSelection();
+
+      if (willSelect) {
+        folder.classList.add('has-selection');
+        page.classList.add('is-selected');
+        button.setAttribute('aria-pressed', 'true');
+      }
+    });
   });
 });
