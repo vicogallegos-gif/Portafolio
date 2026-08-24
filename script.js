@@ -51,7 +51,11 @@ document.querySelectorAll('[data-project-folder]').forEach((folder) => {
 
   const clearSelection = () => {
     folder.classList.remove('has-selection');
-    pageItems.forEach((page) => page.classList.remove('is-selected'));
+    pageItems.forEach((page) => {
+      page.classList.remove('is-selected');
+      page.style.removeProperty('--selection-y');
+      page.style.removeProperty('--selection-z');
+    });
     pageButtons.forEach((button) => button?.setAttribute('aria-pressed', 'false'));
   };
 
@@ -70,7 +74,7 @@ document.querySelectorAll('[data-project-folder]').forEach((folder) => {
 
     clearSelection();
     folder.classList.toggle('is-open', isOpen);
-    runMotionState(isOpen ? 'is-opening' : 'is-closing', isOpen ? 1540 : 920);
+    runMotionState(isOpen ? 'is-opening' : 'is-closing', 1300);
 
     trigger.setAttribute('aria-expanded', String(isOpen));
     trigger.setAttribute('aria-label', `${isOpen ? 'Cerrar' : 'Abrir'} carpeta MOGI`);
@@ -93,6 +97,14 @@ document.querySelectorAll('[data-project-folder]').forEach((folder) => {
         folder.classList.add('has-selection');
         page.classList.add('is-selected');
         button.setAttribute('aria-pressed', 'true');
+
+        let selectionSlot = 0;
+        pageItems.forEach((item) => {
+          if (item === page) return;
+          item.style.setProperty('--selection-y', `${-140 + selectionSlot * 56}px`);
+          item.style.setProperty('--selection-z', String(selectionSlot + 2));
+          selectionSlot += 1;
+        });
       }
     });
   });
