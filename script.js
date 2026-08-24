@@ -36,8 +36,7 @@ if ('IntersectionObserver' in window) {
 
 document.querySelectorAll('.folder-toggle').forEach((toggle) => {
   toggle.addEventListener('click', () => {
-    const folder = toggle.closest('.work-folder');
-    const isOpen = folder.classList.toggle('is-open');
+    const isOpen = toggle.getAttribute('aria-expanded') !== 'true';
     toggle.setAttribute('aria-expanded', String(isOpen));
     toggle.querySelector('span').textContent = isOpen ? 'Cerrar breakdown' : 'Ver breakdown';
     toggle.querySelector('b').textContent = isOpen ? '−' : '+';
