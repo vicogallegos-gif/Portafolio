@@ -123,9 +123,9 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .project-folder-trigger:focus-visible { outline: 3px solid var(--blue-royal); outline-offset: 5px; }
 .project-folder.is-open .project-folder-page { box-shadow: 0 22px 45px rgba(22, 59, 100, .12); }
 .project-folder.is-open .project-folder-page-1 { transform: translate(-9px, -220px) rotate(-.6deg); transition-delay: 0ms; }
-.project-folder.is-open .project-folder-page-2 { transform: translate(10px, -162px) rotate(.5deg); transition-delay: 45ms; }
-.project-folder.is-open .project-folder-page-3 { transform: translate(-7px, -104px) rotate(-.35deg); transition-delay: 90ms; }
-.project-folder.is-open .project-folder-page-4 { transform: translate(9px, -46px) rotate(.4deg); transition-delay: 135ms; }
+.project-folder.is-open .project-folder-page-2 { transform: translate(10px, -154px) rotate(.5deg); transition-delay: 45ms; }
+.project-folder.is-open .project-folder-page-3 { transform: translate(-7px, -88px) rotate(-.35deg); transition-delay: 90ms; }
+.project-folder.is-open .project-folder-page-4 { transform: translate(9px, -22px) rotate(.4deg); transition-delay: 135ms; }
 .project-folder.is-open .project-folder-front { box-shadow: 0 32px 66px rgba(22, 59, 100, .24); }
 .project-folder.is-open .project-folder-cue b { transform: rotate(45deg); }
 .tag-list span { padding: 6px 8px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-soft); font-size: 9px; font-weight: 600; }
@@ -262,7 +262,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   .project-folder-page-heading { margin-bottom: 10px; font-size: 7px; }
   .project-folder-page-body { grid-template-columns: 1fr; gap: 3px; }
   .project-folder-page h4 { font-size: 15px; }
-  .project-folder-page p { font-size: 10px; }
+  .project-folder-page p { display: none; }
   .project-folder-front { top: 260px; padding: 28px 24px 24px; border-radius: 34px 16px 34px 16px; }
   .project-folder-front::before { left: calc(50% - 76px); width: 152px; }
   .project-folder-meta { margin-bottom: 18px; font-size: 8px; }
@@ -270,9 +270,9 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   .project-folder-front > p { max-width: 290px; font-size: 13px; }
   .project-folder-trigger { top: 246px; border-radius: 34px 16px 34px 16px; }
   .project-folder.is-open .project-folder-page-1 { transform: translate(-4px, -210px) rotate(-.45deg); }
-  .project-folder.is-open .project-folder-page-2 { transform: translate(5px, -150px) rotate(.4deg); }
-  .project-folder.is-open .project-folder-page-3 { transform: translate(-4px, -90px) rotate(-.3deg); }
-  .project-folder.is-open .project-folder-page-4 { transform: translate(5px, -30px) rotate(.35deg); }
+  .project-folder.is-open .project-folder-page-2 { transform: translate(5px, -146px) rotate(.4deg); }
+  .project-folder.is-open .project-folder-page-3 { transform: translate(-4px, -82px) rotate(-.3deg); }
+  .project-folder.is-open .project-folder-page-4 { transform: translate(5px, -18px) rotate(.35deg); }
   .capability-card { padding: 22px; }
   .capability-label { margin-bottom: 38px; }
   .differentiator { gap: 23px; margin-top: 52px; padding: 23px; border-radius: 34px 14px 34px 14px; }
