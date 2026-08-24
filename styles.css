@@ -135,16 +135,14 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .project-folder.is-open .project-folder-front { box-shadow: 0 32px 66px rgba(22, 59, 100, .24); }
 @keyframes folder-page-rise {
   0% { transform: translateY(var(--closed-y)); }
-  66% { transform: translateY(var(--open-y)); }
-  74% { transform: translateY(calc(var(--open-y) - 14px)); }
+  70% { transform: translateY(calc(var(--open-y) - 14px)); }
   82% { transform: translateY(calc(var(--open-y) + 6px)); }
   90% { transform: translateY(calc(var(--open-y) - 3px)); }
   100% { transform: translateY(var(--open-y)); }
 }
 @keyframes folder-page-return {
   0% { transform: translateY(var(--open-y)); }
-  66% { transform: translateY(var(--closed-y)); }
-  74% { transform: translateY(calc(var(--closed-y) + 10px)); }
+  70% { transform: translateY(calc(var(--closed-y) + 10px)); }
   82% { transform: translateY(calc(var(--closed-y) - 5px)); }
   90% { transform: translateY(calc(var(--closed-y) + 2px)); }
   100% { transform: translateY(var(--closed-y)); }
