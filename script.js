@@ -34,7 +34,79 @@ if ('IntersectionObserver' in window) {
   revealItems.forEach((item) => item.classList.add('is-visible'));
 }
 
-document.querySelectorAll('[data-project-folder]').forEach((folder) => {
+const projectCatalog = [
+  {
+    id: 'mogi',
+    title: 'MOGI',
+    description: 'Una herramienta para organizar prospección y operación comercial.',
+    pages: [
+      ['01 / Problema', 'Operación comercial', 'Contenido pendiente de documentar.', 'Ver el problema que aborda MOGI'],
+      ['02 / Flujos', 'Proceso principal', 'Contenido pendiente de documentar.', 'Ver los flujos principales de MOGI'],
+      ['03 / Decisiones', 'Criterio de producto', 'Contenido pendiente de documentar.', 'Ver las decisiones de producto de MOGI'],
+      ['04 / Stack', 'Tecnologías', 'Contenido pendiente de documentar.', 'Ver las tecnologías utilizadas en MOGI'],
+    ],
+  },
+  {
+    id: 'ejercicios-visuales',
+    title: 'Ejercicios visuales',
+    description: 'Una herramienta gamificada para acompañar ejercicios visuales.',
+    pages: [
+      ['01 / Problema', 'Rutina difícil de mantener', 'Contenido pendiente de documentar.', 'Ver el problema de los ejercicios visuales'],
+      ['02 / Interacción', 'Experiencia guiada', 'Contenido pendiente de documentar.', 'Ver la interacción de los ejercicios visuales'],
+      ['03 / Decisiones', 'Criterio de producto', 'Contenido pendiente de documentar.', 'Ver las decisiones de los ejercicios visuales'],
+      ['04 / Stack', 'Tecnologías', 'Contenido pendiente de documentar.', 'Ver las tecnologías de los ejercicios visuales'],
+    ],
+  },
+  {
+    id: 'prototipos',
+    title: 'Prototipos',
+    description: 'Exploraciones interactivas para aprender construyendo.',
+    pages: [
+      ['01 / Exploración', 'Idea en movimiento', 'Contenido pendiente de documentar.', 'Ver la exploración del prototipo'],
+      ['02 / Interacción', 'Prueba de concepto', 'Contenido pendiente de documentar.', 'Ver la interacción del prototipo'],
+      ['03 / Decisiones', 'Criterio de diseño', 'Contenido pendiente de documentar.', 'Ver las decisiones del prototipo'],
+      ['04 / Stack', 'Tecnologías', 'Contenido pendiente de documentar.', 'Ver las tecnologías del prototipo'],
+    ],
+  },
+];
+
+const updateProjectFolder = (folder, project) => {
+  const pages = folder.querySelector('.project-folder-pages');
+  const trigger = folder.querySelector('.project-folder-trigger');
+  const title = folder.querySelector('.project-folder-front h3');
+  const description = folder.querySelector('.project-folder-front > p');
+
+  folder.dataset.projectId = project.id;
+  if (title) title.textContent = project.title;
+  if (description) description.textContent = project.description;
+
+  if (pages) {
+    const pagesId = `${project.id}-folder-pages`;
+    pages.id = pagesId;
+    pages.querySelectorAll('[data-folder-page]').forEach((page, index) => {
+      const content = project.pages[index];
+      if (!content) return;
+      const heading = page.querySelector('.project-folder-page-heading');
+      const bodyTitle = page.querySelector('.project-folder-page-body h4');
+      const bodyText = page.querySelector('.project-folder-page-body p');
+      const pageButton = page.querySelector('.project-folder-page-hit');
+      if (heading) {
+        heading.children[0].textContent = content[0];
+        heading.children[1].textContent = 'Placeholder';
+      }
+      if (bodyTitle) bodyTitle.textContent = content[1];
+      if (bodyText) bodyText.textContent = content[2];
+      if (pageButton) pageButton.setAttribute('aria-label', content[3]);
+    });
+  }
+
+  if (trigger) {
+    trigger.setAttribute('aria-controls', pages?.id || `${project.id}-folder-pages`);
+    trigger.setAttribute('aria-label', `Abrir carpeta ${project.title}`);
+  }
+};
+
+const initializeProjectFolder = (folder) => {
   const trigger = folder.querySelector('.project-folder-trigger');
   const pages = folder.querySelector('.project-folder-pages');
   const pageItems = [...folder.querySelectorAll('[data-folder-page]')];
@@ -98,4 +170,68 @@ document.querySelectorAll('[data-project-folder]').forEach((folder) => {
       }
     });
   });
+};
+
+document.querySelectorAll('[data-project-folder]').forEach((folder) => {
+  const project = projectCatalog.find((item) => item.id === folder.dataset.projectId) || projectCatalog[0];
+  updateProjectFolder(folder, project);
+  initializeProjectFolder(folder);
 });
+
+const projectCarousel = document.querySelector('[data-project-carousel]');
+if (projectCarousel) {
+  const stage = projectCarousel.querySelector('.project-folder-stage');
+  const previousButton = projectCarousel.querySelector('[data-project-prev]');
+  const nextButton = projectCarousel.querySelector('[data-project-next]');
+  let isSwitching = false;
+  let switchTimer;
+
+  const setControlsDisabled = (isDisabled) => {
+    [previousButton, nextButton].forEach((button) => {
+      if (button) button.disabled = isDisabled;
+    });
+  };
+
+  const switchProject = (direction) => {
+    if (!stage || isSwitching) return;
+
+    const currentFolder = stage.querySelector('.project-folder-current');
+    if (!currentFolder) return;
+
+    const currentIndex = projectCatalog.findIndex((project) => project.id === currentFolder.dataset.projectId);
+    const nextIndex = (currentIndex + direction + projectCatalog.length) % projectCatalog.length;
+    const nextProject = projectCatalog[nextIndex];
+    const currentIsOpen = currentFolder.classList.contains('is-open');
+
+    isSwitching = true;
+    setControlsDisabled(true);
+
+    if (currentIsOpen) {
+      currentFolder.querySelector('.project-folder-trigger')?.click();
+    }
+
+    window.clearTimeout(switchTimer);
+    switchTimer = window.setTimeout(() => {
+      const nextFolder = currentFolder.cloneNode(true);
+      nextFolder.className = 'project-folder project-folder-entering';
+      updateProjectFolder(nextFolder, nextProject);
+      initializeProjectFolder(nextFolder);
+      nextFolder.classList.add(direction > 0 ? 'from-right' : 'from-left');
+
+      currentFolder.classList.remove('project-folder-current');
+      currentFolder.classList.add(direction > 0 ? 'project-folder-exiting-left' : 'project-folder-exiting-right');
+      stage.append(nextFolder);
+
+      switchTimer = window.setTimeout(() => {
+        currentFolder.remove();
+        nextFolder.classList.remove('project-folder-entering', 'from-right', 'from-left');
+        nextFolder.classList.add('project-folder-current');
+        isSwitching = false;
+        setControlsDisabled(false);
+      }, 780);
+    }, currentIsOpen ? 820 : 0);
+  };
+
+  previousButton?.addEventListener('click', () => switchProject(-1));
+  nextButton?.addEventListener('click', () => switchProject(1));
+}

@@ -12,8 +12,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=folder-system-v17" />
-    <script defer src="script.js?v=folder-system-v17"></script>
+    <link rel="stylesheet" href="styles.css?v=folder-system-v18" />
+    <script defer src="script.js?v=folder-system-v18"></script>
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -62,12 +62,17 @@
         <div class="container">
           <div class="section-heading-row" data-reveal>
             <div>
-              <h2>Proyectos que he construido.</h2>
+              <h2>Proyectos que he construido</h2>
             </div>
           </div>
 
-          <div class="project-folder-stage" data-reveal>
-            <article class="project-folder" data-project-folder>
+          <div class="project-folder-carousel" data-project-carousel>
+            <button class="project-carousel-control project-carousel-control-prev" type="button" data-project-prev aria-label="Ver proyecto anterior">
+              <span aria-hidden="true">‹</span>
+            </button>
+
+            <div class="project-folder-stage" data-reveal>
+              <article class="project-folder project-folder-current" data-project-folder data-project-id="mogi">
               <div class="project-folder-back" aria-hidden="true"></div>
 
               <div id="mogi-folder-pages" class="project-folder-pages" aria-hidden="true">
@@ -119,7 +124,12 @@
                 aria-controls="mogi-folder-pages"
                 aria-label="Abrir carpeta MOGI"
               ></button>
-            </article>
+              </article>
+            </div>
+
+            <button class="project-carousel-control project-carousel-control-next" type="button" data-project-next aria-label="Ver proyecto siguiente">
+              <span aria-hidden="true">›</span>
+            </button>
           </div>
 
         </div>

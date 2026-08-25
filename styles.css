@@ -89,7 +89,16 @@ h1, h2, h3 { font-family: 'Outfit', system-ui, sans-serif; }
 h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-height: .98; letter-spacing: -.08em; }
 .section-work h2 { font-size: clamp(2.4rem, 3.8vw, 3.55rem); }
 .section-note { max-width: 270px; margin: 0 0 4px; color: var(--ink-soft); font-size: 13px; line-height: 1.7; }
-.project-folder-stage { position: relative; z-index: 1; display: grid; min-height: 720px; place-items: end center; }
+.project-folder-carousel { position: relative; }
+.project-folder-stage { position: relative; z-index: 1; min-height: 720px; }
+.project-folder-stage > .project-folder { position: absolute; right: auto; bottom: 0; left: 50%; margin: 0; transform: translateX(-50%); }
+.project-carousel-control { position: absolute; top: 50%; z-index: 10; display: grid; width: 52px; height: 52px; place-items: center; padding: 0 0 4px; border: 1px solid rgba(22, 59, 100, .2); border-radius: 50%; background: rgba(255, 254, 252, .74); box-shadow: 0 14px 30px rgba(22, 59, 100, .1); color: var(--navy); cursor: pointer; transform: translateY(-50%); transition: background .22s ease, border-color .22s ease, box-shadow .22s ease, color .22s ease, transform .22s ease; }
+.project-carousel-control span { font-family: 'Inter', system-ui, sans-serif; font-size: 34px; font-weight: 400; line-height: 1; }
+.project-carousel-control-prev { left: -10px; }
+.project-carousel-control-next { right: -10px; }
+.project-carousel-control:hover, .project-carousel-control:focus-visible { border-color: var(--navy); background: var(--white); box-shadow: 0 18px 36px rgba(22, 59, 100, .17); color: var(--blue-royal); transform: translateY(-50%) scale(1.06); }
+.project-carousel-control:disabled { cursor: wait; opacity: .45; pointer-events: none; }
+.project-carousel-control:focus-visible { outline: 3px solid var(--blue-royal); outline-offset: 4px; }
 .project-folder { position: relative; width: min(1128px, 100%); height: 720px; isolation: isolate; }
 .project-folder-back { position: absolute; top: 410px; right: 6%; left: 6%; z-index: 0; height: 80px; border: 1px solid rgba(14, 41, 72, .32); border-radius: 25px 20px 28px 20px; background: #38658f; box-shadow: 0 14px 34px rgba(22, 59, 100, .1); transform: translateY(0); transition: height .61s cubic-bezier(.22, 1, .36, 1), transform .61s cubic-bezier(.22, 1, .36, 1), box-shadow .5s ease; will-change: height, transform; }
 .project-folder-back::before { position: absolute; top: -31px; left: calc(50% - 110px); width: 220px; height: 34px; border: 1px solid rgba(14, 41, 72, .32); border-bottom: 0; border-radius: 19px 19px 0 0; background: inherit; content: ''; }
@@ -133,12 +142,45 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .project-folder.has-selection .project-folder-page:not(.is-selected):focus-within { transform: translateY(calc(var(--open-y) - 8px)); box-shadow: 0 26px 50px rgba(22, 59, 100, .16); }
 .project-folder.has-selection .project-folder-page.is-selected { transform: translateY(var(--selected-y)); box-shadow: 0 30px 64px rgba(22, 59, 100, .18); }
 .project-folder.is-open .project-folder-front { box-shadow: 0 32px 66px rgba(22, 59, 100, .24); }
+.project-folder-exiting-left { animation: project-folder-out-left .78s linear both; pointer-events: none; }
+.project-folder-exiting-right { animation: project-folder-out-right .78s linear both; pointer-events: none; }
+.project-folder-entering { pointer-events: none; }
+.project-folder-entering.from-right { animation: project-folder-in-right .78s linear both; }
+.project-folder-entering.from-left { animation: project-folder-in-left .78s linear both; }
 @keyframes folder-page-rise {
   0% { transform: translateY(var(--closed-y)); }
   70% { transform: translateY(calc(var(--open-y) - 14px)); }
   82% { transform: translateY(calc(var(--open-y) + 6px)); }
   90% { transform: translateY(calc(var(--open-y) - 3px)); }
   100% { transform: translateY(var(--open-y)); }
+}
+@keyframes project-folder-out-left {
+  0% { opacity: 1; transform: translate3d(-50%, 0, 0) rotate(0deg); }
+  24% { opacity: 1; transform: translate3d(-54%, -2px, 0) rotate(-.65deg); }
+  62% { opacity: .96; transform: translate3d(-91%, -9px, 0) rotate(-1.8deg); }
+  100% { opacity: 0; transform: translate3d(-132%, -22px, 0) rotate(-3.5deg); }
+}
+@keyframes project-folder-out-right {
+  0% { opacity: 1; transform: translate3d(-50%, 0, 0) rotate(0deg); }
+  24% { opacity: 1; transform: translate3d(-46%, -2px, 0) rotate(.65deg); }
+  62% { opacity: .96; transform: translate3d(-9%, -9px, 0) rotate(1.8deg); }
+  100% { opacity: 0; transform: translate3d(32%, -22px, 0) rotate(3.5deg); }
+}
+@keyframes project-folder-in-right {
+  0% { opacity: 0; transform: translate3d(58%, -16px, 0) rotate(3.5deg); }
+  28% { opacity: 1; transform: translate3d(17%, -4px, 0) rotate(1.8deg); }
+  60% { opacity: 1; transform: translate3d(-53%, -2px, 0) rotate(-1.1deg); }
+  76% { transform: translate3d(-48%, 1px, 0) rotate(.62deg); }
+  89% { transform: translate3d(-51%, 0, 0) rotate(-.28deg); }
+  100% { opacity: 1; transform: translate3d(-50%, 0, 0) rotate(0deg); }
+}
+@keyframes project-folder-in-left {
+  0% { opacity: 0; transform: translate3d(-158%, -16px, 0) rotate(-3.5deg); }
+  28% { opacity: 1; transform: translate3d(-117%, -4px, 0) rotate(-1.8deg); }
+  60% { opacity: 1; transform: translate3d(-47%, -2px, 0) rotate(1.1deg); }
+  76% { transform: translate3d(-52%, 1px, 0) rotate(-.62deg); }
+  89% { transform: translate3d(-49%, 0, 0) rotate(.28deg); }
+  100% { opacity: 1; transform: translate3d(-50%, 0, 0) rotate(0deg); }
 }
 @keyframes folder-page-return {
   0% { transform: translateY(var(--open-y)); }
@@ -275,6 +317,10 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   .section-work .section-heading-row { margin-bottom: 14px; }
   .project-folder-stage { min-height: 620px; }
   .project-folder { height: 620px; }
+  .project-carousel-control { top: 53%; width: 44px; height: 44px; }
+  .project-carousel-control-prev { left: -4px; }
+  .project-carousel-control-next { right: -4px; }
+  .project-carousel-control span { font-size: 29px; }
   .project-folder-back { top: 360px; right: 6%; left: 6%; }
   .project-folder-back::before { left: calc(50% - 78px); width: 156px; }
   .project-folder-page { top: 370px; min-height: 145px; padding: 13px 16px 14px; }
