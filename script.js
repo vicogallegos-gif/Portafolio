@@ -160,7 +160,7 @@ const initializeProjectFolder = (folder) => {
     if (!button) return;
 
     button.setAttribute('aria-pressed', 'false');
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (event) => {
       if (!folder.classList.contains('is-open')) return;
 
       const wasSelected = page.classList.contains('is-selected');
@@ -170,13 +170,14 @@ const initializeProjectFolder = (folder) => {
         folder.classList.add('has-max-selection');
         pageItems.forEach((candidate, candidateIndex) => {
           candidate.classList.toggle('is-in-front-of-selection', candidateIndex > index);
-          candidate.classList.toggle('is-behind-selection', candidateIndex < index);
+          candidate.classList.remove('is-behind-selection');
         });
         return;
       }
 
       if (wasMaxSelected) {
         clearSelection();
+        if (event.detail > 0) button.blur();
         return;
       }
 
