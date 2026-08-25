@@ -164,20 +164,25 @@ const initializeProjectFolder = (folder) => {
 
       const wasSelected = page.classList.contains('is-selected');
       const wasMaxSelected = folder.classList.contains('has-max-selection') && wasSelected;
+
+      if (wasSelected && !wasMaxSelected) {
+        folder.classList.add('has-max-selection');
+        pageItems.forEach((candidate, candidateIndex) => {
+          candidate.classList.toggle('is-in-front-of-selection', candidateIndex > index);
+        });
+        return;
+      }
+
+      if (wasMaxSelected) {
+        clearSelection();
+        return;
+      }
+
       clearSelection();
 
-      if (!wasSelected || !wasMaxSelected) {
-        folder.classList.add('has-selection');
-        page.classList.add('is-selected');
-        button.setAttribute('aria-pressed', 'true');
-
-        if (wasSelected) folder.classList.add('has-max-selection');
-        if (wasSelected) {
-          pageItems.forEach((candidate, candidateIndex) => {
-            if (candidateIndex > index) candidate.classList.add('is-in-front-of-selection');
-          });
-        }
-      }
+      folder.classList.add('has-selection');
+      page.classList.add('is-selected');
+      button.setAttribute('aria-pressed', 'true');
     });
   });
 };
