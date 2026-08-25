@@ -147,6 +147,10 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   clip-path: inset(0 0 calc(100% - 42px) 0 round 20px);
   box-shadow: 0 12px 24px rgba(22, 59, 100, .1);
 }
+.project-folder.has-max-selection .project-folder-page.is-behind-selection .project-folder-page-hit {
+  inset: 0 0 auto;
+  height: 42px;
+}
 .project-folder.has-max-selection .project-folder-page.is-selected { height: var(--max-height); min-height: 0; transform: translateY(var(--max-y)); box-shadow: 0 30px 64px rgba(22, 59, 100, .18); }
 .project-folder.is-open .project-folder-front { box-shadow: 0 32px 66px rgba(22, 59, 100, .24); }
 .project-folder-exiting-left { animation: project-folder-out-left .56s linear both; pointer-events: none; }
