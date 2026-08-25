@@ -127,6 +127,7 @@ const initializeProjectFolder = (folder) => {
     pageItems.forEach((page) => {
       page.classList.remove('is-selected');
       page.classList.remove('is-in-front-of-selection');
+      page.classList.remove('is-behind-selection');
     });
     pageButtons.forEach((button) => button?.setAttribute('aria-pressed', 'false'));
   };
@@ -169,6 +170,7 @@ const initializeProjectFolder = (folder) => {
         folder.classList.add('has-max-selection');
         pageItems.forEach((candidate, candidateIndex) => {
           candidate.classList.toggle('is-in-front-of-selection', candidateIndex > index);
+          candidate.classList.toggle('is-behind-selection', candidateIndex < index);
         });
         return;
       }
