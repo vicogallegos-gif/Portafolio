@@ -72,7 +72,7 @@ document.querySelectorAll('[data-project-folder]').forEach((folder) => {
 
     clearSelection();
     folder.classList.toggle('is-open', isOpen);
-    runMotionState(isOpen ? 'is-opening' : 'is-closing', 900);
+    runMotionState(isOpen ? 'is-opening' : 'is-closing', 820);
 
     trigger.setAttribute('aria-expanded', String(isOpen));
     trigger.setAttribute('aria-label', `${isOpen ? 'Cerrar' : 'Abrir'} carpeta MOGI`);
