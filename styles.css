@@ -19,6 +19,8 @@
   --radius-xl: 42px;
   --radius-lg: 30px;
   --radius-md: 20px;
+  --page-second-click-duration-normal: .68s;
+  --page-second-click-duration-debug: 6.8s;
 }
 
 * { box-sizing: border-box; }
@@ -148,7 +150,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   min-height: 0;
   transform: translateY(var(--max-y));
   box-shadow: 0 120px 0 #fffefc, 0 30px 64px rgba(22, 59, 100, .18);
-  transition: transform .68s cubic-bezier(.22, 1, .36, 1), height .68s cubic-bezier(.22, 1, .36, 1), right .68s cubic-bezier(.22, 1, .36, 1), left .68s cubic-bezier(.22, 1, .36, 1), opacity .26s ease;
+  transition: transform var(--page-second-click-duration-debug) cubic-bezier(.22, 1, .36, 1), height var(--page-second-click-duration-debug) cubic-bezier(.22, 1, .36, 1), right var(--page-second-click-duration-debug) cubic-bezier(.22, 1, .36, 1), left var(--page-second-click-duration-debug) cubic-bezier(.22, 1, .36, 1), opacity .26s ease;
 }
 .project-folder.is-open .project-folder-front { box-shadow: 0 32px 66px rgba(22, 59, 100, .24); }
 .project-folder-exiting-left { animation: project-folder-out-left .56s linear both; pointer-events: none; }
