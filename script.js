@@ -238,7 +238,7 @@ if (projectCarousel) {
         nextFolder.classList.add('project-folder-current');
         isSwitching = false;
         setControlsDisabled(false);
-      }, 700);
+      }, 560);
     }, currentIsOpen ? 820 : 0);
   };
 
