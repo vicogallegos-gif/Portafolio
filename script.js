@@ -123,8 +123,10 @@ const initializeProjectFolder = (folder) => {
 
   const clearSelection = () => {
     folder.classList.remove('has-selection');
+    folder.classList.remove('has-max-selection');
     pageItems.forEach((page) => {
       page.classList.remove('is-selected');
+      page.classList.remove('is-in-front-of-selection');
     });
     pageButtons.forEach((button) => button?.setAttribute('aria-pressed', 'false'));
   };
@@ -160,13 +162,21 @@ const initializeProjectFolder = (folder) => {
     button.addEventListener('click', () => {
       if (!folder.classList.contains('is-open')) return;
 
-      const willSelect = !page.classList.contains('is-selected');
+      const wasSelected = page.classList.contains('is-selected');
+      const wasMaxSelected = folder.classList.contains('has-max-selection') && wasSelected;
       clearSelection();
 
-      if (willSelect) {
+      if (!wasSelected || !wasMaxSelected) {
         folder.classList.add('has-selection');
         page.classList.add('is-selected');
         button.setAttribute('aria-pressed', 'true');
+
+        if (wasSelected) folder.classList.add('has-max-selection');
+        if (wasSelected) {
+          pageItems.forEach((candidate, candidateIndex) => {
+            if (candidateIndex > index) candidate.classList.add('is-in-front-of-selection');
+          });
+        }
       }
     });
   });
