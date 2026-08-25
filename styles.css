@@ -99,11 +99,11 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .project-carousel-control:hover, .project-carousel-control:focus-visible { border-color: var(--navy); background: var(--white); box-shadow: 0 18px 36px rgba(22, 59, 100, .17); color: var(--blue-royal); transform: translateY(-50%) scale(1.06); }
 .project-carousel-control:disabled { cursor: wait; opacity: .45; pointer-events: none; }
 .project-carousel-control:focus-visible { outline: 3px solid var(--blue-royal); outline-offset: 4px; }
-.project-folder { position: relative; width: min(1128px, 100%); height: 720px; isolation: isolate; }
+.project-folder { --front-stack-y: -45px; position: relative; width: min(1128px, 100%); height: 720px; isolation: isolate; }
 .project-folder-back { position: absolute; top: 410px; right: 6%; left: 6%; z-index: 0; height: 80px; border: 1px solid rgba(14, 41, 72, .32); border-radius: 25px 20px 28px 20px; background: #38658f; box-shadow: 0 14px 34px rgba(22, 59, 100, .1); transform: translateY(0); transition: height .61s cubic-bezier(.22, 1, .36, 1), transform .61s cubic-bezier(.22, 1, .36, 1), box-shadow .5s ease; will-change: height, transform; }
 .project-folder-back::before { position: absolute; top: -31px; left: calc(50% - 110px); width: 220px; height: 34px; border: 1px solid rgba(14, 41, 72, .32); border-bottom: 0; border-radius: 19px 19px 0 0; background: inherit; content: ''; }
 .project-folder-pages { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.project-folder-page { --closed-y: 0px; --open-y: -360px; --max-y: -432px; --max-height: 452px; --front-drop: 28px; position: absolute; top: 420px; min-height: 190px; padding: 19px 30px 22px; overflow: hidden; border: 1px solid rgba(22, 59, 100, .18); border-radius: 18px 18px 10px 10px; background: #fffefc; box-shadow: 0 15px 34px rgba(22, 59, 100, .08); color: var(--ink); opacity: 1; transform: translateY(var(--closed-y)); transform-origin: center bottom; transition: transform .68s cubic-bezier(.22, 1, .36, 1), min-height .68s cubic-bezier(.22, 1, .36, 1), right .68s cubic-bezier(.22, 1, .36, 1), left .68s cubic-bezier(.22, 1, .36, 1), opacity .26s ease, box-shadow .38s ease; will-change: transform, min-height; }
+.project-folder-page { --closed-y: 0px; --open-y: -360px; --max-y: -432px; --max-height: 452px; position: absolute; top: 420px; min-height: 190px; padding: 19px 30px 22px; overflow: hidden; border: 1px solid rgba(22, 59, 100, .18); border-radius: 18px 18px 10px 10px; background: #fffefc; box-shadow: 0 15px 34px rgba(22, 59, 100, .08); color: var(--ink); opacity: 1; transform: translateY(var(--closed-y)); transform-origin: center bottom; transition: transform .68s cubic-bezier(.22, 1, .36, 1), min-height .68s cubic-bezier(.22, 1, .36, 1), right .68s cubic-bezier(.22, 1, .36, 1), left .68s cubic-bezier(.22, 1, .36, 1), opacity .26s ease, box-shadow .38s ease; will-change: transform, min-height; }
 .project-folder-page-1 { --closed-y: 0px; --open-y: -360px; --selected-y: -432px; right: 3.5%; left: 3.5%; z-index: 1; }
 .project-folder-page-2 { --closed-y: 12px; --open-y: -255px; --selected-y: -327px; right: 2.5%; left: 2.5%; z-index: 2; }
 .project-folder-page-3 { --closed-y: 24px; --open-y: -150px; --selected-y: -222px; right: 1.5%; left: 1.5%; z-index: 3; }
@@ -141,7 +141,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .project-folder.has-selection .project-folder-page:not(.is-selected):hover,
 .project-folder.has-selection .project-folder-page:not(.is-selected):focus-within { transform: translateY(calc(var(--open-y) - 8px)); box-shadow: 0 26px 50px rgba(22, 59, 100, .16); }
 .project-folder.has-selection .project-folder-page.is-selected { transform: translateY(var(--selected-y)); box-shadow: 0 30px 64px rgba(22, 59, 100, .18); }
-.project-folder.has-max-selection .project-folder-page.is-in-front-of-selection { transform: translateY(calc(var(--open-y) + var(--front-drop))); box-shadow: 0 18px 38px rgba(22, 59, 100, .1); }
+.project-folder.has-max-selection .project-folder-page.is-in-front-of-selection { transform: translateY(var(--front-stack-y)); box-shadow: 0 18px 38px rgba(22, 59, 100, .1); }
 .project-folder.has-max-selection .project-folder-page.is-selected { min-height: var(--max-height); transform: translateY(var(--max-y)); box-shadow: 0 30px 64px rgba(22, 59, 100, .18); }
 .project-folder.is-open .project-folder-front { box-shadow: 0 32px 66px rgba(22, 59, 100, .24); }
 .project-folder-exiting-left { animation: project-folder-out-left .56s linear both; pointer-events: none; }
@@ -325,7 +325,8 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   .project-carousel-control span { font-size: 29px; }
   .project-folder-back { top: 360px; right: 6%; left: 6%; }
   .project-folder-back::before { left: calc(50% - 78px); width: 156px; }
-  .project-folder-page { top: 370px; min-height: 145px; --max-y: -371px; --max-height: 392px; --front-drop: 20px; padding: 13px 16px 14px; }
+  .project-folder { --front-stack-y: -50px; }
+  .project-folder-page { top: 370px; min-height: 145px; --max-y: -371px; --max-height: 392px; padding: 13px 16px 14px; }
   .project-folder-page-1 { --open-y: -320px; --selected-y: -371px; }
   .project-folder-page-2 { --open-y: -230px; --selected-y: -281px; }
   .project-folder-page-3 { --open-y: -140px; --selected-y: -191px; }
