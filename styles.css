@@ -20,7 +20,6 @@
   --radius-lg: 30px;
   --radius-md: 20px;
   --page-second-click-duration-normal: .68s;
-  --page-second-click-duration-debug: 6.8s;
 }
 
 * { box-sizing: border-box; }
@@ -109,7 +108,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .project-folder-page-1 { --closed-y: 0px; --open-y: -360px; --selected-y: -432px; right: 3.5%; left: 3.5%; z-index: 1; }
 .project-folder-page-2 { --closed-y: 12px; --open-y: -255px; --selected-y: -327px; right: 2.5%; left: 2.5%; z-index: 2; }
 .project-folder-page-3 { --closed-y: 24px; --open-y: -150px; --selected-y: -222px; right: 1.5%; left: 1.5%; z-index: 3; }
-.project-folder-page-4 { --closed-y: 36px; --open-y: -45px; --selected-y: -117px; right: .5%; left: .5%; z-index: 4; }
+.project-folder-page-4 { --closed-y: 36px; --open-y: -45px; --selected-y: -117px; --selected-height: calc(var(--max-height) - 35px); right: .5%; left: .5%; z-index: 4; }
 .project-folder-page-heading { display: flex; justify-content: space-between; gap: 20px; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .project-folder-page-heading { margin-bottom: 12px; color: var(--blue-royal); }
 .project-folder-page-heading span:last-child { color: var(--ink-soft); }
@@ -142,14 +141,14 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .project-folder.has-selection .project-folder-page:not(.is-selected) { opacity: 1; transform: translateY(var(--open-y)); box-shadow: 0 22px 45px rgba(22, 59, 100, .12); }
 .project-folder.has-selection .project-folder-page:not(.is-selected):hover,
 .project-folder.has-selection .project-folder-page:not(.is-selected):focus-within { transform: translateY(calc(var(--open-y) - 8px)); box-shadow: 0 26px 50px rgba(22, 59, 100, .16); }
-.project-folder.has-selection .project-folder-page.is-selected { height: var(--max-height); transform: translateY(var(--selected-y)); box-shadow: 0 30px 64px rgba(22, 59, 100, .18); }
+.project-folder.has-selection .project-folder-page.is-selected { height: var(--selected-height, var(--max-height)); transform: translateY(var(--selected-y)); box-shadow: 0 30px 64px rgba(22, 59, 100, .18); }
 .project-folder.has-max-selection .project-folder-page.is-in-front-of-selection { transform: translateY(var(--front-stack-y)); }
 .project-folder.has-max-selection .project-folder-page.is-selected {
   height: var(--max-height);
   min-height: 0;
   transform: translateY(var(--max-y));
   box-shadow: 0 30px 64px rgba(22, 59, 100, .18);
-  transition: transform var(--page-second-click-duration-debug) cubic-bezier(.22, 1, .36, 1), height var(--page-second-click-duration-debug) cubic-bezier(.22, 1, .36, 1), right var(--page-second-click-duration-debug) cubic-bezier(.22, 1, .36, 1), left var(--page-second-click-duration-debug) cubic-bezier(.22, 1, .36, 1), opacity .26s ease;
+  transition: transform var(--page-second-click-duration-normal) cubic-bezier(.22, 1, .36, 1), height var(--page-second-click-duration-normal) cubic-bezier(.22, 1, .36, 1), right var(--page-second-click-duration-normal) cubic-bezier(.22, 1, .36, 1), left var(--page-second-click-duration-normal) cubic-bezier(.22, 1, .36, 1), opacity .26s ease;
 }
 .project-folder.is-open .project-folder-front { box-shadow: 0 32px 66px rgba(22, 59, 100, .24); }
 .project-folder-exiting-left { animation: project-folder-out-left .56s linear both; pointer-events: none; }
@@ -338,7 +337,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   .project-folder-page-1 { --open-y: -320px; --selected-y: -371px; }
   .project-folder-page-2 { --open-y: -230px; --selected-y: -281px; }
   .project-folder-page-3 { --open-y: -140px; --selected-y: -191px; }
-  .project-folder-page-4 { --open-y: -50px; --selected-y: -101px; }
+  .project-folder-page-4 { --open-y: -50px; --selected-y: -101px; --selected-height: calc(var(--max-height) - 41px); }
   .project-folder-page-heading { margin-bottom: 10px; font-size: 7px; }
   .project-folder-page-body { grid-template-columns: 1fr; gap: 3px; }
   .project-folder-page h4 { font-size: 15px; }
