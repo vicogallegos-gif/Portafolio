@@ -12,8 +12,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=folder-system-v35" />
-    <script defer src="script.js?v=folder-system-v31"></script>
+    <link rel="stylesheet" href="styles.css?v=solution-proof-v1" />
+    <script defer src="script.js?v=solution-proof-v1"></script>
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -137,39 +137,61 @@
 
       <section id="capacidades" class="section-pad section-capabilities">
         <div class="container">
-          <div class="section-intro" data-reveal>
-            <h2>Una base visual para resolver problemas concretos.</h2>
-            <p>La automatización es mi foco. No parto de una herramienta: parto de entender qué debe pasar y construyo la versión necesaria para comprobarlo.</p>
-          </div>
+          <header class="solution-header" data-reveal>
+            <h2>Una solución no empieza con la herramienta.<br />Empieza con el resultado.</h2>
+            <p>Primero entiendo qué resultado necesita el negocio. Después encuentro la fricción y construyo solo lo que puede mejorarlo.</p>
+          </header>
 
-          <div class="capability-grid">
-              <article class="capability-card" data-reveal>
-                <span class="capability-label">01</span>
-                <h3>Producto y soluciones</h3>
-                <p>Convierto un proceso confuso en un flujo comprensible, con prioridades y una primera versión revisable.</p>
-              </article>
-            <article class="capability-card capability-card-accent" data-reveal>
-              <span class="capability-label">02</span>
-              <h3>IA y automatización</h3>
-              <p>Uso IA para investigar, programar y acelerar iteraciones; reviso personalmente las decisiones y el comportamiento de lo construido.</p>
-              <div class="tag-list"><span>Claude Code</span><span>Codex</span><span>Cursor</span><span>Make</span><span>n8n</span></div>
+          <div class="solution-stories">
+            <article class="solution-story" data-reveal>
+              <button class="solution-scene solution-outcome" type="button" data-solution-scene aria-pressed="false" aria-label="Ver cómo se define el resultado antes de elegir una herramienta">
+                <span class="solution-grid" aria-hidden="true"></span>
+                <span class="outcome-sheet outcome-sheet-back" aria-hidden="true"></span>
+                <span class="outcome-sheet outcome-sheet-middle" aria-hidden="true"></span>
+                <span class="outcome-sheet outcome-sheet-front" aria-hidden="true">
+                  <span class="solution-label">RESULTADO</span>
+                  <strong>Más capacidad<br />operativa</strong>
+                  <span class="outcome-rule"></span>
+                  <span class="outcome-axis"><i>coste</i><i>tiempo</i><i>experiencia</i></span>
+                </span>
+              </button>
+              <div class="solution-copy">
+                <span class="solution-number">01</span>
+                <h3>El resultado antes que la herramienta</h3>
+                <p>Empiezo por lo que debería cambiar: coste, capacidad, tiempo o experiencia.</p>
+              </div>
             </article>
-            <article class="capability-card" data-reveal>
-                <span class="capability-label">03</span>
-                <h3>Criterio visual y sistemas</h3>
-                <p>Mi formación en arte digital y videojuegos me enseñó a pensar en interacción, UI, lógica, consistencia y experiencia completa, no solo en una pantalla.</p>
-              </article>
-          </div>
 
-          <div class="differentiator" data-reveal>
-            <div>
-              <h3>No solo conecto herramientas. Pienso en el sistema que las personas van a usar.</h3>
-            </div>
-            <div class="differentiator-copy">
-              <p>Vengo del diseño y arte de videojuegos: una disciplina que obliga a considerar interacción, interfaz, lógica, contenido, consistencia y coordinación de un proyecto completo.</p>
-              <p>Por eso uso la IA como acelerador, no como sustituto del criterio. Investigo referencias, cuestiono propuestas, reviso los artefactos que genera y cuido que la solución sea comprensible y útil.</p>
-              <div class="differentiator-points"><span>Referencias antes de construir</span><span>IA con revisión humana</span><span>Experiencia completa</span></div>
-            </div>
+            <article class="solution-story" data-reveal>
+              <button class="solution-scene solution-friction" type="button" data-solution-scene aria-pressed="false" aria-label="Ver cómo se detecta la fricción dentro de una operación">
+                <span class="solution-grid" aria-hidden="true"></span>
+                <span class="handoff-card handoff-card-one" aria-hidden="true"><i>SOLICITUD</i><strong>Información recibida</strong><b></b></span>
+                <span class="handoff-card handoff-card-two" aria-hidden="true"><i>ESTADO</i><strong>Volver a comprobar</strong><b></b></span>
+                <span class="handoff-card handoff-card-three" aria-hidden="true"><i>ASIGNACIÓN</i><strong>Esperando contexto</strong><b></b></span>
+              </button>
+              <div class="solution-copy">
+                <span class="solution-number">02</span>
+                <h3>La petición no siempre es el problema</h3>
+                <p>Observo el recorrido completo hasta encontrar repeticiones, esperas y pérdida de contexto.</p>
+              </div>
+            </article>
+
+            <article class="solution-story" data-reveal>
+              <button class="solution-scene solution-system" type="button" data-solution-scene aria-pressed="false" aria-label="Ver cómo un sistema automatiza lo repetible y conserva el criterio humano">
+                <span class="solution-grid" aria-hidden="true"></span>
+                <span class="system-panel" aria-hidden="true">
+                  <span class="system-top"><i></i><i></i><i></i></span>
+                  <span class="system-row system-row-one"><i></i><strong>Entrada recibida</strong><b>lista</b></span>
+                  <span class="system-row system-row-two"><i></i><strong>Regla aplicada</strong><b>automática</b></span>
+                  <span class="system-row system-row-three"><i></i><strong>Excepción detectada</strong><b>revisar</b></span>
+                </span>
+              </button>
+              <div class="solution-copy">
+                <span class="solution-number">03</span>
+                <h3>La solución debe liberar capacidad</h3>
+                <p>Automatizo lo repetible y devuelvo las excepciones a quien puede decidir mejor.</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>

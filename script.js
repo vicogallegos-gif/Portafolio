@@ -19,6 +19,21 @@ document.querySelectorAll('[data-year]').forEach((node) => {
   node.textContent = new Date().getFullYear();
 });
 
+const solutionScenes = document.querySelectorAll('[data-solution-scene]');
+solutionScenes.forEach((scene) => {
+  scene.addEventListener('click', () => {
+    const nextState = !scene.classList.contains('is-active');
+
+    solutionScenes.forEach((otherScene) => {
+      otherScene.classList.remove('is-active');
+      otherScene.setAttribute('aria-pressed', 'false');
+    });
+
+    scene.classList.toggle('is-active', nextState);
+    scene.setAttribute('aria-pressed', String(nextState));
+  });
+});
+
 const revealItems = document.querySelectorAll('[data-reveal]');
 if ('IntersectionObserver' in window) {
   const revealObserver = new IntersectionObserver((entries, observer) => {
