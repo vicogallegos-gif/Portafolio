@@ -281,7 +281,9 @@ if (fluidShaderCanvases.length) {
   `;
 
   const fragmentShaderSource = `
-    precision highp float;
+    // This is a background texture, so medium precision is enough and is
+    // considerably cheaper on integrated/mobile GPUs than highp.
+    precision mediump float;
 
     uniform vec2 u_resolution;
     uniform float u_time;
@@ -308,7 +310,7 @@ if (fluidShaderCanvases.length) {
       float value = 0.0;
       float amplitude = 0.5;
 
-      for (int index = 0; index < 5; index++) {
+      for (int index = 0; index < 4; index++) {
         value += amplitude * noise(point);
         point = point * 2.03 + vec2(17.13, 9.71);
         amplitude *= 0.5;
@@ -375,7 +377,7 @@ if (fluidShaderCanvases.length) {
     const gl = canvas.getContext('webgl', {
       alpha: false,
       antialias: false,
-      powerPreference: 'low-power',
+      powerPreference: 'high-performance',
     });
 
     if (!gl) return null;
@@ -418,13 +420,19 @@ if (fluidShaderCanvases.length) {
       timeLocation,
       phaseLocation,
       phase: canvas.dataset.shaderVariant === 'about' ? 2.4 : index * 1.3,
-      visible: true,
+      visible: false,
+      needsResize: true,
     };
   }).filter(Boolean);
 
   const resizeShader = (state) => {
+    if (!state.needsResize) return;
+
     const rect = state.canvas.getBoundingClientRect();
-    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+    // Keep the decorative layer below full CSS resolution. It is not content
+    // and this cuts the fragment workload roughly in half on large screens.
+    const quality = window.innerWidth <= 680 ? 0.6 : 0.72;
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.25) * quality;
     const width = Math.max(1, Math.round(rect.width * pixelRatio));
     const height = Math.max(1, Math.round(rect.height * pixelRatio));
 
@@ -433,6 +441,8 @@ if (fluidShaderCanvases.length) {
       state.canvas.height = height;
       state.gl.viewport(0, 0, width, height);
     }
+
+    state.needsResize = false;
   };
 
   const drawShader = (state, seconds) => {
@@ -444,26 +454,79 @@ if (fluidShaderCanvases.length) {
     state.gl.drawArrays(state.gl.TRIANGLES, 0, 6);
   };
 
+  // Assigned below when motion is enabled. Keeping a no-op fallback avoids
+  // errors for users who prefer reduced motion.
+  let requestShaderFrame = () => {};
+
   const shaderObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const state = shaderStates.find((candidate) => candidate.canvas === entry.target);
       if (state) state.visible = entry.isIntersecting;
     });
+    requestShaderFrame();
   }, { rootMargin: '160px 0px' });
+
+  const resizeObserver = 'ResizeObserver' in window
+    ? new ResizeObserver((entries) => {
+      entries.forEach((entry) => {
+        const state = shaderStates.find((candidate) => candidate.canvas === entry.target);
+        if (state) state.needsResize = true;
+      });
+      requestShaderFrame();
+    })
+    : null;
 
   shaderStates.forEach((state) => {
     shaderObserver.observe(state.canvas);
+    resizeObserver?.observe(state.canvas);
     drawShader(state, 0);
   });
 
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const shaderFrameInterval = 1000 / 30;
+    let shaderFrameHandle = 0;
+    let lastShaderFrame = 0;
+
+    const hasVisibleShader = () => shaderStates.some((state) => state.visible);
+
     const animateShaders = (timestamp) => {
-      shaderStates.forEach((state) => {
-        if (state.visible) drawShader(state, timestamp / 1000);
-      });
-      window.requestAnimationFrame(animateShaders);
+      shaderFrameHandle = 0;
+      if (document.hidden || !hasVisibleShader()) return;
+
+      if (timestamp - lastShaderFrame >= shaderFrameInterval) {
+        lastShaderFrame = timestamp;
+        shaderStates.forEach((state) => {
+          if (state.visible) drawShader(state, timestamp / 1000);
+        });
+      }
+
+      shaderFrameHandle = window.requestAnimationFrame(animateShaders);
     };
 
-    window.requestAnimationFrame(animateShaders);
+    requestShaderFrame = () => {
+      if (!document.hidden && hasVisibleShader() && !shaderFrameHandle) {
+        shaderFrameHandle = window.requestAnimationFrame(animateShaders);
+      }
+    };
+
+    window.addEventListener('resize', () => {
+      shaderStates.forEach((state) => {
+        state.needsResize = true;
+      });
+      requestShaderFrame();
+    }, { passive: true });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && shaderFrameHandle) {
+        window.cancelAnimationFrame(shaderFrameHandle);
+        shaderFrameHandle = 0;
+      } else {
+        requestShaderFrame();
+      }
+    });
+
+    // The observer callback normally starts this after the first layout. The
+    // explicit call also covers browsers that delay the initial observation.
+    window.setTimeout(requestShaderFrame, 0);
   }
 }
