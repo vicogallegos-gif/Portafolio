@@ -281,59 +281,27 @@ if (fluidShaderCanvases.length) {
   `;
 
   const fragmentShaderSource = `
-    // This is a background texture, so medium precision is enough and is
-    // considerably cheaper on integrated/mobile GPUs than highp.
+    // Decorative background only: keep this deliberately cheap. The previous
+    // version evaluated multi-octave noise several times for every pixel.
     precision mediump float;
 
     uniform vec2 u_resolution;
     uniform float u_time;
     uniform float u_phase;
 
-    float hash(vec2 point) {
-      return fract(sin(dot(point, vec2(127.1, 311.7))) * 43758.5453123);
-    }
-
-    float noise(vec2 point) {
-      vec2 cell = floor(point);
-      vec2 local = fract(point);
-      local = local * local * (3.0 - 2.0 * local);
-
-      float a = hash(cell);
-      float b = hash(cell + vec2(1.0, 0.0));
-      float c = hash(cell + vec2(0.0, 1.0));
-      float d = hash(cell + vec2(1.0, 1.0));
-
-      return mix(mix(a, b, local.x), mix(c, d, local.x), local.y);
-    }
-
-    float fbm(vec2 point) {
-      float value = 0.0;
-      float amplitude = 0.5;
-
-      for (int index = 0; index < 4; index++) {
-        value += amplitude * noise(point);
-        point = point * 2.03 + vec2(17.13, 9.71);
-        amplitude *= 0.5;
-      }
-
-      return value;
-    }
-
     void main() {
       vec2 uv = gl_FragCoord.xy / u_resolution.xy;
       uv.y = 1.0 - uv.y;
 
-      float time = u_time * 0.22;
-      float largeNoise = fbm(vec2(uv.y * 2.2 + u_phase, time * 0.34));
-      float crossNoise = fbm(vec2(uv.x * 1.7 - time * 0.2, uv.y * 1.65 + u_phase));
-      float fineNoise = fbm(uv * 3.7 + vec2(time * 0.16, -time * 0.13 + u_phase));
+      // A few broad waves preserve the movement and palette without noise
+      // lookups, nested loops, hashes or per-pixel grain.
+      float time = u_time * 0.13;
+      float warpedX = uv.x + 0.045 * sin(uv.y * 5.0 + time * 0.8 + u_phase);
+      float warpedY = uv.y + 0.055 * sin(uv.x * 4.2 - time * 0.7 + u_phase);
 
-      float warpedX = uv.x + (crossNoise - 0.5) * 0.2;
-      float warpedY = uv.y + (fineNoise - 0.5) * 0.11;
-
-      float edgeOne = 0.19 + 0.13 * sin(warpedY * 6.1 + time * 0.58 + u_phase) + (largeNoise - 0.5) * 0.22;
-      float edgeTwo = 0.46 + 0.14 * sin(warpedY * 5.2 - time * 0.47 + u_phase * 1.7) + (fineNoise - 0.5) * 0.2;
-      float edgeThree = 0.74 + 0.15 * sin(warpedY * 5.7 + time * 0.39 - u_phase) + (crossNoise - 0.5) * 0.23;
+      float edgeOne = 0.20 + 0.11 * sin(warpedY * 5.4 + time * 0.72 + u_phase);
+      float edgeTwo = 0.47 + 0.12 * sin(warpedY * 4.8 - time * 0.56 + u_phase * 1.7);
+      float edgeThree = 0.75 + 0.12 * sin(warpedY * 5.1 + time * 0.44 - u_phase);
 
       vec3 pale = vec3(0.975, 0.988, 1.0);
       vec3 lavender = vec3(0.76, 0.72, 0.91);
@@ -345,7 +313,7 @@ if (fluidShaderCanvases.length) {
       color = mix(color, light, smoothstep(edgeTwo - 0.07, edgeTwo + 0.07, warpedX));
       color = mix(color, cyan, smoothstep(edgeThree - 0.075, edgeThree + 0.075, warpedX));
 
-      float ribbonCenter = 0.5 + 0.18 * sin(warpedX * 4.7 - time * 0.41 + u_phase) + (largeNoise - 0.5) * 0.2;
+      float ribbonCenter = 0.5 + 0.16 * sin(warpedX * 4.7 - time * 0.41 + u_phase);
       float ribbon = 1.0 - smoothstep(0.03, 0.16, abs(warpedY - ribbonCenter));
       color = mix(color, pale, ribbon * 0.42);
 
@@ -354,8 +322,6 @@ if (fluidShaderCanvases.length) {
       color = mix(color, lavender, leftLobe * 0.38);
       color = mix(color, blue, rightLobe * 0.27);
 
-      float grain = (hash(gl_FragCoord.xy + floor(u_time * 5.0)) - 0.5) * 0.018;
-      color += grain;
       color = mix(color, pale, 0.08);
 
       gl_FragColor = vec4(color, 1.0);
@@ -431,7 +397,7 @@ if (fluidShaderCanvases.length) {
     const rect = state.canvas.getBoundingClientRect();
     // Keep the decorative layer below full CSS resolution. It is not content
     // and this cuts the fragment workload roughly in half on large screens.
-    const quality = window.innerWidth <= 680 ? 0.6 : 0.72;
+    const quality = window.innerWidth <= 680 ? 0.48 : 0.58;
     const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.25) * quality;
     const width = Math.max(1, Math.round(rect.width * pixelRatio));
     const height = Math.max(1, Math.round(rect.height * pixelRatio));
@@ -483,7 +449,7 @@ if (fluidShaderCanvases.length) {
   });
 
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const shaderFrameInterval = 1000 / 30;
+    const shaderFrameInterval = 1000 / 24;
     let shaderFrameHandle = 0;
     let lastShaderFrame = 0;
 
