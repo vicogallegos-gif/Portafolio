@@ -53,30 +53,37 @@ if (capabilityCurves.length) {
 
     context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
     context.clearRect(0, 0, rect.width, rect.height);
-    context.beginPath();
-
-    context.moveTo(-12, rect.height * .06);
-    context.bezierCurveTo(
-      rect.width * .2, rect.height * .02,
-      rect.width * .08, rect.height * .59,
-      rect.width * .36, rect.height * .62,
-    );
-    context.bezierCurveTo(
-      rect.width * .57, rect.height * .65,
-      rect.width * .66, rect.height * .34,
-      rect.width * .8, rect.height * .46,
-    );
-    context.bezierCurveTo(
-      rect.width * .95, rect.height * .59,
-      rect.width * .84, rect.height * .96,
-      rect.width + 12, rect.height * .98,
-    );
-
-    context.strokeStyle = 'rgba(37, 99, 235, .25)';
-    context.lineWidth = 1.25;
     context.lineCap = 'round';
     context.lineJoin = 'round';
-    context.stroke();
+
+    const strokeCurve = (alpha, draw) => {
+      context.beginPath();
+      draw();
+      context.strokeStyle = `rgba(37, 99, 235, ${alpha})`;
+      context.lineWidth = 1;
+      context.stroke();
+    };
+
+    strokeCurve(.105, () => {
+      context.moveTo(-12, rect.height * .06);
+      context.bezierCurveTo(rect.width * .2, rect.height * .02, rect.width * .08, rect.height * .59, rect.width * .36, rect.height * .62);
+      context.bezierCurveTo(rect.width * .57, rect.height * .65, rect.width * .66, rect.height * .34, rect.width * .8, rect.height * .46);
+      context.bezierCurveTo(rect.width * .95, rect.height * .59, rect.width * .84, rect.height * .96, rect.width + 12, rect.height * .98);
+    });
+
+    strokeCurve(.085, () => {
+      context.moveTo(-12, rect.height * .24);
+      context.bezierCurveTo(rect.width * .15, rect.height * .12, rect.width * .19, rect.height * .8, rect.width * .43, rect.height * .55);
+      context.bezierCurveTo(rect.width * .58, rect.height * .4, rect.width * .69, rect.height * .78, rect.width * .84, rect.height * .64);
+      context.bezierCurveTo(rect.width * .96, rect.height * .53, rect.width * .9, rect.height * .13, rect.width + 12, rect.height * .22);
+    });
+
+    strokeCurve(.07, () => {
+      context.moveTo(-12, rect.height * .9);
+      context.bezierCurveTo(rect.width * .13, rect.height * .78, rect.width * .15, rect.height * .23, rect.width * .37, rect.height * .38);
+      context.bezierCurveTo(rect.width * .54, rect.height * .5, rect.width * .62, rect.height * .92, rect.width * .79, rect.height * .8);
+      context.bezierCurveTo(rect.width * .93, rect.height * .7, rect.width * .88, rect.height * .34, rect.width + 12, rect.height * .42);
+    });
   };
 
   const drawCapabilityCurves = () => capabilityCurves.forEach(drawCapabilityCurve);
