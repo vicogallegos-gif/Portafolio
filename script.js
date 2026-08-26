@@ -268,3 +268,202 @@ if (projectCarousel) {
   previousButton?.addEventListener('click', () => switchProject(-1));
   nextButton?.addEventListener('click', () => switchProject(1));
 }
+
+const fluidShaderCanvases = [...document.querySelectorAll('[data-fluid-shader]')];
+
+if (fluidShaderCanvases.length) {
+  const vertexShaderSource = `
+    attribute vec2 a_position;
+
+    void main() {
+      gl_Position = vec4(a_position, 0.0, 1.0);
+    }
+  `;
+
+  const fragmentShaderSource = `
+    precision highp float;
+
+    uniform vec2 u_resolution;
+    uniform float u_time;
+    uniform float u_phase;
+
+    float hash(vec2 point) {
+      return fract(sin(dot(point, vec2(127.1, 311.7))) * 43758.5453123);
+    }
+
+    float noise(vec2 point) {
+      vec2 cell = floor(point);
+      vec2 local = fract(point);
+      local = local * local * (3.0 - 2.0 * local);
+
+      float a = hash(cell);
+      float b = hash(cell + vec2(1.0, 0.0));
+      float c = hash(cell + vec2(0.0, 1.0));
+      float d = hash(cell + vec2(1.0, 1.0));
+
+      return mix(mix(a, b, local.x), mix(c, d, local.x), local.y);
+    }
+
+    float fbm(vec2 point) {
+      float value = 0.0;
+      float amplitude = 0.5;
+
+      for (int index = 0; index < 5; index++) {
+        value += amplitude * noise(point);
+        point = point * 2.03 + vec2(17.13, 9.71);
+        amplitude *= 0.5;
+      }
+
+      return value;
+    }
+
+    void main() {
+      vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+      uv.y = 1.0 - uv.y;
+
+      float time = u_time * 0.22;
+      float largeNoise = fbm(vec2(uv.y * 2.2 + u_phase, time * 0.34));
+      float crossNoise = fbm(vec2(uv.x * 1.7 - time * 0.2, uv.y * 1.65 + u_phase));
+      float fineNoise = fbm(uv * 3.7 + vec2(time * 0.16, -time * 0.13 + u_phase));
+
+      float warpedX = uv.x + (crossNoise - 0.5) * 0.2;
+      float warpedY = uv.y + (fineNoise - 0.5) * 0.11;
+
+      float edgeOne = 0.19 + 0.13 * sin(warpedY * 6.1 + time * 0.58 + u_phase) + (largeNoise - 0.5) * 0.22;
+      float edgeTwo = 0.46 + 0.14 * sin(warpedY * 5.2 - time * 0.47 + u_phase * 1.7) + (fineNoise - 0.5) * 0.2;
+      float edgeThree = 0.74 + 0.15 * sin(warpedY * 5.7 + time * 0.39 - u_phase) + (crossNoise - 0.5) * 0.23;
+
+      vec3 pale = vec3(0.975, 0.988, 1.0);
+      vec3 lavender = vec3(0.76, 0.72, 0.91);
+      vec3 blue = vec3(0.55, 0.70, 0.89);
+      vec3 light = vec3(0.91, 0.95, 0.96);
+      vec3 cyan = vec3(0.57, 0.78, 0.84);
+
+      vec3 color = mix(lavender, blue, smoothstep(edgeOne - 0.06, edgeOne + 0.06, warpedX));
+      color = mix(color, light, smoothstep(edgeTwo - 0.07, edgeTwo + 0.07, warpedX));
+      color = mix(color, cyan, smoothstep(edgeThree - 0.075, edgeThree + 0.075, warpedX));
+
+      float ribbonCenter = 0.5 + 0.18 * sin(warpedX * 4.7 - time * 0.41 + u_phase) + (largeNoise - 0.5) * 0.2;
+      float ribbon = 1.0 - smoothstep(0.03, 0.16, abs(warpedY - ribbonCenter));
+      color = mix(color, pale, ribbon * 0.42);
+
+      float leftLobe = 1.0 - smoothstep(0.13, 0.43, distance(vec2(warpedX * 1.1, warpedY), vec2(0.02, 0.67 + 0.08 * sin(time))));
+      float rightLobe = 1.0 - smoothstep(0.18, 0.48, distance(vec2(warpedX, warpedY * 1.08), vec2(1.02, 0.42 + 0.07 * cos(time * 0.8))));
+      color = mix(color, lavender, leftLobe * 0.38);
+      color = mix(color, blue, rightLobe * 0.27);
+
+      float grain = (hash(gl_FragCoord.xy + floor(u_time * 5.0)) - 0.5) * 0.018;
+      color += grain;
+      color = mix(color, pale, 0.08);
+
+      gl_FragColor = vec4(color, 1.0);
+    }
+  `;
+
+  const compileShader = (gl, type, source) => {
+    const shader = gl.createShader(type);
+    gl.shaderSource(shader, source);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+      gl.deleteShader(shader);
+      return null;
+    }
+    return shader;
+  };
+
+  const shaderStates = fluidShaderCanvases.map((canvas, index) => {
+    const gl = canvas.getContext('webgl', {
+      alpha: false,
+      antialias: false,
+      powerPreference: 'low-power',
+    });
+
+    if (!gl) return null;
+
+    const vertexShader = compileShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+    const fragmentShader = compileShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+    if (!vertexShader || !fragmentShader) return null;
+
+    const program = gl.createProgram();
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return null;
+
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+      -1, -1,
+      1, -1,
+      -1, 1,
+      -1, 1,
+      1, -1,
+      1, 1,
+    ]), gl.STATIC_DRAW);
+
+    const positionLocation = gl.getAttribLocation(program, 'a_position');
+    const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
+    const timeLocation = gl.getUniformLocation(program, 'u_time');
+    const phaseLocation = gl.getUniformLocation(program, 'u_phase');
+
+    gl.useProgram(program);
+    gl.enableVertexAttribArray(positionLocation);
+    gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+    return {
+      canvas,
+      gl,
+      program,
+      resolutionLocation,
+      timeLocation,
+      phaseLocation,
+      phase: canvas.dataset.shaderVariant === 'about' ? 2.4 : index * 1.3,
+      visible: true,
+    };
+  }).filter(Boolean);
+
+  const resizeShader = (state) => {
+    const rect = state.canvas.getBoundingClientRect();
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+    const width = Math.max(1, Math.round(rect.width * pixelRatio));
+    const height = Math.max(1, Math.round(rect.height * pixelRatio));
+
+    if (state.canvas.width !== width || state.canvas.height !== height) {
+      state.canvas.width = width;
+      state.canvas.height = height;
+      state.gl.viewport(0, 0, width, height);
+    }
+  };
+
+  const drawShader = (state, seconds) => {
+    resizeShader(state);
+    state.gl.useProgram(state.program);
+    state.gl.uniform2f(state.resolutionLocation, state.canvas.width, state.canvas.height);
+    state.gl.uniform1f(state.timeLocation, seconds);
+    state.gl.uniform1f(state.phaseLocation, state.phase);
+    state.gl.drawArrays(state.gl.TRIANGLES, 0, 6);
+  };
+
+  const shaderObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const state = shaderStates.find((candidate) => candidate.canvas === entry.target);
+      if (state) state.visible = entry.isIntersecting;
+    });
+  }, { rootMargin: '160px 0px' });
+
+  shaderStates.forEach((state) => {
+    shaderObserver.observe(state.canvas);
+    drawShader(state, 0);
+  });
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const animateShaders = (timestamp) => {
+      shaderStates.forEach((state) => {
+        if (state.visible) drawShader(state, timestamp / 1000);
+      });
+      window.requestAnimationFrame(animateShaders);
+    };
+
+    window.requestAnimationFrame(animateShaders);
+  }
+}
