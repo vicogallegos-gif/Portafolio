@@ -87,7 +87,22 @@ h1, h2, h3 { font-family: 'Outfit', system-ui, sans-serif; }
 .hero-art { position: relative; min-height: 610px; overflow: hidden; border: 1px solid rgba(255, 255, 255, .72); border-radius: 52px 52px 22px 52px; background: var(--blue-pastel); box-shadow: var(--shadow); isolation: isolate; }
 .hero-art img { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; object-position: 56% center; filter: saturate(.78) contrast(.96); mix-blend-mode: multiply; }
 
-.section-work { position: relative; overflow: hidden; padding-top: 96px; padding-bottom: 112px; border-radius: 86px 86px 0 0; background: var(--blue-ice); }
+.section-work {
+  position: relative;
+  overflow: hidden;
+  padding-top: 96px;
+  padding-bottom: 112px;
+  border-radius: 86px 86px 0 0;
+  background-color: var(--blue-ice);
+  background-image:
+    radial-gradient(ellipse 58% 44% at 8% 16%, rgba(255, 255, 255, .38) 0%, rgba(255, 255, 255, .16) 31%, transparent 72%),
+    radial-gradient(ellipse 48% 56% at 82% 26%, rgba(92, 133, 191, .1) 0%, rgba(92, 133, 191, .04) 38%, transparent 74%),
+    radial-gradient(ellipse 58% 48% at 57% 88%, rgba(37, 99, 235, .065) 0%, rgba(37, 99, 235, .025) 42%, transparent 74%);
+  background-position: -8% 0%, 104% 10%, 48% 106%;
+  background-size: 128% 124%, 116% 126%, 132% 132%;
+  isolation: isolate;
+  animation: shader-drift-work 30s ease-in-out infinite alternate;
+}
 .section-heading-row { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) 270px; align-items: end; gap: 60px; margin-bottom: 55px; }
 .section-work .section-heading-row { grid-template-columns: 1fr; margin-bottom: 24px; }
 h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-height: .98; letter-spacing: -.08em; }
@@ -212,8 +227,8 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   background-size: 56px 56px;
   isolation: isolate;
 }
-.section-capabilities::before { position: absolute; left: -145px; bottom: -165px; z-index: 0; width: 390px; height: 310px; border: 1px solid rgba(37, 99, 235, .12); border-radius: 62% 38% 32% 68%; background: transparent; content: ''; pointer-events: none; transform: rotate(18deg); animation: float-shape-left 24s ease-in-out infinite; }
-.section-capabilities::after { position: absolute; top: -115px; right: -185px; z-index: 0; width: 420px; height: 420px; border: 1px solid rgba(37, 99, 235, .12); border-radius: 46% 54% 61% 39%; content: ''; pointer-events: none; transform: rotate(22deg); animation: float-shape 21s ease-in-out infinite; }
+.section-capabilities::before { position: absolute; left: -255px; bottom: -76px; z-index: 0; width: 540px; height: 238px; border: 1px solid rgba(37, 99, 235, .12); border-radius: 74% 26% 58% 42%; background: transparent; content: ''; pointer-events: none; transform: rotate(-14deg) scale(.92, 1.06); animation: capability-outline-lower 27s ease-in-out infinite; }
+.section-capabilities::after { position: absolute; top: -205px; right: -82px; z-index: 0; width: 318px; height: 510px; border: 1px solid rgba(37, 99, 235, .12); border-radius: 34% 66% 29% 71%; content: ''; pointer-events: none; transform: rotate(41deg) scale(.88, 1.08); animation: capability-outline-upper 23s ease-in-out infinite; }
 .section-capabilities .container { position: relative; z-index: 1; }
 .solution-header { display: grid; grid-template-columns: minmax(0, .98fr) minmax(340px, .72fr); align-items: start; gap: 92px; }
 .solution-header h2 { max-width: 650px; font-size: clamp(2.4rem, 4.8vw, 4.5rem); font-weight: 700; line-height: .98; letter-spacing: -.08em; }
@@ -276,8 +291,14 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   padding-top: 108px;
   padding-bottom: 108px;
   background-color: var(--blue-ice);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M56 0H0V56' fill='none' stroke='%23163b64' stroke-opacity='.026'/%3E%3C/svg%3E");
-  background-size: 56px 56px;
+  background-image:
+    radial-gradient(ellipse 56% 50% at 14% 23%, rgba(255, 255, 255, .34) 0%, rgba(255, 255, 255, .14) 34%, transparent 73%),
+    radial-gradient(ellipse 47% 61% at 88% 34%, rgba(100, 142, 201, .09) 0%, rgba(100, 142, 201, .035) 41%, transparent 75%),
+    radial-gradient(ellipse 60% 45% at 55% 96%, rgba(37, 99, 235, .055) 0%, rgba(37, 99, 235, .02) 43%, transparent 75%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M56 0H0V56' fill='none' stroke='%23163b64' stroke-opacity='.026'/%3E%3C/svg%3E");
+  background-position: -5% 6%, 104% 16%, 48% 106%, 0 0;
+  background-size: 124% 132%, 118% 128%, 136% 132%, 56px 56px;
+  animation: shader-drift-about 34s ease-in-out infinite alternate;
 }
 .section-about::before { position: absolute; left: -130px; bottom: -160px; width: 380px; height: 300px; border-radius: 56% 44% 38% 62%; background: rgba(201, 220, 244, .42); content: ''; transform: rotate(18deg); }
 .section-about::after { position: absolute; top: 86px; right: -125px; width: 340px; height: 340px; border: 1px solid rgba(37, 99, 235, .12); border-radius: 50%; box-shadow: 0 0 0 23px rgba(201, 220, 244, .08), 0 0 0 49px rgba(201, 220, 244, .05); content: ''; transform: rotate(-16deg); }
@@ -303,6 +324,10 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 [data-reveal].is-visible { opacity: 1; transform: none; }
 @keyframes float-shape { 0%, 100% { transform: translate3d(0, 0, 0) rotate(22deg); } 50% { transform: translate3d(-16px, 18px, 0) rotate(29deg); } }
 @keyframes float-shape-left { 0%, 100% { transform: translate3d(0, 0, 0) rotate(18deg); } 50% { transform: translate3d(14px, -12px, 0) rotate(25deg); } }
+@keyframes capability-outline-lower { 0%, 100% { transform: translate3d(0, 0, 0) rotate(-14deg) scale(.92, 1.06); } 50% { transform: translate3d(24px, -11px, 0) rotate(-6deg) scale(.97, 1.01); } }
+@keyframes capability-outline-upper { 0%, 100% { transform: translate3d(0, 0, 0) rotate(41deg) scale(.88, 1.08); } 50% { transform: translate3d(-13px, 25px, 0) rotate(53deg) scale(.94, 1.02); } }
+@keyframes shader-drift-work { 0% { background-position: -8% 0%, 104% 10%, 48% 106%; } 100% { background-position: 1% 7%, 96% 18%, 55% 97%; } }
+@keyframes shader-drift-about { 0% { background-position: -5% 6%, 104% 16%, 48% 106%, 0 0; } 100% { background-position: 3% 12%, 96% 23%, 55% 98%, 0 0; } }
 
 @media (max-width: 980px) {
   .hero-grid { grid-template-columns: 1fr; gap: 52px; }
