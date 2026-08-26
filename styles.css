@@ -225,8 +225,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   isolation: isolate;
 }
 .capability-curve { position: absolute; z-index: 0; display: block; pointer-events: none; }
-.capability-curve-one { top: 198px; right: 32px; width: 390px; height: 270px; transform: rotate(-6deg); }
-.capability-curve-two { bottom: -18px; left: -44px; width: 510px; height: 330px; transform: rotate(8deg); }
+.capability-curve-one { top: 292px; left: -120px; width: calc(100% + 240px); height: 280px; }
 .section-capabilities .container { position: relative; z-index: 1; }
 .solution-header { display: grid; grid-template-columns: minmax(0, .98fr) minmax(340px, .72fr); align-items: start; gap: 92px; }
 .solution-header h2 { max-width: 650px; font-size: clamp(2.4rem, 4.8vw, 4.5rem); font-weight: 700; line-height: .98; letter-spacing: -.08em; }
@@ -385,8 +384,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   .outcome-sheet-front { left: 8%; width: 84%; }
   .handoff-card { width: 88%; }
   .system-panel { left: 5%; width: 90%; }
-  .capability-curve-one { top: 440px; right: -112px; width: 286px; height: 220px; }
-  .capability-curve-two { bottom: -8px; left: -88px; width: 350px; height: 250px; }
+  .capability-curve-one { top: 430px; left: -60px; width: calc(100% + 120px); height: 220px; }
   .section-shader { opacity: .52; }
   .section-about .section-shader { opacity: .22; }
   .about-grid { min-height: 0; gap: 44px; }

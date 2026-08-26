@@ -55,34 +55,25 @@ if (capabilityCurves.length) {
     context.clearRect(0, 0, rect.width, rect.height);
     context.beginPath();
 
-    if (canvas.dataset.capabilityCurve === 'two') {
-      context.moveTo(rect.width * .96, rect.height * .08);
-      context.bezierCurveTo(
-        rect.width * .68, rect.height * .1,
-        rect.width * .82, rect.height * .48,
-        rect.width * .55, rect.height * .58,
-      );
-      context.bezierCurveTo(
-        rect.width * .34, rect.height * .66,
-        rect.width * .14, rect.height * .52,
-        rect.width * .04, rect.height * .94,
-      );
-    } else {
-      context.moveTo(rect.width * .04, rect.height * .08);
-      context.bezierCurveTo(
-        rect.width * .32, rect.height * .1,
-        rect.width * .22, rect.height * .5,
-        rect.width * .48, rect.height * .59,
-      );
-      context.bezierCurveTo(
-        rect.width * .69, rect.height * .67,
-        rect.width * .9, rect.height * .54,
-        rect.width * .96, rect.height * .94,
-      );
-    }
+    context.moveTo(-12, rect.height * .06);
+    context.bezierCurveTo(
+      rect.width * .2, rect.height * .02,
+      rect.width * .08, rect.height * .59,
+      rect.width * .36, rect.height * .62,
+    );
+    context.bezierCurveTo(
+      rect.width * .57, rect.height * .65,
+      rect.width * .66, rect.height * .34,
+      rect.width * .8, rect.height * .46,
+    );
+    context.bezierCurveTo(
+      rect.width * .95, rect.height * .59,
+      rect.width * .84, rect.height * .96,
+      rect.width + 12, rect.height * .98,
+    );
 
-    context.strokeStyle = 'rgba(37, 99, 235, .19)';
-    context.lineWidth = 1.15;
+    context.strokeStyle = 'rgba(37, 99, 235, .25)';
+    context.lineWidth = 1.25;
     context.lineCap = 'round';
     context.lineJoin = 'round';
     context.stroke();
