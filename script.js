@@ -34,6 +34,65 @@ solutionScenes.forEach((scene) => {
   });
 });
 
+const capabilityCurves = [...document.querySelectorAll('[data-capability-curve]')];
+
+if (capabilityCurves.length) {
+  const drawCapabilityCurve = (canvas) => {
+    const rect = canvas.getBoundingClientRect();
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+    const width = Math.max(1, Math.round(rect.width * pixelRatio));
+    const height = Math.max(1, Math.round(rect.height * pixelRatio));
+
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+
+    const context = canvas.getContext('2d');
+    if (!context) return;
+
+    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    context.clearRect(0, 0, rect.width, rect.height);
+    context.beginPath();
+
+    if (canvas.dataset.capabilityCurve === 'two') {
+      context.moveTo(rect.width * .96, rect.height * .08);
+      context.bezierCurveTo(
+        rect.width * .68, rect.height * .1,
+        rect.width * .82, rect.height * .48,
+        rect.width * .55, rect.height * .58,
+      );
+      context.bezierCurveTo(
+        rect.width * .34, rect.height * .66,
+        rect.width * .14, rect.height * .52,
+        rect.width * .04, rect.height * .94,
+      );
+    } else {
+      context.moveTo(rect.width * .04, rect.height * .08);
+      context.bezierCurveTo(
+        rect.width * .32, rect.height * .1,
+        rect.width * .22, rect.height * .5,
+        rect.width * .48, rect.height * .59,
+      );
+      context.bezierCurveTo(
+        rect.width * .69, rect.height * .67,
+        rect.width * .9, rect.height * .54,
+        rect.width * .96, rect.height * .94,
+      );
+    }
+
+    context.strokeStyle = 'rgba(37, 99, 235, .19)';
+    context.lineWidth = 1.15;
+    context.lineCap = 'round';
+    context.lineJoin = 'round';
+    context.stroke();
+  };
+
+  const drawCapabilityCurves = () => capabilityCurves.forEach(drawCapabilityCurve);
+  drawCapabilityCurves();
+  window.addEventListener('resize', drawCapabilityCurves, { passive: true });
+}
+
 const revealItems = document.querySelectorAll('[data-reveal]');
 if ('IntersectionObserver' in window) {
   const revealObserver = new IntersectionObserver((entries, observer) => {
