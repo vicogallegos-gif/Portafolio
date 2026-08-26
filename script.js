@@ -397,7 +397,7 @@ if (fluidShaderCanvases.length) {
     const rect = state.canvas.getBoundingClientRect();
     // Keep the decorative layer below full CSS resolution. It is not content
     // and this cuts the fragment workload roughly in half on large screens.
-    const quality = window.innerWidth <= 680 ? 0.48 : 0.58;
+    const quality = window.innerWidth <= 680 ? 0.36 : 0.46;
     const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.25) * quality;
     const width = Math.max(1, Math.round(rect.width * pixelRatio));
     const height = Math.max(1, Math.round(rect.height * pixelRatio));
@@ -449,7 +449,7 @@ if (fluidShaderCanvases.length) {
   });
 
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const shaderFrameInterval = 1000 / 24;
+    const shaderFrameInterval = 1000 / 18;
     let shaderFrameHandle = 0;
     let lastShaderFrame = 0;
 

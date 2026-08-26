@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=__BUILD_VERSION__&amp;revision=fluid-field-v2" />
+    <link rel="stylesheet" href="styles.css?v=__BUILD_VERSION__&amp;revision=editorial-about-v1" />
     <script>
       (() => {
         const currentBuild = document.documentElement.dataset.build;
@@ -32,7 +32,7 @@
           .catch(() => {});
       })();
     </script>
-    <script defer src="script.js?v=__BUILD_VERSION__&amp;revision=fluid-field-v2"></script>
+    <script defer src="script.js?v=__BUILD_VERSION__&amp;revision=editorial-about-v1"></script>
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -65,7 +65,7 @@
               </p>
               <div class="hero-actions">
                 <a class="button button-primary" href="#trabajo">Ver proyectos</a>
-                <a class="button button-quiet" href="#sobre-mi">Sobre mí</a>
+                <a class="button button-quiet" href="assets/Victor-Gallegos-CV-2026.docx" download>Descargar CV</a>
               </div>
             </div>
 
@@ -218,10 +218,8 @@
       <section id="sobre-mi" class="section-pad section-about">
         <canvas class="section-shader" data-fluid-shader data-shader-variant="about" aria-hidden="true"></canvas>
         <div class="container about-grid">
-          <div class="about-photo" data-reveal>
-            <img src="assets/victor-retrato.png" alt="Retrato de Victor Alejandro Gallegos" loading="lazy" />
-          </div>
           <div class="about-copy" data-reveal>
+            <p class="about-kicker">Sobre mí · Diseñar el sistema completo</p>
             <h2>Vengo del diseño de experiencias completas.</h2>
             <p>Estudié Diseño y Arte de Videojuegos. Esa formación me enseñó a pensar en interacción, interfaz, lógica, contenido y consistencia como partes de un mismo sistema. Hoy llevo esa forma de mirar a las herramientas internas, los prototipos y la automatización con IA.</p>
             <p>No presento esa formación como experiencia profesional en todas esas áreas. Es el contexto que explica por qué reviso referencias, cuido los detalles y no doy por buena la primera salida de una herramienta.</p>
@@ -229,6 +227,9 @@
               <div><span class="mono-label">Formación</span><strong>Diseño y Arte de Videojuegos</strong></div>
               <div><span class="mono-label">Áreas desde las que construyo</span><strong>Producto digital · Automatización · Prototipado · Diseño interactivo</strong></div>
             </div>
+          </div>
+          <div class="about-photo" data-reveal>
+            <img src="assets/victor-retrato.png" alt="Retrato de Victor Alejandro Gallegos" loading="lazy" />
           </div>
         </div>
       </section>
