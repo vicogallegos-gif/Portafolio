@@ -27,6 +27,12 @@ jobs:
         uses: actions/configure-pages@v5
         with:
           enablement: true
+      - name: Versionar publicación
+        shell: bash
+        run: |
+          BUILD_VERSION="${GITHUB_SHA::12}"
+          sed -i "s/__BUILD_VERSION__/${BUILD_VERSION}/g" index.html
+          printf '{"version":"%s"}\n' "${BUILD_VERSION}" > version.json
       - name: Preparar artefacto
         uses: actions/upload-pages-artifact@v3
         with:

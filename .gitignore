@@ -7,3 +7,8 @@ node_modules/
 dist/
 .idea/
 .vscode/
+
+# Material de trabajo local: GitHub debe contener únicamente la web publicada.
+INVESTIGACION_FINAL_PORTAFOLIO_2026.md
+auditoria_portafolio_victor_*.html
+preview-friccion/
