@@ -1,3 +1,135 @@
+const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+const precisePointerQuery = window.matchMedia('(pointer: fine)');
+
+const createScrollMotion = () => {
+  const motionAllowed = !reducedMotionQuery.matches;
+  const smoothManualScroll = precisePointerQuery.matches && motionAllowed;
+  let current = window.scrollY;
+  let target = current;
+  let frameHandle = 0;
+  let previousTime = performance.now();
+
+  const maxScroll = () => Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+  const clampTarget = (value) => Math.min(maxScroll(), Math.max(0, value));
+
+  const render = (timestamp) => {
+    const elapsed = Math.min(48, Math.max(1, timestamp - previousTime));
+    previousTime = timestamp;
+    const smoothing = 1 - Math.exp(-elapsed * .0068);
+
+    current += (target - current) * smoothing;
+
+    if (Math.abs(target - current) < .35) current = target;
+    window.scrollTo(0, current);
+
+    if (current !== target) {
+      frameHandle = window.requestAnimationFrame(render);
+    } else {
+      frameHandle = 0;
+      document.documentElement.classList.remove('is-scroll-settling');
+    }
+  };
+
+  const start = () => {
+    if (!motionAllowed || frameHandle) return;
+    previousTime = performance.now();
+    document.documentElement.classList.add('is-scroll-settling');
+    frameHandle = window.requestAnimationFrame(render);
+  };
+
+  const moveTo = (nextTarget, immediate = false) => {
+    target = clampTarget(nextTarget);
+
+    if (!motionAllowed || immediate) {
+      if (frameHandle) window.cancelAnimationFrame(frameHandle);
+      frameHandle = 0;
+      current = target;
+      window.scrollTo(0, target);
+      document.documentElement.classList.remove('is-scroll-settling');
+      return;
+    }
+
+    if (!frameHandle) current = window.scrollY;
+    start();
+  };
+
+  if (motionAllowed) {
+    document.documentElement.dataset.scrollMotion = 'ready';
+  }
+
+  if (smoothManualScroll) {
+    window.addEventListener('wheel', (event) => {
+      if (event.ctrlKey || event.metaKey) return;
+
+      const multiplier = event.deltaMode === 1
+        ? 16
+        : event.deltaMode === 2
+          ? window.innerHeight
+          : 1;
+      const delta = event.deltaY * multiplier;
+      if (!delta) return;
+
+      event.preventDefault();
+      if (!frameHandle) current = target = window.scrollY;
+      target = clampTarget(target + delta);
+      start();
+    }, { passive: false });
+
+    window.addEventListener('keydown', (event) => {
+      const activeElement = document.activeElement;
+      const isTyping = activeElement?.matches('input, textarea, select, [contenteditable="true"]');
+      if (isTyping || event.altKey || event.ctrlKey || event.metaKey) return;
+
+      let nextTarget = null;
+      const pageStep = window.innerHeight * .86;
+
+      if (event.key === 'ArrowDown') nextTarget = target + 76;
+      if (event.key === 'ArrowUp') nextTarget = target - 76;
+      if (event.key === 'PageDown' || (event.key === ' ' && !event.shiftKey)) nextTarget = target + pageStep;
+      if (event.key === 'PageUp' || (event.key === ' ' && event.shiftKey)) nextTarget = target - pageStep;
+      if (event.key === 'Home') nextTarget = 0;
+      if (event.key === 'End') nextTarget = maxScroll();
+      if (nextTarget === null) return;
+
+      event.preventDefault();
+      if (!frameHandle) current = target = window.scrollY;
+      target = clampTarget(nextTarget);
+      start();
+    });
+  }
+
+  document.addEventListener('click', (event) => {
+    const clickedElement = event.target instanceof Element ? event.target : null;
+    const link = clickedElement?.closest('a[href^="#"]');
+    if (!link || link.classList.contains('skip-link')) return;
+
+    const hash = link.getAttribute('href');
+    if (!hash || hash === '#') return;
+
+    const destination = document.querySelector(hash);
+    if (!destination) return;
+
+    event.preventDefault();
+    const headerHeight = document.querySelector('[data-header]')?.getBoundingClientRect().height || 0;
+    const destinationTop = destination.getBoundingClientRect().top + window.scrollY - headerHeight;
+    window.history.pushState(null, '', hash);
+    moveTo(destinationTop);
+  });
+
+  window.addEventListener('resize', () => {
+    target = clampTarget(target);
+    if (!frameHandle) current = window.scrollY;
+  }, { passive: true });
+
+  window.addEventListener('pageshow', () => {
+    current = target = window.scrollY;
+  }, { passive: true });
+
+  return { moveTo, isEnabled: motionAllowed };
+};
+
+createScrollMotion();
+
 const menuToggle = document.querySelector('.menu-toggle');
 const siteNav = document.querySelector('#site-nav');
 
