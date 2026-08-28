@@ -185,12 +185,13 @@
             <article class="solution-story" data-reveal>
               <button class="solution-scene solution-friction" type="button" data-solution-scene aria-pressed="false" aria-label="Ver cómo se desbloquea una tarea">
                 <span class="solution-grid" aria-hidden="true"></span>
-                <span class="flow-route" aria-hidden="true">
-                  <span class="flow-line"></span>
-                  <span class="flow-stage flow-stage-one"><i>01</i><strong>Preparar</strong><b>Listo</b></span>
-                  <span class="flow-stage flow-stage-two"><i>02</i><strong>Decidir</strong><b>Pendiente</b></span>
-                  <span class="flow-stage flow-stage-three"><i>03</i><strong>Ejecutar</strong><b>En espera</b></span>
-                  <span class="flow-blocker"><i>BLOQUEO</i><strong>Falta una decisión</strong></span>
+                <span class="workflow-route" aria-hidden="true">
+                  <span class="workflow-track"></span>
+                  <span class="workflow-hold"></span>
+                  <span class="workflow-stage workflow-stage-one"><b></b><strong>Preparar</strong></span>
+                  <span class="workflow-stage workflow-stage-two"><b></b><strong>Decidir</strong></span>
+                  <span class="workflow-stage workflow-stage-three"><b></b><strong>Avanzar</strong></span>
+                  <span class="workflow-blocker"><i></i><strong>Esperando una decisión</strong></span>
                 </span>
               </button>
               <div class="solution-copy">
@@ -203,13 +204,14 @@
             <article class="solution-story" data-reveal>
               <button class="solution-scene solution-system" type="button" data-solution-scene aria-pressed="false" aria-label="Ver cómo una rutina se convierte en una regla automática">
                 <span class="solution-grid" aria-hidden="true"></span>
-                <span class="automation-flow" aria-hidden="true">
-                  <span class="automation-input automation-card"><i>ENTRADA</i><strong>La misma tarea</strong><b>se repite</b></span>
-                  <span class="automation-rule automation-card"><i>REGLA</i><strong>Si cumple</strong><b>se ejecuta</b></span>
-                  <span class="automation-connector automation-connector-top"></span>
-                  <span class="automation-connector automation-connector-bottom"></span>
-                  <span class="automation-output automation-output-auto"><i>AUTOMÁTICO</i><strong>Se ejecuta</strong><b>sin intervención</b></span>
-                  <span class="automation-output automation-output-review"><i>EXCEPCIÓN</i><strong>Revisar</strong><b>con criterio</b></span>
+                <span class="automation-map" aria-hidden="true">
+                  <span class="automation-rail automation-rail-input"></span>
+                  <span class="automation-rail automation-rail-auto"></span>
+                  <span class="automation-rail automation-rail-review"></span>
+                  <span class="automation-input"><span class="automation-input-dots"><i></i><i></i><i></i></span><strong>Rutina</strong></span>
+                  <span class="automation-rule"><span class="automation-rule-mark"></span><i>REGLA</i></span>
+                  <span class="automation-output automation-output-auto"><b></b><i>AUTOMÁTICO</i><strong>Avanza</strong></span>
+                  <span class="automation-output automation-output-review"><b></b><i>EXCEPCIÓN</i><strong>Revisar</strong></span>
                 </span>
               </button>
               <div class="solution-copy">
