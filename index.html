@@ -183,33 +183,39 @@
             </article>
 
             <article class="solution-story" data-reveal>
-              <button class="solution-scene solution-friction" type="button" data-solution-scene aria-pressed="false" aria-label="Ver cómo se localizan los bloqueos de un proceso">
+              <button class="solution-scene solution-friction" type="button" data-solution-scene aria-pressed="false" aria-label="Ver cómo se desbloquea una tarea">
                 <span class="solution-grid" aria-hidden="true"></span>
-                <span class="handoff-card handoff-card-one" aria-hidden="true"><i>ENTRADA</i><strong>Información recibida</strong><b></b></span>
-                <span class="handoff-card handoff-card-two" aria-hidden="true"><i>ESTADO</i><strong>Revisión pendiente</strong><b></b></span>
-                <span class="handoff-card handoff-card-three" aria-hidden="true"><i>RESPONSABLE</i><strong>Sin asignar</strong><b></b></span>
+                <span class="flow-route" aria-hidden="true">
+                  <span class="flow-line"></span>
+                  <span class="flow-stage flow-stage-one"><i>01</i><strong>Preparar</strong><b>Listo</b></span>
+                  <span class="flow-stage flow-stage-two"><i>02</i><strong>Decidir</strong><b>Pendiente</b></span>
+                  <span class="flow-stage flow-stage-three"><i>03</i><strong>Ejecutar</strong><b>En espera</b></span>
+                  <span class="flow-blocker"><i>BLOQUEO</i><strong>Falta una decisión</strong></span>
+                </span>
               </button>
               <div class="solution-copy">
                 <span class="solution-number">02</span>
-                <h3>Hacer visible el flujo</h3>
-                <p>Ordeno pasos, estados y bloqueos para que el equipo vea dónde se frena el trabajo.</p>
+                <h3>Desbloquear el trabajo</h3>
+                <p>Sigo una tarea hasta encontrar qué necesita para avanzar.</p>
               </div>
             </article>
 
             <article class="solution-story" data-reveal>
-              <button class="solution-scene solution-system" type="button" data-solution-scene aria-pressed="false" aria-label="Ver qué se puede automatizar y qué debe revisar una persona">
+              <button class="solution-scene solution-system" type="button" data-solution-scene aria-pressed="false" aria-label="Ver cómo una rutina se convierte en una regla automática">
                 <span class="solution-grid" aria-hidden="true"></span>
-                <span class="system-panel" aria-hidden="true">
-                  <span class="system-top"><i></i><i></i><i></i></span>
-                  <span class="system-row system-row-one"><i></i><strong>Entrada</strong><b>recibida</b></span>
-                  <span class="system-row system-row-two"><i></i><strong>Regla</strong><b>automática</b></span>
-                  <span class="system-row system-row-three"><i></i><strong>Excepción</strong><b>revisar</b></span>
+                <span class="automation-flow" aria-hidden="true">
+                  <span class="automation-input automation-card"><i>ENTRADA</i><strong>La misma tarea</strong><b>se repite</b></span>
+                  <span class="automation-rule automation-card"><i>REGLA</i><strong>Si cumple</strong><b>se ejecuta</b></span>
+                  <span class="automation-connector automation-connector-top"></span>
+                  <span class="automation-connector automation-connector-bottom"></span>
+                  <span class="automation-output automation-output-auto"><i>AUTOMÁTICO</i><strong>Se ejecuta</strong><b>sin intervención</b></span>
+                  <span class="automation-output automation-output-review"><i>EXCEPCIÓN</i><strong>Revisar</strong><b>con criterio</b></span>
                 </span>
               </button>
               <div class="solution-copy">
                 <span class="solution-number">03</span>
-                <h3>Automatizar con control</h3>
-                <p>Dejo lo repetible al sistema y las excepciones a una persona.</p>
+                <h3>Automatizar lo repetible</h3>
+                <p>Convierto rutinas en reglas y dejo a una persona las excepciones.</p>
               </div>
             </article>
           </div>
