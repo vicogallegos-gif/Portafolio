@@ -229,7 +229,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .capability-curve-one { inset: 0; width: 100%; height: 100%; }
 .section-capabilities .container { position: relative; z-index: 1; }
 .solution-header { display: grid; grid-template-columns: minmax(0, .98fr) minmax(340px, .72fr); align-items: start; gap: 92px; }
-.solution-header h2 { max-width: 650px; font-size: clamp(2.4rem, 4.8vw, 4.5rem); font-weight: 700; line-height: .98; letter-spacing: -.08em; }
+.solution-header h2 { max-width: 650px; font-size: clamp(2.4rem, 3.8vw, 3.55rem); font-weight: 700; line-height: .98; letter-spacing: -.08em; }
 .solution-header p { max-width: 460px; margin: 7px 0 0 auto; color: var(--ink-soft); font-size: 16px; line-height: 1.75; }
 .solution-stories { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px; margin-top: 76px; }
 .solution-story { min-width: 0; }
@@ -379,7 +379,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   .project-folder-trigger { top: 390px; right: 0; left: 0; border-radius: 34px 16px 34px 16px; }
   .project-folder-back { height: 130px; }
   .project-folder.is-open .project-folder-back { height: 345px; transform: translateY(-285px); }
-  .solution-header h2 { font-size: clamp(2.5rem, 12vw, 3.7rem); }
+  .solution-header h2 { font-size: clamp(2.25rem, 12vw, 3.5rem); }
   .solution-header p { font-size: 16px; }
   .solution-stories { gap: 56px; margin-top: 54px; }
   .solution-scene { height: 300px; }
