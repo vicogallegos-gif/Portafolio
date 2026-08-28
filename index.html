@@ -185,13 +185,19 @@
             <article class="solution-story" data-reveal>
               <button class="solution-scene solution-friction" type="button" data-solution-scene aria-pressed="false" aria-label="Ver cómo se desbloquea una tarea">
                 <span class="solution-grid" aria-hidden="true"></span>
-                <span class="workflow-route" aria-hidden="true">
-                  <span class="workflow-track"></span>
-                  <span class="workflow-hold"></span>
-                  <span class="workflow-stage workflow-stage-one"><b></b><strong>Preparar</strong></span>
-                  <span class="workflow-stage workflow-stage-two"><b></b><strong>Decidir</strong></span>
-                  <span class="workflow-stage workflow-stage-three"><b></b><strong>Avanzar</strong></span>
-                  <span class="workflow-blocker"><i></i><strong>Esperando una decisión</strong></span>
+                <span class="workflow-composition" aria-hidden="true">
+                  <span class="workflow-sheet workflow-sheet-back"></span>
+                  <span class="workflow-sheet workflow-sheet-middle"></span>
+                  <span class="workflow-sheet workflow-sheet-front">
+                    <span class="workflow-kicker">ENTREGA</span>
+                    <strong>Propuesta final</strong>
+                    <span class="workflow-lines"><i></i><i></i><i></i></span>
+                    <span class="workflow-footer"><i></i><span></span></span>
+                  </span>
+                  <span class="workflow-link workflow-link-left"></span>
+                  <span class="workflow-link workflow-link-right"></span>
+                  <span class="workflow-link-dot"></span>
+                  <span class="workflow-question"><i></i><strong>¿Quién decide?</strong></span>
                 </span>
               </button>
               <div class="solution-copy">
@@ -204,14 +210,15 @@
             <article class="solution-story" data-reveal>
               <button class="solution-scene solution-system" type="button" data-solution-scene aria-pressed="false" aria-label="Ver cómo una rutina se convierte en una regla automática">
                 <span class="solution-grid" aria-hidden="true"></span>
-                <span class="automation-map" aria-hidden="true">
-                  <span class="automation-rail automation-rail-input"></span>
-                  <span class="automation-rail automation-rail-auto"></span>
-                  <span class="automation-rail automation-rail-review"></span>
-                  <span class="automation-input"><span class="automation-input-dots"><i></i><i></i><i></i></span><strong>Rutina</strong></span>
-                  <span class="automation-rule"><span class="automation-rule-mark"></span><i>REGLA</i></span>
-                  <span class="automation-output automation-output-auto"><b></b><i>AUTOMÁTICO</i><strong>Avanza</strong></span>
-                  <span class="automation-output automation-output-review"><b></b><i>EXCEPCIÓN</i><strong>Revisar</strong></span>
+                <span class="automation-composition" aria-hidden="true">
+                  <span class="automation-repeat-stack">
+                    <span class="automation-repeat automation-repeat-back"><i></i><b></b><b></b></span>
+                    <span class="automation-repeat automation-repeat-middle"><i></i><b></b><b></b></span>
+                    <span class="automation-repeat automation-repeat-front"><i></i><b></b><b></b></span>
+                  </span>
+                  <span class="automation-rule-core"><i></i><strong>REGLA</strong></span>
+                  <span class="automation-output-card"><i></i><b></b><b></b><b></b></span>
+                  <span class="automation-exception"><i></i></span>
                 </span>
               </button>
               <div class="solution-copy">
