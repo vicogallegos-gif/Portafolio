@@ -257,20 +257,28 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 
 .solution-friction::after { inset: 10% 3% 8%; background: rgba(219, 141, 89, .11); }
 .task-flow-composition { position: absolute; inset: 0; }
-.task-route-line { position: absolute; top: 170px; left: 8%; width: 84%; height: 2px; background: rgba(22, 59, 100, .16); }
-.task-route-line::before, .task-route-line::after { position: absolute; top: -5px; width: 12px; height: 12px; border: 2px solid rgba(22, 59, 100, .25); border-radius: 50%; background: var(--paper); content: ''; }
-.task-route-line::before { left: 0; }
-.task-route-line::after { right: 0; }
-.task-approval { position: absolute; top: 68px; left: calc(45% + 1px); z-index: 3; display: grid; width: 62px; height: 46px; place-items: center; border: 1px solid rgba(219, 141, 89, .35); border-radius: 9px; background: rgba(255, 243, 233, .98); box-shadow: 0 12px 26px rgba(219, 141, 89, .13); color: #9b5c34; font: 700 7.5px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .04em; transform: rotate(-2deg); }
-.task-ticket { position: absolute; top: 126px; left: 4%; z-index: 4; display: grid; grid-template-columns: 26px 1fr; gap: 8px 9px; width: 126px; height: 88px; padding: 14px; border: 1px solid rgba(22, 59, 100, .13); border-radius: 10px; background: rgba(255, 254, 252, .97); box-shadow: 0 16px 34px rgba(22, 59, 100, .1); transform: rotate(-1deg); }
-.task-ticket i { grid-row: 1 / span 2; display: grid; width: 26px; height: 26px; place-items: center; border-radius: 7px; background: rgba(234, 243, 255, .96); color: var(--blue-royal); font-style: normal; font-weight: 800; }
-.task-ticket strong { align-self: end; font: 700 8px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; }
-.task-ticket b { align-self: start; width: 52px; height: 5px; border-radius: 99px; background: rgba(22, 59, 100, .13); box-shadow: 0 11px 0 rgba(22, 59, 100, .08); }
-.task-finish { position: absolute; top: 143px; right: 3.5%; z-index: 5; display: grid; width: 54px; height: 54px; place-items: center; border: 1px solid rgba(76, 174, 135, .3); border-radius: 50%; background: rgba(255, 254, 252, .95); box-shadow: 0 14px 30px rgba(76, 174, 135, .1); color: transparent; font-size: 21px; opacity: .65; transform: scale(.9); }
+.task-route-line { position: absolute; top: 169px; left: 5%; z-index: 1; width: 90%; height: 2px; background: rgba(22, 59, 100, .18); }
+.task-route-line::before { position: absolute; top: 50%; left: 0; width: 16px; height: 16px; border: 2px solid rgba(22, 59, 100, .28); border-radius: 50%; background: var(--paper); content: ''; transform: translate(-50%, -50%); }
+.task-destination { position: absolute; top: 170px; right: 5%; z-index: 5; width: 28px; height: 28px; border: 2px solid rgba(76, 174, 135, .46); border-radius: 50%; background: rgba(236, 249, 243, .98); box-shadow: 0 12px 26px rgba(76, 174, 135, .15); opacity: 0; transform: translate(50%, -50%) scale(.68); }
+.task-destination::after { position: absolute; inset: 7px; border-radius: 50%; background: #4cae87; content: ''; }
+.task-ticket { position: absolute; top: 102px; left: 4%; z-index: 4; display: grid; grid-template-columns: 46px minmax(0, 1fr); align-items: center; gap: 17px; width: min(236px, 64%); height: 136px; padding: 22px; border: 1px solid rgba(22, 59, 100, .13); border-radius: 14px; background: rgba(255, 254, 252, .98); box-shadow: 0 18px 38px rgba(22, 59, 100, .1); color: var(--ink); transform: rotate(-.7deg); }
+.task-icon { position: relative; display: grid; width: 46px; height: 46px; place-items: center; border-radius: 12px; background: rgba(234, 243, 255, .96); color: var(--blue-royal); font-style: normal; }
+.task-icon svg { width: 25px; height: 25px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+.task-icon span { position: absolute; inset: 0; display: grid; place-items: center; color: transparent; font: 800 19px/1 system-ui, sans-serif; }
+.task-ticket-copy { min-width: 0; text-align: left; }
+.task-ticket strong { display: block; font: 750 15px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; }
+.task-state { position: relative; display: block; height: 15px; margin-top: 12px; }
+.task-state em { position: absolute; top: 0; left: 0; font: 650 10px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace; font-style: normal; letter-spacing: .02em; white-space: nowrap; }
+.task-blocked, .task-complete { opacity: 0; }
 .solution-friction .solution-grid, .solution-system .solution-grid { opacity: .3; }
-.solution-friction:is(:hover, :focus-visible, .is-active) .task-approval { animation: task-approval-in 1.55s cubic-bezier(.22, 1, .36, 1) forwards; }
-.solution-friction:is(:hover, :focus-visible, .is-active) .task-ticket { animation: task-unlock 1.55s cubic-bezier(.22, 1, .36, 1) forwards; }
-.solution-friction:is(:hover, :focus-visible, .is-active) .task-finish { animation: task-finish-in 1.55s ease forwards; }
+.solution-friction:is(:hover, :focus-visible, .is-active) .task-ticket { animation: task-two-pass 3.1s cubic-bezier(.45, 0, .2, 1) forwards; }
+.solution-friction:is(:hover, :focus-visible, .is-active) .task-icon { animation: task-icon-states 3.1s ease forwards; }
+.solution-friction:is(:hover, :focus-visible, .is-active) .task-icon svg { animation: task-icon-lines 3.1s ease forwards; }
+.solution-friction:is(:hover, :focus-visible, .is-active) .task-icon span { animation: task-icon-check 3.1s ease forwards; }
+.solution-friction:is(:hover, :focus-visible, .is-active) .task-ready { animation: task-ready-state 3.1s ease forwards; }
+.solution-friction:is(:hover, :focus-visible, .is-active) .task-blocked { animation: task-blocked-state 3.1s ease forwards; }
+.solution-friction:is(:hover, :focus-visible, .is-active) .task-complete { animation: task-complete-state 3.1s ease forwards; }
+.solution-friction:is(:hover, :focus-visible, .is-active) .task-destination { animation: task-destination-in 3.1s ease forwards; }
 
 .solution-system::after { inset: 10% 3% 7%; background: rgba(37, 99, 235, .09); }
 .automation-composition { position: absolute; inset: 0; }
@@ -308,9 +316,22 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .solution-system:is(:hover, :focus-visible, .is-active) .automation-output-card::after { animation: automation-output-confirm 1.45s ease forwards; }
 .solution-system:is(:hover, :focus-visible, .is-active) .automation-person { box-shadow: 0 15px 30px rgba(219, 141, 89, .16); transform: translate(3px, 3px); }
 
-@keyframes task-approval-in { 0%, 35% { opacity: 1; transform: translateY(0) rotate(-2deg); } 55% { opacity: 1; transform: translateY(95px) rotate(0); } 76%, 100% { opacity: 0; transform: translateY(95px) rotate(0); } }
-@keyframes task-unlock { 0% { transform: translateX(0) rotate(-1deg); } 25%, 55% { transform: translateX(25px) rotate(0); } 100% { transform: translateX(185px) rotate(0); } }
-@keyframes task-finish-in { 0%, 72% { color: transparent; opacity: .65; transform: scale(.9); } 100% { color: #4cae87; opacity: 1; transform: scale(1); } }
+@keyframes task-two-pass {
+  0%, 8% { border-color: rgba(22, 59, 100, .13); background: rgba(255, 254, 252, .98); box-shadow: 0 18px 38px rgba(22, 59, 100, .1); color: var(--ink); transform: translateX(0) rotate(-.7deg); }
+  23% { border-color: rgba(22, 59, 100, .13); background: rgba(255, 254, 252, .98); color: var(--ink); transform: translateX(60px) rotate(0); }
+  28%, 43% { border-color: rgba(219, 141, 89, .48); background: rgba(255, 243, 233, .98); box-shadow: 0 20px 40px rgba(219, 141, 89, .18); color: #8f522d; transform: translateX(52px) rotate(-.5deg); }
+  55% { border-color: rgba(219, 141, 89, .48); background: rgba(255, 243, 233, .98); color: #8f522d; transform: translateX(0) rotate(-.5deg); }
+  63% { border-color: rgba(22, 59, 100, .13); background: rgba(255, 254, 252, .98); box-shadow: 0 18px 38px rgba(22, 59, 100, .1); color: var(--ink); transform: translateX(0) rotate(0); }
+  90% { border-color: rgba(22, 59, 100, .13); background: rgba(255, 254, 252, .98); color: var(--ink); transform: translateX(80px) rotate(0); }
+  100% { border-color: rgba(76, 174, 135, .42); background: rgba(236, 249, 243, .98); box-shadow: 0 20px 42px rgba(76, 174, 135, .2); color: #286f55; transform: translateX(80px) rotate(0); }
+}
+@keyframes task-icon-states { 0%, 23%, 63%, 90% { background: rgba(234, 243, 255, .96); color: var(--blue-royal); } 28%, 55% { background: rgba(255, 223, 200, .96); color: #b76d3d; } 100% { background: #4cae87; color: #fff; } }
+@keyframes task-icon-check { 0%, 90% { color: transparent; } 100% { color: #fff; } }
+@keyframes task-icon-lines { 0%, 90% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes task-ready-state { 0%, 23% { opacity: 1; } 28%, 55% { opacity: 0; } 63%, 90% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes task-blocked-state { 0%, 23% { opacity: 0; } 28%, 55% { opacity: 1; } 63%, 100% { opacity: 0; } }
+@keyframes task-complete-state { 0%, 90% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes task-destination-in { 0%, 90% { opacity: 0; transform: translate(50%, -50%) scale(.68); } 100% { opacity: 1; transform: translate(50%, -50%) scale(1); } }
 @keyframes automation-token-run { 0% { opacity: 1; transform: translateX(0) scale(1); } 52% { background: var(--blue-royal); opacity: 1; transform: translateX(76px) scale(1); } 72%, 100% { background: var(--blue-royal); opacity: 0; transform: translateX(76px) scale(.72); } }
 @keyframes automation-output-confirm { 0%, 68% { opacity: .35; transform: scale(.72); } 100% { opacity: 1; transform: scale(1); } }
 

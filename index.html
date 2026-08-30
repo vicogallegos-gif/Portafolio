@@ -187,9 +187,25 @@
                 <span class="solution-grid" aria-hidden="true"></span>
                 <span class="task-flow-composition" aria-hidden="true">
                   <span class="task-route-line"></span>
-                  <span class="task-approval">APROBACIÓN</span>
-                  <span class="task-ticket"><i>→</i><strong>TAREA</strong><b></b></span>
-                  <span class="task-finish">✓</span>
+                  <span class="task-destination"></span>
+                  <span class="task-ticket">
+                    <i class="task-icon">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="2.5" y="4" width="5" height="5" rx="1"></rect>
+                        <rect x="2.5" y="15" width="5" height="5" rx="1"></rect>
+                        <path d="M11 6.5h10M11 17.5h10"></path>
+                      </svg>
+                      <span>✓</span>
+                    </i>
+                    <span class="task-ticket-copy">
+                      <strong>TAREA</strong>
+                      <span class="task-state">
+                        <em class="task-ready">Lista para avanzar</em>
+                        <em class="task-blocked">Falta aprobación</em>
+                        <em class="task-complete">Completada</em>
+                      </span>
+                    </span>
+                  </span>
                 </span>
               </button>
               <div class="solution-copy">
