@@ -185,13 +185,13 @@
             <article class="solution-story" data-reveal>
               <button class="solution-scene solution-friction" type="button" data-solution-scene aria-pressed="false" aria-label="Ver cómo se desbloquea una tarea">
                 <span class="solution-grid" aria-hidden="true"></span>
-                <span class="handoff-composition" aria-hidden="true">
-                  <span class="handoff-track handoff-track-back"></span>
-                  <span class="handoff-track handoff-track-main"></span>
-                  <span class="handoff-node handoff-node-start"><i></i></span>
-                  <span class="handoff-node handoff-node-end"><i></i></span>
-                  <span class="handoff-stop"><i></i><strong>Falta una respuesta</strong></span>
-                  <span class="handoff-pulse"></span>
+                <span class="task-flow-composition" aria-hidden="true">
+                  <span class="task-route-line"></span>
+                  <span class="task-route-gap"></span>
+                  <span class="task-approval">APROBACIÓN</span>
+                  <span class="task-ticket"><i>→</i><strong>TAREA</strong><b></b></span>
+                  <span class="task-finish">✓</span>
+                  <span class="task-route-note">LO QUE FALTA PARA AVANZAR</span>
                 </span>
               </button>
               <div class="solution-copy">
@@ -205,18 +205,26 @@
               <button class="solution-scene solution-system" type="button" data-solution-scene aria-pressed="false" aria-label="Ver cómo una rutina se convierte en una regla automática">
                 <span class="solution-grid" aria-hidden="true"></span>
                 <span class="automation-composition" aria-hidden="true">
-                  <span class="automation-repeat-stack">
-                    <span class="automation-repeat automation-repeat-back"><i></i><b></b><b></b></span>
-                    <span class="automation-repeat automation-repeat-middle"><i></i><b></b><b></b></span>
-                  <span class="automation-repeat automation-repeat-front"><i></i><b></b><b></b></span>
+                  <span class="automation-request-stack">
+                    <span class="automation-request"><i></i><b></b></span>
+                    <span class="automation-request"><i></i><b></b></span>
+                    <span class="automation-request"><i></i><b></b></span>
                   </span>
-                  <span class="automation-flow automation-flow-in"></span>
-                  <span class="automation-flow automation-flow-out"></span>
-                  <span class="automation-pulse"></span>
-                  <span class="automation-rule-core"><i></i><strong>REGLA</strong></span>
-                  <span class="automation-output-card"><i></i><b></b><b></b><b></b></span>
-                  <span class="automation-branch"></span>
-                  <span class="automation-exception"><i></i></span>
+                  <span class="automation-track"></span>
+                  <span class="automation-token"></span>
+                  <span class="automation-rule-core">
+                    <i class="automation-cycle-arrow"></i>
+                    <span class="automation-actions"><b>REGISTRAR</b><b>AVISAR</b></span>
+                    <strong>REGLA</strong>
+                  </span>
+                  <span class="automation-output-card">
+                    <span class="automation-output-line"><i></i><b></b></span>
+                    <span class="automation-output-line"><i></i><b></b></span>
+                    <span class="automation-output-line"><i></i><b></b></span>
+                  </span>
+                  <span class="automation-exception-path"></span>
+                  <span class="automation-exception-label">EXCEPCIÓN</span>
+                  <span class="automation-person"></span>
                 </span>
               </button>
               <div class="solution-copy">
