@@ -185,19 +185,13 @@
             <article class="solution-story" data-reveal>
               <button class="solution-scene solution-friction" type="button" data-solution-scene aria-pressed="false" aria-label="Ver cómo se desbloquea una tarea">
                 <span class="solution-grid" aria-hidden="true"></span>
-                <span class="workflow-composition" aria-hidden="true">
-                  <span class="workflow-sheet workflow-sheet-back"></span>
-                  <span class="workflow-sheet workflow-sheet-middle"></span>
-                  <span class="workflow-sheet workflow-sheet-front">
-                    <span class="workflow-kicker">ENTREGA</span>
-                    <strong>Propuesta final</strong>
-                    <span class="workflow-lines"><i></i><i></i><i></i></span>
-                    <span class="workflow-footer"><i></i><span></span></span>
-                  </span>
-                  <span class="workflow-link workflow-link-left"></span>
-                  <span class="workflow-link workflow-link-right"></span>
-                  <span class="workflow-link-dot"></span>
-                  <span class="workflow-question"><i></i><strong>¿Quién decide?</strong></span>
+                <span class="handoff-composition" aria-hidden="true">
+                  <span class="handoff-track handoff-track-back"></span>
+                  <span class="handoff-track handoff-track-main"></span>
+                  <span class="handoff-node handoff-node-start"><i></i></span>
+                  <span class="handoff-node handoff-node-end"><i></i></span>
+                  <span class="handoff-stop"><i></i><strong>Falta una respuesta</strong></span>
+                  <span class="handoff-pulse"></span>
                 </span>
               </button>
               <div class="solution-copy">
@@ -214,10 +208,14 @@
                   <span class="automation-repeat-stack">
                     <span class="automation-repeat automation-repeat-back"><i></i><b></b><b></b></span>
                     <span class="automation-repeat automation-repeat-middle"><i></i><b></b><b></b></span>
-                    <span class="automation-repeat automation-repeat-front"><i></i><b></b><b></b></span>
+                  <span class="automation-repeat automation-repeat-front"><i></i><b></b><b></b></span>
                   </span>
+                  <span class="automation-flow automation-flow-in"></span>
+                  <span class="automation-flow automation-flow-out"></span>
+                  <span class="automation-pulse"></span>
                   <span class="automation-rule-core"><i></i><strong>REGLA</strong></span>
                   <span class="automation-output-card"><i></i><b></b><b></b><b></b></span>
+                  <span class="automation-branch"></span>
                   <span class="automation-exception"><i></i></span>
                 </span>
               </button>
