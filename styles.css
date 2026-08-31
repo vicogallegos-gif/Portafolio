@@ -255,8 +255,9 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .solution-outcome:is(:hover, :focus-visible, .is-active) .outcome-sheet-middle { opacity: .7; transform: translate(-11px, 3px) rotate(-2.7deg); }
 .solution-outcome:is(:hover, :focus-visible, .is-active) .outcome-sheet-front { transform: translate(4px, -4px) rotate(0); }
 
+.solution-friction { container-type: inline-size; }
 .solution-friction::after { inset: 4% 0 2%; border-radius: 0; background: radial-gradient(ellipse at 50% 50%, rgba(219, 141, 89, .16) 0%, rgba(219, 141, 89, .075) 42%, transparent 73%); filter: blur(12px); }
-.task-flow-composition { position: absolute; inset: 0; }
+.task-flow-composition { --task-final-shift: calc(91cqw - min(236px, 64cqw) + 4.5px); position: absolute; inset: 0; }
 .task-flow-composition::after { position: absolute; top: 112px; left: 3%; z-index: 0; width: 94%; height: 116px; border-radius: 50%; background: radial-gradient(ellipse at 30% 50%, rgba(22, 59, 100, .06) 0%, rgba(22, 59, 100, .025) 43%, transparent 74%); filter: blur(18px); content: ''; pointer-events: none; }
 .task-route-line { position: absolute; top: 169px; left: 5%; z-index: 1; width: 90%; height: 2px; background: rgba(22, 59, 100, .18); }
 .task-route-line::before, .task-destination { width: 18px; height: 18px; box-sizing: border-box; border: 2px solid rgba(22, 59, 100, .28); border-radius: 50%; background: var(--paper); }
@@ -358,20 +359,20 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   47% { border-color: rgba(37, 99, 235, .5); background: var(--blue-royal); box-shadow: 0 16px 32px rgba(37, 99, 235, .18); color: #fff; transform: translateX(50px) rotate(0) scaleX(1.04) scaleY(.94); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
   51% { border-color: rgba(37, 99, 235, .5); background: var(--blue-royal); box-shadow: 0 16px 32px rgba(37, 99, 235, .18); color: #fff; transform: translateX(50px) rotate(0) scaleX(.96) scaleY(1.05); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
   55%, 66% { border-color: rgba(37, 99, 235, .5); background: var(--blue-royal); box-shadow: 0 16px 32px rgba(37, 99, 235, .18); color: #fff; transform: translateX(50px) rotate(0) scale(1); animation-timing-function: linear; }
-  75% { border-color: rgba(37, 99, 235, .5); background: var(--blue-royal); box-shadow: 0 16px 32px rgba(37, 99, 235, .18); color: #fff; transform: translateX(90px) rotate(0) scale(1); animation-timing-function: linear; }
-  75.5% { border-color: rgba(76, 174, 135, .42); background: rgba(236, 249, 243, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: #286f55; transform: translateX(90px) rotate(0) scaleX(1.04) scaleY(.94); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  80.5% { border-color: rgba(76, 174, 135, .42); background: rgba(236, 249, 243, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: #286f55; transform: translateX(90px) rotate(0) scaleX(.96) scaleY(1.05); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  85%, 100% { border-color: rgba(76, 174, 135, .42); background: rgba(236, 249, 243, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: #286f55; transform: translateX(90px) rotate(0) scale(1); }
+  74% { border-color: rgba(37, 99, 235, .5); background: var(--blue-royal); box-shadow: 0 16px 32px rgba(37, 99, 235, .18); color: #fff; transform: translateX(var(--task-final-shift)) rotate(0) scale(1); animation-timing-function: linear; }
+  74.25% { border-color: rgba(76, 174, 135, .42); background: rgba(236, 249, 243, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: #286f55; transform: translateX(var(--task-final-shift)) rotate(0) scaleX(1.04) scaleY(.94); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
+  77% { border-color: rgba(76, 174, 135, .42); background: rgba(236, 249, 243, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: #286f55; transform: translateX(var(--task-final-shift)) rotate(0) scaleX(.96) scaleY(1.05); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
+  79%, 100% { border-color: rgba(76, 174, 135, .42); background: rgba(236, 249, 243, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: #286f55; transform: translateX(var(--task-final-shift)) rotate(0) scale(1); }
 }
-@keyframes task-icon-states { 0%, 18% { background: rgba(234, 243, 255, .96); color: var(--blue-royal); } 22%, 46% { background: rgba(255, 223, 200, .96); color: #b76d3d; } 47%, 75% { background: rgba(255, 255, 255, .17); color: #fff; } 75.5%, 100% { background: #4cae87; color: #fff; } }
-@keyframes task-icon-check { 0%, 75% { color: transparent; transform: scale(.72); } 75.5%, 100% { color: #fff; transform: scale(1); } }
-@keyframes task-icon-lines { 0%, 75% { opacity: 1; transform: scale(1); } 75.5%, 100% { opacity: 0; transform: scale(.75); } }
+@keyframes task-icon-states { 0%, 18% { background: rgba(234, 243, 255, .96); color: var(--blue-royal); } 22%, 46% { background: rgba(255, 223, 200, .96); color: #b76d3d; } 47%, 74% { background: rgba(255, 255, 255, .17); color: #fff; } 74.25%, 100% { background: #4cae87; color: #fff; } }
+@keyframes task-icon-check { 0%, 74% { color: transparent; transform: scale(.72); } 74.25%, 100% { color: #fff; transform: scale(1); } }
+@keyframes task-icon-lines { 0%, 74% { opacity: 1; transform: scale(1); } 74.25%, 100% { opacity: 0; transform: scale(.75); } }
 @keyframes task-ready-state { 0%, 18% { opacity: 1; transform: translateY(0); } 22%, 100% { opacity: 0; transform: translateY(-3px); } }
 @keyframes task-blocked-state { 0%, 18% { opacity: 0; transform: translateY(3px); } 22%, 46% { opacity: 1; transform: translateY(0); } 48%, 100% { opacity: 0; transform: translateY(-3px); } }
-@keyframes task-resolved-state { 0%, 46% { opacity: 0; transform: translateY(3px); } 47%, 75% { opacity: 1; transform: translateY(0); } 75.5%, 100% { opacity: 0; transform: translateY(-3px); } }
-@keyframes task-complete-state { 0%, 75% { opacity: 0; transform: translateY(3px); } 75.5%, 100% { opacity: 1; transform: translateY(0); } }
-@keyframes task-destination-state { 0%, 75% { border-color: rgba(22, 59, 100, .28); background: var(--paper); box-shadow: none; transform: translate(50%, -50%); } 75.5%, 100% { border-color: rgba(76, 174, 135, .52); background: rgba(236, 249, 243, .98); box-shadow: none; transform: translate(50%, -50%); } }
-@keyframes task-destination-dot { 0%, 75% { opacity: 0; transform: scale(.5); } 75.5%, 100% { opacity: 1; transform: scale(1); } }
+@keyframes task-resolved-state { 0%, 46% { opacity: 0; transform: translateY(3px); } 47%, 74% { opacity: 1; transform: translateY(0); } 74.25%, 100% { opacity: 0; transform: translateY(-3px); } }
+@keyframes task-complete-state { 0%, 74% { opacity: 0; transform: translateY(3px); } 74.25%, 100% { opacity: 1; transform: translateY(0); } }
+@keyframes task-destination-state { 0%, 74% { border-color: rgba(22, 59, 100, .28); background: var(--paper); box-shadow: none; transform: translate(50%, -50%); } 74.25%, 100% { border-color: rgba(76, 174, 135, .52); background: rgba(236, 249, 243, .98); box-shadow: none; transform: translate(50%, -50%); } }
+@keyframes task-destination-dot { 0%, 74% { opacity: 0; transform: scale(.5); } 74.25%, 100% { opacity: 1; transform: scale(1); } }
 @keyframes task-burst-rise { 0%, 46% { opacity: 0; transform: translate3d(calc(-50% + var(--burst-x)), 18px, 0) rotate(var(--burst-rot)) scale(.7); } 47% { opacity: 0; transform: translate3d(calc(-50% + var(--burst-x)), 12px, 0) rotate(var(--burst-rot)) scale(.78); } 50% { opacity: .65; transform: translate3d(calc(-50% + var(--burst-x)), 1px, 0) rotate(var(--burst-rot)) scale(.92); } 53% { opacity: 1; transform: translate3d(calc(-50% + var(--burst-x)), -15px, 0) rotate(var(--burst-rot)) scale(1); } 59% { opacity: .55; transform: translate3d(calc(-50% + var(--burst-x)), -24px, 0) rotate(var(--burst-rot)) scale(.88); } 65%, 100% { opacity: 0; transform: translate3d(calc(-50% + var(--burst-x)), -29px, 0) rotate(var(--burst-rot)) scale(.72); } }
 @keyframes automation-token-run { 0% { opacity: 1; transform: translateX(0) scale(1); } 52% { background: var(--blue-royal); opacity: 1; transform: translateX(76px) scale(1); } 72%, 100% { background: var(--blue-royal); opacity: 0; transform: translateX(76px) scale(.72); } }
 @keyframes automation-output-confirm { 0%, 68% { opacity: .35; transform: scale(.72); } 100% { opacity: 1; transform: scale(1); } }
