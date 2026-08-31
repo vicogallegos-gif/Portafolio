@@ -161,7 +161,10 @@ solutionScenes.forEach((scene) => {
       otherScene.setAttribute('aria-pressed', 'false');
     });
 
-    scene.classList.toggle('is-active', nextState);
+    if (nextState) {
+      void scene.offsetWidth;
+      scene.classList.add('is-active');
+    }
     scene.setAttribute('aria-pressed', String(nextState));
   });
 });
