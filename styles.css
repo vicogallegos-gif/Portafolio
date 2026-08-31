@@ -249,15 +249,14 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .outcome-sheet-card-four { z-index: 0; opacity: 0; transform: var(--outcome-hidden); }
 .solution-label { display: block; color: var(--ink-soft); font: 600 9px/1 'Outfit', system-ui, sans-serif; letter-spacing: .1em; }
 .outcome-sheet strong { display: block; min-height: 45px; margin-top: 11px; font: 650 22px/1.02 'Outfit', system-ui, sans-serif; letter-spacing: -.035em; }
-.outcome-bars { display: grid; gap: 8px; margin-top: 15px; }
-.outcome-bars i { display: grid; grid-template-columns: 9px minmax(0, 1fr); align-items: center; gap: 8px; height: 5px; font-style: normal; }
-.outcome-bars i::before { width: 9px; height: 9px; border-radius: 50%; background: rgba(37, 99, 235, .62); content: ''; }
-.outcome-bars b { display: block; width: 100%; height: 5px; border-radius: 99px; background: rgba(22, 59, 100, .13); box-shadow: 0 10px 0 rgba(22, 59, 100, .08); }
+.outcome-bars { display: grid; gap: 9px; margin-top: 15px; }
+.outcome-bars i { display: block; height: 5px; font-style: normal; }
+.outcome-bars b { display: block; width: 100%; height: 5px; border-radius: 99px; background: rgba(22, 59, 100, .13); }
 .outcome-bars i:nth-child(2) b { width: 78%; }
-.solution-outcome:is(:hover, :focus-visible, .is-active) .outcome-sheet-card-one { animation: outcome-card-one 8s linear infinite normal; }
-.solution-outcome:is(:hover, :focus-visible, .is-active) .outcome-sheet-card-two { animation: outcome-card-two 8s linear infinite normal; }
-.solution-outcome:is(:hover, :focus-visible, .is-active) .outcome-sheet-card-three { animation: outcome-card-three 8s linear infinite normal; }
-.solution-outcome:is(:hover, :focus-visible, .is-active) .outcome-sheet-card-four { animation: outcome-card-four 8s linear infinite normal; }
+.solution-outcome:is(:hover, :focus-visible, .is-active) .outcome-sheet-card-one { animation: outcome-card-one 7.2s linear infinite normal; }
+.solution-outcome:is(:hover, :focus-visible, .is-active) .outcome-sheet-card-two { animation: outcome-card-two 7.2s linear infinite normal; }
+.solution-outcome:is(:hover, :focus-visible, .is-active) .outcome-sheet-card-three { animation: outcome-card-three 7.2s linear infinite normal; }
+.solution-outcome:is(:hover, :focus-visible, .is-active) .outcome-sheet-card-four { animation: outcome-card-four 7.2s linear infinite normal; }
 
 .solution-friction { container-type: inline-size; }
 .solution-friction::after { inset: 4% 0 2%; border-radius: 0; background: radial-gradient(ellipse at 50% 50%, rgba(219, 141, 89, .16) 0%, rgba(219, 141, 89, .075) 42%, transparent 73%); filter: blur(12px); }
@@ -355,40 +354,40 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .solution-system:is(:hover, :focus-visible, .is-active) .automation-person { box-shadow: 0 15px 30px rgba(219, 141, 89, .16); transform: translate(3px, 3px); }
 
 @keyframes outcome-card-one {
-  0%, 20% { opacity: 1; transform: var(--outcome-front); z-index: 4; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  24.9% { opacity: 1; transform: var(--outcome-exit); z-index: 5; }
-  25% { opacity: 0; transform: var(--outcome-exit); z-index: 0; }
-  25.1%, 45% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  50%, 70% { opacity: 1; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  75%, 95% { opacity: 1; transform: var(--outcome-middle); z-index: 3; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  100% { opacity: 1; transform: var(--outcome-front); z-index: 4; }
+  0% { opacity: 1; transform: var(--outcome-front); z-index: 4; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  4.9% { opacity: 1; transform: var(--outcome-exit); z-index: 5; }
+  5% { opacity: 0; transform: var(--outcome-exit); z-index: 0; }
+  5.1%, 25% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  30%, 50% { opacity: 1; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  55%, 75% { opacity: 1; transform: var(--outcome-middle); z-index: 3; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  80%, 100% { opacity: 1; transform: var(--outcome-front); z-index: 4; }
 }
 @keyframes outcome-card-two {
-  0%, 20% { opacity: 1; transform: var(--outcome-middle); z-index: 3; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  25%, 45% { opacity: 1; transform: var(--outcome-front); z-index: 4; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  49.9% { opacity: 1; transform: var(--outcome-exit); z-index: 5; }
-  50% { opacity: 0; transform: var(--outcome-exit); z-index: 0; }
-  50.1%, 70% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  75%, 95% { opacity: 1; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  100% { opacity: 1; transform: var(--outcome-middle); z-index: 3; }
+  0% { opacity: 1; transform: var(--outcome-middle); z-index: 3; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  5%, 25% { opacity: 1; transform: var(--outcome-front); z-index: 4; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  29.9% { opacity: 1; transform: var(--outcome-exit); z-index: 5; }
+  30% { opacity: 0; transform: var(--outcome-exit); z-index: 0; }
+  30.1%, 50% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  55%, 75% { opacity: 1; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  80%, 100% { opacity: 1; transform: var(--outcome-middle); z-index: 3; }
 }
 @keyframes outcome-card-three {
-  0%, 20% { opacity: 1; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  25%, 45% { opacity: 1; transform: var(--outcome-middle); z-index: 3; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  50%, 70% { opacity: 1; transform: var(--outcome-front); z-index: 4; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  74.9% { opacity: 1; transform: var(--outcome-exit); z-index: 5; }
-  75% { opacity: 0; transform: var(--outcome-exit); z-index: 0; }
-  75.1%, 95% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  100% { opacity: 1; transform: var(--outcome-back); z-index: 2; }
+  0% { opacity: 1; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  5%, 25% { opacity: 1; transform: var(--outcome-middle); z-index: 3; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  30%, 50% { opacity: 1; transform: var(--outcome-front); z-index: 4; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  54.9% { opacity: 1; transform: var(--outcome-exit); z-index: 5; }
+  55% { opacity: 0; transform: var(--outcome-exit); z-index: 0; }
+  55.1%, 75% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  80%, 100% { opacity: 1; transform: var(--outcome-back); z-index: 2; }
 }
 @keyframes outcome-card-four {
-  0%, 20% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  25%, 45% { opacity: 1; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  50%, 70% { opacity: 1; transform: var(--outcome-middle); z-index: 3; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  75%, 95% { opacity: 1; transform: var(--outcome-front); z-index: 4; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-  99.9% { opacity: 1; transform: var(--outcome-exit); z-index: 5; }
-  99.99% { opacity: 0; transform: var(--outcome-exit); z-index: 0; }
-  100% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: linear; }
+  0% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  5%, 25% { opacity: 1; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  30%, 50% { opacity: 1; transform: var(--outcome-middle); z-index: 3; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  55%, 75% { opacity: 1; transform: var(--outcome-front); z-index: 4; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  79.9% { opacity: 1; transform: var(--outcome-exit); z-index: 5; }
+  80% { opacity: 0; transform: var(--outcome-exit); z-index: 0; }
+  80.1%, 100% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; }
 }
 @keyframes task-unblock-sequence {
   0% { border-color: rgba(22, 59, 100, .13); background: rgba(255, 254, 252, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: var(--ink); transform: translateX(0) rotate(-.7deg) scale(1); animation-timing-function: cubic-bezier(.45, .05, .55, .95); }
