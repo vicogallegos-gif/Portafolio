@@ -242,10 +242,10 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .solution-story h3 { max-width: 340px; margin: 0; font-size: clamp(1.35rem, 1.8vw, 1.65rem); font-weight: 700; line-height: 1; letter-spacing: -.06em; }
 .solution-story p { max-width: 350px; margin: 11px 0 0; color: var(--ink-soft); font-size: 14px; line-height: 1.55; }
 
-.outcome-sheet { --outcome-front: translate3d(4px, -4px, 0) rotate(0deg) scale(1); --outcome-middle: translate3d(-10px, 12px, 0) rotate(-1.5deg) scale(.99); --outcome-back: translate3d(-28px, 22px, 0) rotate(-4deg) scale(.98); --outcome-exit: translate3d(240px, -22px, 0) rotate(4deg) scale(.9); --outcome-hidden: translate3d(-42px, 28px, 0) rotate(-6deg) scale(.94); position: absolute; top: 70px; left: 10%; display: block; width: 82%; height: 174px; padding: 26px 27px; overflow: hidden; border: 1px solid rgba(22, 59, 100, .13); border-radius: 14px; background: rgba(255, 254, 252, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: var(--ink); font-family: 'Outfit', system-ui, sans-serif; text-align: left; transform: var(--outcome-hidden); transition: transform .5s cubic-bezier(.22, 1, .36, 1), opacity .35s ease; will-change: transform, opacity; }
+.outcome-sheet { --outcome-front: translate3d(4px, -4px, 0) rotate(0deg) scale(1); --outcome-middle: translate3d(-10px, 12px, 0) rotate(-1.5deg) scale(.99); --outcome-back: translate3d(-28px, 22px, 0) rotate(-4deg) scale(.98); --outcome-exit: translate3d(240px, -22px, 0) rotate(4deg) scale(.9); --outcome-hidden: translate3d(-42px, 28px, 0) rotate(-6deg) scale(.94); position: absolute; top: 70px; left: 10%; display: block; width: 82%; height: 174px; padding: 26px 27px; overflow: hidden; border: 1px solid rgba(22, 59, 100, .13); border-radius: 14px; background: #fffefc; box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: var(--ink); font-family: 'Outfit', system-ui, sans-serif; text-align: left; transform: var(--outcome-hidden); transition: transform .5s cubic-bezier(.22, 1, .36, 1), opacity .35s ease; will-change: transform, opacity; }
 .outcome-sheet-card-one { z-index: 4; opacity: 1; transform: var(--outcome-front); }
-.outcome-sheet-card-two { z-index: 3; opacity: .66; transform: var(--outcome-middle); }
-.outcome-sheet-card-three { z-index: 2; opacity: .36; transform: var(--outcome-back); }
+.outcome-sheet-card-two { z-index: 3; opacity: 1; transform: var(--outcome-middle); }
+.outcome-sheet-card-three { z-index: 2; opacity: 1; transform: var(--outcome-back); }
 .outcome-sheet-card-four { z-index: 0; opacity: 0; transform: var(--outcome-hidden); }
 .solution-label { display: block; color: var(--ink-soft); font: 600 9px/1 'Outfit', system-ui, sans-serif; letter-spacing: .1em; }
 .outcome-sheet strong { display: block; min-height: 45px; margin-top: 11px; font: 650 22px/1.02 'Outfit', system-ui, sans-serif; letter-spacing: -.035em; }
@@ -355,51 +355,39 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .solution-system:is(:hover, :focus-visible, .is-active) .automation-person { box-shadow: 0 15px 30px rgba(219, 141, 89, .16); transform: translate(3px, 3px); }
 
 @keyframes outcome-card-one {
-  0% { opacity: 1; transform: var(--outcome-front); z-index: 4; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  16% { opacity: 1; transform: var(--outcome-front); z-index: 4; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  20% { opacity: .42; transform: var(--outcome-exit); z-index: 4; }
-  25% { opacity: 0; transform: var(--outcome-exit); z-index: 0; animation-timing-function: linear; }
-  33% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; }
-  41% { opacity: .18; transform: var(--outcome-back); z-index: 1; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  50% { opacity: .36; transform: var(--outcome-back); z-index: 2; }
-  66% { opacity: .36; transform: var(--outcome-back); z-index: 2; }
-  75% { opacity: .66; transform: var(--outcome-middle); z-index: 3; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  88% { opacity: .66; transform: var(--outcome-middle); z-index: 3; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  91% { opacity: .9; transform: var(--outcome-middle); z-index: 5; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  95% { opacity: 1; transform: var(--outcome-middle); z-index: 5; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  97% { opacity: 1; transform: var(--outcome-front); z-index: 5; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
+  0%, 20% { opacity: 1; transform: var(--outcome-front); z-index: 4; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  24.9% { opacity: 1; transform: var(--outcome-exit); z-index: 5; }
+  25% { opacity: 0; transform: var(--outcome-exit); z-index: 0; }
+  25.1%, 45% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  50%, 70% { opacity: 1; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  75%, 95% { opacity: 1; transform: var(--outcome-middle); z-index: 3; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
   100% { opacity: 1; transform: var(--outcome-front); z-index: 4; }
 }
 @keyframes outcome-card-two {
-  0% { opacity: .66; transform: var(--outcome-middle); z-index: 3; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  16% { opacity: .66; transform: var(--outcome-middle); z-index: 5; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  25%, 41% { opacity: 1; transform: var(--outcome-front); z-index: 4; }
-  45% { opacity: .55; transform: var(--outcome-exit); z-index: 4; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  50% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: linear; }
-  64% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: linear; }
-  66% { opacity: .12; transform: var(--outcome-hidden); z-index: 1; animation-timing-function: linear; }
-  75% { opacity: .36; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  95% { opacity: .36; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  100% { opacity: .66; transform: var(--outcome-middle); z-index: 3; }
+  0%, 20% { opacity: 1; transform: var(--outcome-middle); z-index: 3; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  25%, 45% { opacity: 1; transform: var(--outcome-front); z-index: 4; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  49.9% { opacity: 1; transform: var(--outcome-exit); z-index: 5; }
+  50% { opacity: 0; transform: var(--outcome-exit); z-index: 0; }
+  50.1%, 70% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  75%, 95% { opacity: 1; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  100% { opacity: 1; transform: var(--outcome-middle); z-index: 3; }
 }
 @keyframes outcome-card-three {
-  0% { opacity: .36; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  16% { opacity: .36; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  25%, 41% { opacity: .66; transform: var(--outcome-middle); z-index: 3; }
-  41% { opacity: .66; transform: var(--outcome-middle); z-index: 5; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  50%, 66% { opacity: 1; transform: var(--outcome-front); z-index: 4; }
-  70% { opacity: .55; transform: var(--outcome-exit); z-index: 4; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  75%, 91% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: linear; }
-  100% { opacity: .36; transform: var(--outcome-back); z-index: 2; }
+  0%, 20% { opacity: 1; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  25%, 45% { opacity: 1; transform: var(--outcome-middle); z-index: 3; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  50%, 70% { opacity: 1; transform: var(--outcome-front); z-index: 4; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  74.9% { opacity: 1; transform: var(--outcome-exit); z-index: 5; }
+  75% { opacity: 0; transform: var(--outcome-exit); z-index: 0; }
+  75.1%, 95% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  100% { opacity: 1; transform: var(--outcome-back); z-index: 2; }
 }
 @keyframes outcome-card-four {
-  0% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: linear; }
-  16% { opacity: .08; transform: var(--outcome-hidden); z-index: 1; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  25%, 41% { opacity: .36; transform: var(--outcome-back); z-index: 2; }
-  50%, 66% { opacity: .66; transform: var(--outcome-middle); z-index: 5; }
-  75%, 92% { opacity: 1; transform: var(--outcome-front); z-index: 4; }
-  94% { opacity: .55; transform: var(--outcome-exit); z-index: 4; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  95% { opacity: 0; transform: var(--outcome-exit); z-index: 0; animation-timing-function: linear; }
+  0%, 20% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  25%, 45% { opacity: 1; transform: var(--outcome-back); z-index: 2; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  50%, 70% { opacity: 1; transform: var(--outcome-middle); z-index: 3; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  75%, 95% { opacity: 1; transform: var(--outcome-front); z-index: 4; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+  99.9% { opacity: 1; transform: var(--outcome-exit); z-index: 5; }
+  99.99% { opacity: 0; transform: var(--outcome-exit); z-index: 0; }
   100% { opacity: 0; transform: var(--outcome-hidden); z-index: 0; animation-timing-function: linear; }
 }
 @keyframes task-unblock-sequence {
@@ -412,19 +400,20 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   49% { border-color: rgba(37, 99, 235, .5); background: var(--blue-royal); box-shadow: 0 16px 32px rgba(37, 99, 235, .18); color: #fff; transform: translateX(50px) rotate(0) scaleX(.96) scaleY(1.05); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
   53% { border-color: rgba(37, 99, 235, .5); background: var(--blue-royal); box-shadow: 0 16px 32px rgba(37, 99, 235, .18); color: #fff; transform: translateX(50px) rotate(0) scale(1); animation-timing-function: linear; }
   62.5% { border-color: rgba(37, 99, 235, .5); background: var(--blue-royal); box-shadow: 0 16px 32px rgba(37, 99, 235, .18); color: #fff; transform: translateX(50px) rotate(0) scale(1); animation-timing-function: cubic-bezier(.16, 1, .3, 1); }
+  73.99% { border-color: rgba(37, 99, 235, .5); background: var(--blue-royal); box-shadow: 0 16px 32px rgba(37, 99, 235, .18); color: #fff; transform: translateX(var(--task-final-shift)) rotate(0) scale(1); animation-timing-function: linear; }
   74% { border-color: rgba(76, 174, 135, .42); background: rgba(236, 249, 243, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: #286f55; transform: translateX(var(--task-final-shift)) rotate(0) scaleX(1.04) scaleY(.94); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
   76.3% { border-color: rgba(76, 174, 135, .42); background: rgba(236, 249, 243, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: #286f55; transform: translateX(var(--task-final-shift)) rotate(0) scaleX(.96) scaleY(1.05); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
   77.5%, 100% { border-color: rgba(76, 174, 135, .42); background: rgba(236, 249, 243, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: #286f55; transform: translateX(var(--task-final-shift)) rotate(0) scale(1); }
 }
-@keyframes task-icon-states { 0%, 18% { background: rgba(234, 243, 255, .96); color: var(--blue-royal); } 22%, 44% { background: rgba(255, 223, 200, .96); color: #b76d3d; } 45%, 74% { background: rgba(255, 255, 255, .17); color: #fff; } 74%, 100% { background: #4cae87; color: #fff; } }
-@keyframes task-icon-check { 0%, 74% { color: transparent; transform: scale(.72); } 74%, 100% { color: #fff; transform: scale(1); } }
-@keyframes task-icon-lines { 0%, 74% { opacity: 1; transform: scale(1); } 74%, 100% { opacity: 0; transform: scale(.75); } }
+@keyframes task-icon-states { 0%, 18% { background: rgba(234, 243, 255, .96); color: var(--blue-royal); } 22%, 44% { background: rgba(255, 223, 200, .96); color: #b76d3d; } 45%, 73.99% { background: rgba(255, 255, 255, .17); color: #fff; } 74%, 100% { background: #4cae87; color: #fff; } }
+@keyframes task-icon-check { 0%, 73.99% { color: transparent; transform: scale(.72); } 74%, 100% { color: #fff; transform: scale(1); } }
+@keyframes task-icon-lines { 0%, 73.99% { opacity: 1; transform: scale(1); } 74%, 100% { opacity: 0; transform: scale(.75); } }
 @keyframes task-ready-state { 0%, 18% { opacity: 1; transform: translateY(0); } 22%, 100% { opacity: 0; transform: translateY(-3px); } }
 @keyframes task-blocked-state { 0%, 18% { opacity: 0; transform: translateY(3px); } 22%, 44% { opacity: 1; transform: translateY(0); } 45%, 100% { opacity: 0; transform: translateY(-3px); } }
-@keyframes task-resolved-state { 0%, 44% { opacity: 0; transform: translateY(3px); } 45%, 74% { opacity: 1; transform: translateY(0); } 74%, 100% { opacity: 0; transform: translateY(-3px); } }
-@keyframes task-complete-state { 0%, 74% { opacity: 0; transform: translateY(3px); } 74%, 100% { opacity: 1; transform: translateY(0); } }
-@keyframes task-destination-state { 0%, 74% { border-color: rgba(22, 59, 100, .28); background: var(--paper); box-shadow: none; transform: translate(50%, -50%); } 74%, 100% { border-color: rgba(76, 174, 135, .52); background: rgba(236, 249, 243, .98); box-shadow: none; transform: translate(50%, -50%); } }
-@keyframes task-destination-dot { 0%, 74% { opacity: 0; transform: scale(.5); } 74%, 100% { opacity: 1; transform: scale(1); } }
+@keyframes task-resolved-state { 0%, 44% { opacity: 0; transform: translateY(3px); } 45%, 73.99% { opacity: 1; transform: translateY(0); } 74%, 100% { opacity: 0; transform: translateY(-3px); } }
+@keyframes task-complete-state { 0%, 73.99% { opacity: 0; transform: translateY(3px); } 74%, 100% { opacity: 1; transform: translateY(0); } }
+@keyframes task-destination-state { 0%, 73.99% { border-color: rgba(22, 59, 100, .28); background: var(--paper); box-shadow: none; transform: translate(50%, -50%); } 74%, 100% { border-color: rgba(76, 174, 135, .52); background: rgba(236, 249, 243, .98); box-shadow: none; transform: translate(50%, -50%); } }
+@keyframes task-destination-dot { 0%, 73.99% { opacity: 0; transform: scale(.5); } 74%, 100% { opacity: 1; transform: scale(1); } }
 @keyframes task-burst-rise { 0%, 44% { opacity: 0; transform: translate3d(calc(-50% + var(--burst-x)), 18px, 0) rotate(var(--burst-rot)) scale(.7); } 45% { opacity: 0; transform: translate3d(calc(-50% + var(--burst-x)), 12px, 0) rotate(var(--burst-rot)) scale(.78); } 48% { opacity: .65; transform: translate3d(calc(-50% + var(--burst-x)), 1px, 0) rotate(var(--burst-rot)) scale(.92); } 51% { opacity: 1; transform: translate3d(calc(-50% + var(--burst-x)), -15px, 0) rotate(var(--burst-rot)) scale(1); } 57% { opacity: .55; transform: translate3d(calc(-50% + var(--burst-x)), -24px, 0) rotate(var(--burst-rot)) scale(.88); } 63%, 100% { opacity: 0; transform: translate3d(calc(-50% + var(--burst-x)), -29px, 0) rotate(var(--burst-rot)) scale(.72); } }
 @keyframes automation-token-run { 0% { opacity: 1; transform: translateX(0) scale(1); } 52% { background: var(--blue-royal); opacity: 1; transform: translateX(76px) scale(1); } 72%, 100% { background: var(--blue-royal); opacity: 0; transform: translateX(76px) scale(.72); } }
 @keyframes automation-output-confirm { 0%, 68% { opacity: .35; transform: scale(.72); } 100% { opacity: 1; transform: scale(1); } }
