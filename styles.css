@@ -263,6 +263,13 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .task-route-line::before { position: absolute; top: 50%; left: 0; content: ''; transform: translate(-50%, -50%); }
 .task-destination { position: absolute; top: 170px; right: 5%; z-index: 5; transform: translate(50%, -50%); transition: transform .66s cubic-bezier(.22, 1, .36, 1), background-color .28s ease, border-color .28s ease; }
 .task-destination-dot { position: absolute; inset: 3px; border-radius: 50%; background: #4cae87; opacity: 0; transition: opacity .2s ease, transform .2s ease; }
+.task-burst { position: absolute; top: 50px; left: 4%; z-index: 3; width: min(236px, 64%); height: 58px; pointer-events: none; }
+.task-burst-card { --burst-x: 0px; --burst-rot: 0deg; position: absolute; bottom: 0; left: 50%; width: 42px; height: 25px; box-sizing: border-box; border: 1px solid rgba(37, 99, 235, .22); border-radius: 7px; background: rgba(234, 243, 255, .92); box-shadow: 0 8px 16px rgba(37, 99, 235, .11); opacity: 0; transform: translate3d(calc(-50% + var(--burst-x)), 18px, 0) rotate(var(--burst-rot)) scale(.7); transition: opacity .28s ease, transform .66s cubic-bezier(.22, 1, .36, 1); }
+.task-burst-card::before { position: absolute; top: 7px; left: 8px; width: 15px; height: 3px; border-radius: 99px; background: rgba(37, 99, 235, .25); content: ''; }
+.task-burst-card::after { position: absolute; top: 13px; left: 8px; width: 22px; height: 3px; border-radius: 99px; background: rgba(22, 59, 100, .12); content: ''; }
+.task-burst-card-one { --burst-x: -42px; --burst-rot: -10deg; }
+.task-burst-card-two { --burst-x: 0px; --burst-rot: 0deg; }
+.task-burst-card-three { --burst-x: 42px; --burst-rot: 10deg; }
 .task-ticket { position: absolute; top: 102px; left: 4%; z-index: 4; display: grid; grid-template-columns: 46px minmax(0, 1fr); align-items: center; gap: 17px; width: min(236px, 64%); height: 136px; padding: 22px; border: 1px solid rgba(22, 59, 100, .13); border-radius: 14px; background: rgba(255, 254, 252, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: var(--ink); transform: rotate(-.7deg); transition: transform .66s cubic-bezier(.22, 1, .36, 1), border-color .28s ease, background-color .28s ease, color .28s ease; }
 .task-icon { position: relative; display: grid; width: 46px; height: 46px; place-items: center; border-radius: 12px; background: rgba(234, 243, 255, .96); color: var(--blue-royal); font-style: normal; transition: background-color .28s ease, color .28s ease; }
 .task-icon svg { width: 25px; height: 25px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; transition: opacity .2s ease, transform .2s ease; }
@@ -273,30 +280,33 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .task-state em { position: absolute; top: 0; left: 0; font: 500 11px/1.2 'Outfit', system-ui, sans-serif; font-style: normal; letter-spacing: .015em; white-space: nowrap; transition: opacity .2s ease, transform .2s ease; }
 .task-blocked, .task-resolved, .task-complete { opacity: 0; }
 .solution-friction .solution-grid, .solution-system .solution-grid { opacity: .3; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-ticket { animation: task-unblock-sequence 4.4s linear forwards; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-icon { animation: task-icon-states 4.4s ease forwards; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-icon svg { animation: task-icon-lines 4.4s ease forwards; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-icon span { animation: task-icon-check 4.4s ease forwards; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-ready { animation: task-ready-state 4.4s steps(1, end) forwards; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-blocked { animation: task-blocked-state 4.4s steps(1, end) forwards; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-resolved { animation: task-resolved-state 4.4s steps(1, end) forwards; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-complete { animation: task-complete-state 4.4s steps(1, end) forwards; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-destination { animation: task-destination-state 4.4s ease forwards; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-destination-dot { animation: task-destination-dot 4.4s ease forwards; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-ticket { animation: task-unblock-sequence 5.2s linear infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-icon { animation: task-icon-states 5.2s linear infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-icon svg { animation: task-icon-lines 5.2s linear infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-icon span { animation: task-icon-check 5.2s linear infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-ready { animation: task-ready-state 5.2s steps(1, end) infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-blocked { animation: task-blocked-state 5.2s steps(1, end) infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-resolved { animation: task-resolved-state 5.2s steps(1, end) infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-complete { animation: task-complete-state 5.2s steps(1, end) infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-destination { animation: task-destination-state 5.2s linear infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-destination-dot { animation: task-destination-dot 5.2s linear infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-burst-card { animation: task-burst-rise 5.2s linear infinite alternate; }
 .solution-friction.is-restarting .task-ticket,
 .solution-friction.is-restarting .task-icon,
 .solution-friction.is-restarting .task-icon svg,
 .solution-friction.is-restarting .task-icon span,
 .solution-friction.is-restarting .task-state em,
 .solution-friction.is-restarting .task-destination,
-.solution-friction.is-restarting .task-destination-dot { transition: none !important; }
+.solution-friction.is-restarting .task-destination-dot,
+.solution-friction.is-restarting .task-burst-card { transition: none !important; }
 .solution-friction.is-resetting .task-ticket,
 .solution-friction.is-resetting .task-icon,
 .solution-friction.is-resetting .task-icon svg,
 .solution-friction.is-resetting .task-icon span,
 .solution-friction.is-resetting .task-state em,
 .solution-friction.is-resetting .task-destination,
-.solution-friction.is-resetting .task-destination-dot {
+.solution-friction.is-resetting .task-destination-dot,
+.solution-friction.is-resetting .task-burst-card {
   animation: none !important;
 }
 .solution-friction.is-resetting .task-icon svg,
@@ -346,23 +356,26 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   23% { border-color: rgba(219, 141, 89, .48); background: rgba(255, 243, 233, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: #8f522d; transform: translateX(50px) rotate(-.45deg) scaleX(.98) scaleY(1.025); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
   28%, 48% { border-color: rgba(219, 141, 89, .48); background: rgba(255, 243, 233, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: #8f522d; transform: translateX(50px) rotate(-.35deg) scale(1); }
   52% { border-color: rgba(22, 59, 100, .13); background: rgba(255, 254, 252, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: var(--ink); transform: translateX(50px) rotate(0) scale(1); }
-  56%, 69% { border-color: rgba(22, 59, 100, .13); background: rgba(255, 254, 252, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: var(--ink); transform: translateX(50px) rotate(0) scale(1); }
-  76% { border-color: rgba(22, 59, 100, .13); background: rgba(255, 254, 252, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: var(--ink); transform: translateX(58px) rotate(0) scaleX(1.02) scaleY(.985); animation-timing-function: cubic-bezier(.55, .06, .68, .19); }
-  86% { border-color: rgba(22, 59, 100, .13); background: rgba(255, 254, 252, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: var(--ink); transform: translateX(77px) rotate(0) scaleX(1.02) scaleY(.985); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
-  91% { border-color: rgba(22, 59, 100, .13); background: rgba(255, 254, 252, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: var(--ink); transform: translateX(84px) rotate(0) scaleX(1.01) scaleY(.99); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
+  54% { border-color: rgba(37, 99, 235, .5); background: var(--blue-royal); box-shadow: 0 16px 32px rgba(37, 99, 235, .18); color: #fff; transform: translateX(50px) rotate(0) scaleX(1.04) scaleY(.94); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
+  57% { border-color: rgba(37, 99, 235, .5); background: var(--blue-royal); box-shadow: 0 16px 32px rgba(37, 99, 235, .18); color: #fff; transform: translateX(50px) rotate(0) scaleX(.96) scaleY(1.05); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
+  61%, 72% { border-color: rgba(37, 99, 235, .5); background: var(--blue-royal); box-shadow: 0 16px 32px rgba(37, 99, 235, .18); color: #fff; transform: translateX(50px) rotate(0) scale(1); }
+  75% { border-color: rgba(37, 99, 235, .5); background: var(--blue-royal); box-shadow: 0 16px 32px rgba(37, 99, 235, .18); color: #fff; transform: translateX(54px) rotate(0) scaleX(1.015) scaleY(.99); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
+  84% { border-color: rgba(37, 99, 235, .5); background: var(--blue-royal); box-shadow: 0 16px 32px rgba(37, 99, 235, .18); color: #fff; transform: translateX(70px) rotate(0) scaleX(1.02) scaleY(.985); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
+  91% { border-color: rgba(37, 99, 235, .5); background: var(--blue-royal); box-shadow: 0 16px 32px rgba(37, 99, 235, .18); color: #fff; transform: translateX(84px) rotate(0) scaleX(1.01) scaleY(.99); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
   92% { border-color: rgba(76, 174, 135, .42); background: rgba(236, 249, 243, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: #286f55; transform: translateX(84px) rotate(0) scaleX(.99) scaleY(1.01); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
   96% { border-color: rgba(76, 174, 135, .42); background: rgba(236, 249, 243, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: #286f55; transform: translateX(82px) rotate(0) scale(1); animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
   100% { border-color: rgba(76, 174, 135, .42); background: rgba(236, 249, 243, .98); box-shadow: 0 7px 18px rgba(22, 59, 100, .035); color: #286f55; transform: translateX(80px) rotate(0) scale(1); }
 }
-@keyframes task-icon-states { 0%, 19%, 52%, 91% { background: rgba(234, 243, 255, .96); color: var(--blue-royal); } 23%, 48% { background: rgba(255, 223, 200, .96); color: #b76d3d; } 92%, 100% { background: #4cae87; color: #fff; } }
+@keyframes task-icon-states { 0%, 19%, 52% { background: rgba(234, 243, 255, .96); color: var(--blue-royal); } 23%, 48% { background: rgba(255, 223, 200, .96); color: #b76d3d; } 54%, 91% { background: rgba(255, 255, 255, .17); color: #fff; } 92%, 100% { background: #4cae87; color: #fff; } }
 @keyframes task-icon-check { 0%, 91% { color: transparent; transform: scale(.72); } 92%, 100% { color: #fff; transform: scale(1); } }
 @keyframes task-icon-lines { 0%, 91% { opacity: 1; transform: scale(1); } 92%, 100% { opacity: 0; transform: scale(.75); } }
 @keyframes task-ready-state { 0%, 18% { opacity: 1; transform: translateY(0); } 22%, 100% { opacity: 0; transform: translateY(-3px); } }
 @keyframes task-blocked-state { 0%, 18% { opacity: 0; transform: translateY(3px); } 22%, 49% { opacity: 1; transform: translateY(0); } 53%, 100% { opacity: 0; transform: translateY(-3px); } }
-@keyframes task-resolved-state { 0%, 52% { opacity: 0; transform: translateY(3px); } 56%, 73% { opacity: 1; transform: translateY(0); } 77%, 100% { opacity: 0; transform: translateY(-3px); } }
+@keyframes task-resolved-state { 0%, 52% { opacity: 0; transform: translateY(3px); } 54%, 91% { opacity: 1; transform: translateY(0); } 92%, 100% { opacity: 0; transform: translateY(-3px); } }
 @keyframes task-complete-state { 0%, 91% { opacity: 0; transform: translateY(3px); } 92%, 100% { opacity: 1; transform: translateY(0); } }
 @keyframes task-destination-state { 0%, 91% { border-color: rgba(22, 59, 100, .28); background: var(--paper); box-shadow: none; transform: translate(50%, -50%); } 92%, 100% { border-color: rgba(76, 174, 135, .52); background: rgba(236, 249, 243, .98); box-shadow: none; transform: translate(50%, -50%); } }
 @keyframes task-destination-dot { 0%, 91% { opacity: 0; transform: scale(.5); } 92%, 100% { opacity: 1; transform: scale(1); } }
+@keyframes task-burst-rise { 0%, 52% { opacity: 0; transform: translate3d(calc(-50% + var(--burst-x)), 18px, 0) rotate(var(--burst-rot)) scale(.7); } 58% { opacity: 1; transform: translate3d(calc(-50% + var(--burst-x)), 8px, 0) rotate(var(--burst-rot)) scale(.9); } 64% { opacity: 1; transform: translate3d(calc(-50% + var(--burst-x)), -19px, 0) rotate(var(--burst-rot)) scale(1); } 70% { opacity: .55; transform: translate3d(calc(-50% + var(--burst-x)), -27px, 0) rotate(var(--burst-rot)) scale(.84); } 75%, 100% { opacity: 0; transform: translate3d(calc(-50% + var(--burst-x)), -31px, 0) rotate(var(--burst-rot)) scale(.7); } }
 @keyframes automation-token-run { 0% { opacity: 1; transform: translateX(0) scale(1); } 52% { background: var(--blue-royal); opacity: 1; transform: translateX(76px) scale(1); } 72%, 100% { background: var(--blue-royal); opacity: 0; transform: translateX(76px) scale(.72); } }
 @keyframes automation-output-confirm { 0%, 68% { opacity: .35; transform: scale(.72); } 100% { opacity: 1; transform: scale(1); } }
 

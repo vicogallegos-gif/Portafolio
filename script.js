@@ -165,6 +165,7 @@ solutionScenes.forEach((scene) => {
     const taskStates = [...scene.querySelectorAll('.task-state em')];
     const taskDestination = scene.querySelector('.task-destination');
     const taskDestinationDot = scene.querySelector('.task-destination-dot');
+    const taskBurstCards = [...scene.querySelectorAll('.task-burst-card')];
     const resetSpecs = [
       { node: taskTicket, to: { transform: 'rotate(-.7deg)', borderColor: 'rgba(22, 59, 100, .13)', backgroundColor: 'rgba(255, 254, 252, .98)', color: baseInk } },
       { node: taskIcon, to: { backgroundColor: 'rgba(234, 243, 255, .96)', color: baseBlue } },
@@ -178,6 +179,10 @@ solutionScenes.forEach((scene) => {
       })),
       { node: taskDestination, to: { backgroundColor: basePaper, borderColor: 'rgba(22, 59, 100, .28)', transform: 'translate(50%, -50%)' } },
       { node: taskDestinationDot, to: { opacity: '0', transform: 'scale(.5)' } },
+      ...taskBurstCards.map((node) => ({
+        node,
+        to: { opacity: '0', transform: 'translate3d(calc(-50% + var(--burst-x)), 18px, 0) rotate(var(--burst-rot)) scale(.7)' },
+      })),
     ].filter(({ node }) => node);
     let resetTimer = null;
     let resetToken = null;
