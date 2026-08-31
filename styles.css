@@ -273,16 +273,16 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .task-state em { position: absolute; top: 0; left: 0; font: 500 11px/1.2 'Outfit', system-ui, sans-serif; font-style: normal; letter-spacing: .015em; white-space: nowrap; }
 .task-blocked, .task-resolved, .task-complete { opacity: 0; }
 .solution-friction .solution-grid, .solution-system .solution-grid { opacity: .3; }
-.solution-friction.is-active .task-ticket { animation: task-unblock-sequence 4.4s linear forwards; }
-.solution-friction.is-active .task-icon { animation: task-icon-states 4.4s ease forwards; }
-.solution-friction.is-active .task-icon svg { animation: task-icon-lines 4.4s ease forwards; }
-.solution-friction.is-active .task-icon span { animation: task-icon-check 4.4s ease forwards; }
-.solution-friction.is-active .task-ready { animation: task-ready-state 4.4s steps(1, end) forwards; }
-.solution-friction.is-active .task-blocked { animation: task-blocked-state 4.4s steps(1, end) forwards; }
-.solution-friction.is-active .task-resolved { animation: task-resolved-state 4.4s steps(1, end) forwards; }
-.solution-friction.is-active .task-complete { animation: task-complete-state 4.4s steps(1, end) forwards; }
-.solution-friction.is-active .task-destination { animation: task-destination-state 4.4s ease forwards; }
-.solution-friction.is-active .task-destination::after { animation: task-destination-dot 4.4s ease forwards; }
+.solution-friction:is(:hover, .is-active) .task-ticket { animation: task-unblock-sequence 4.4s linear forwards; }
+.solution-friction:is(:hover, .is-active) .task-icon { animation: task-icon-states 4.4s ease forwards; }
+.solution-friction:is(:hover, .is-active) .task-icon svg { animation: task-icon-lines 4.4s ease forwards; }
+.solution-friction:is(:hover, .is-active) .task-icon span { animation: task-icon-check 4.4s ease forwards; }
+.solution-friction:is(:hover, .is-active) .task-ready { animation: task-ready-state 4.4s steps(1, end) forwards; }
+.solution-friction:is(:hover, .is-active) .task-blocked { animation: task-blocked-state 4.4s steps(1, end) forwards; }
+.solution-friction:is(:hover, .is-active) .task-resolved { animation: task-resolved-state 4.4s steps(1, end) forwards; }
+.solution-friction:is(:hover, .is-active) .task-complete { animation: task-complete-state 4.4s steps(1, end) forwards; }
+.solution-friction:is(:hover, .is-active) .task-destination { animation: task-destination-state 4.4s ease forwards; }
+.solution-friction:is(:hover, .is-active) .task-destination::after { animation: task-destination-dot 4.4s ease forwards; }
 
 .solution-system::after { inset: 4% 0 2%; border-radius: 0; background: radial-gradient(ellipse at 50% 50%, rgba(37, 99, 235, .14) 0%, rgba(37, 99, 235, .065) 44%, transparent 74%); filter: blur(12px); }
 .automation-composition { position: absolute; inset: 0; }
