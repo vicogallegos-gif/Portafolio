@@ -280,17 +280,17 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .task-state em { position: absolute; top: 0; left: 0; font: 500 11px/1.2 'Outfit', system-ui, sans-serif; font-style: normal; letter-spacing: .015em; white-space: nowrap; transition: opacity .2s ease, transform .2s ease; }
 .task-blocked, .task-resolved, .task-complete { opacity: 0; }
 .solution-friction .solution-grid, .solution-system .solution-grid { opacity: .3; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-ticket { animation: task-unblock-sequence 5.2s linear infinite alternate; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-icon { animation: task-icon-states 5.2s linear infinite alternate; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-icon svg { animation: task-icon-lines 5.2s linear infinite alternate; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-icon span { animation: task-icon-check 5.2s linear infinite alternate; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-ready { animation: task-ready-state 5.2s steps(1, end) infinite alternate; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-blocked { animation: task-blocked-state 5.2s steps(1, end) infinite alternate; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-resolved { animation: task-resolved-state 5.2s steps(1, end) infinite alternate; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-complete { animation: task-complete-state 5.2s steps(1, end) infinite alternate; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-destination { animation: task-destination-state 5.2s linear infinite alternate; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-destination-dot { animation: task-destination-dot 5.2s linear infinite alternate; }
-.solution-friction:is(:hover, .is-hovering, .is-active) .task-burst-card { animation: task-burst-rise 5.2s linear infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-ticket { animation: task-unblock-sequence 26s linear infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-icon { animation: task-icon-states 26s linear infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-icon svg { animation: task-icon-lines 26s linear infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-icon span { animation: task-icon-check 26s linear infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-ready { animation: task-ready-state 26s steps(1, end) infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-blocked { animation: task-blocked-state 26s steps(1, end) infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-resolved { animation: task-resolved-state 26s steps(1, end) infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-complete { animation: task-complete-state 26s steps(1, end) infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-destination { animation: task-destination-state 26s linear infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-destination-dot { animation: task-destination-dot 26s linear infinite alternate; }
+.solution-friction:is(:hover, .is-hovering, .is-active) .task-burst-card { animation: task-burst-rise 26s linear infinite alternate; }
 .solution-friction.is-restarting .task-ticket,
 .solution-friction.is-restarting .task-icon,
 .solution-friction.is-restarting .task-icon svg,
