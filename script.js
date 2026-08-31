@@ -153,6 +153,103 @@ document.querySelectorAll('[data-year]').forEach((node) => {
 
 const solutionScenes = document.querySelectorAll('[data-solution-scene]');
 solutionScenes.forEach((scene) => {
+  if (scene.classList.contains('solution-friction')) {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const baseInk = rootStyles.getPropertyValue('--ink').trim() || '#163b64';
+    const baseBlue = rootStyles.getPropertyValue('--blue-royal').trim() || '#2563eb';
+    const basePaper = rootStyles.getPropertyValue('--paper').trim() || '#f8f6f0';
+    const taskTicket = scene.querySelector('.task-ticket');
+    const taskIcon = scene.querySelector('.task-icon');
+    const taskIconSvg = scene.querySelector('.task-icon svg');
+    const taskIconCheck = scene.querySelector('.task-icon span');
+    const taskStates = [...scene.querySelectorAll('.task-state em')];
+    const taskDestination = scene.querySelector('.task-destination');
+    const taskDestinationDot = scene.querySelector('.task-destination-dot');
+    const resetSpecs = [
+      { node: taskTicket, to: { transform: 'rotate(-.7deg)', borderColor: 'rgba(22, 59, 100, .13)', backgroundColor: 'rgba(255, 254, 252, .98)', color: baseInk } },
+      { node: taskIcon, to: { backgroundColor: 'rgba(234, 243, 255, .96)', color: baseBlue } },
+      { node: taskIconSvg, to: { opacity: '1', transform: 'scale(1)' } },
+      { node: taskIconCheck, to: { color: 'transparent', transform: 'scale(.72)' } },
+      ...taskStates.map((node) => ({
+        node,
+        to: node.classList.contains('task-ready')
+          ? { opacity: '1', transform: 'translateY(0)' }
+          : { opacity: '0', transform: 'translateY(3px)' },
+      })),
+      { node: taskDestination, to: { backgroundColor: basePaper, borderColor: 'rgba(22, 59, 100, .28)', transform: 'translate(50%, -50%)' } },
+      { node: taskDestinationDot, to: { opacity: '0', transform: 'scale(.5)' } },
+    ].filter(({ node }) => node);
+    let resetTimer = null;
+    let resetToken = null;
+
+    const clearResetStyles = () => {
+      resetSpecs.forEach(({ node, to }) => {
+        Object.keys(to).forEach((property) => {
+          node.style[property] = '';
+        });
+      });
+    };
+
+    const startHover = () => {
+      if (scene.classList.contains('is-hovering') && !scene.classList.contains('is-resetting')) return;
+
+      resetToken = null;
+      if (resetTimer) window.clearTimeout(resetTimer);
+      resetTimer = null;
+      scene.classList.add('is-restarting');
+      clearResetStyles();
+      scene.classList.remove('is-resetting', 'is-hovering', 'is-restarting');
+      void scene.offsetWidth;
+      scene.classList.add('is-hovering');
+    };
+
+    ['mouseenter', 'pointerenter', 'mouseover', 'pointerover', 'mousemove', 'pointermove'].forEach((eventName) => {
+      scene.addEventListener(eventName, startHover);
+    });
+
+    const resetHover = () => {
+      if (scene.classList.contains('is-active')) {
+        scene.classList.remove('is-hovering');
+        return;
+      }
+
+      if (resetTimer) window.clearTimeout(resetTimer);
+      const token = {};
+      resetToken = token;
+      const fromStyles = resetSpecs.map(({ node, to }) => {
+        const computed = getComputedStyle(node);
+        const from = {};
+        Object.keys(to).forEach((property) => {
+          from[property] = computed[property];
+          node.style[property] = from[property];
+        });
+        return { node, from, to };
+      });
+      scene.classList.remove('is-hovering');
+      scene.classList.add('is-resetting');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.requestAnimationFrame(() => {
+        if (resetToken !== token) return;
+        fromStyles.forEach(({ node, to }) => {
+          Object.keys(to).forEach((property) => {
+            node.style[property] = to[property];
+          });
+        });
+      });
+      resetTimer = window.setTimeout(() => {
+        if (resetToken !== token) return;
+        resetToken = null;
+        resetTimer = null;
+        clearResetStyles();
+        scene.classList.remove('is-resetting', 'is-hovering');
+      }, reducedMotion ? 1 : 740);
+    };
+
+    ['mouseleave', 'pointerleave'].forEach((eventName) => {
+      scene.addEventListener(eventName, resetHover);
+    });
+  }
+
   scene.addEventListener('click', () => {
     const nextState = !scene.classList.contains('is-active');
 
