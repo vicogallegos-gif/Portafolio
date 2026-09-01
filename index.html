@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=__BUILD_VERSION__&amp;revision=automation-flow-v2" />
+    <link rel="stylesheet" href="styles.css?v=__BUILD_VERSION__&amp;revision=automation-columns-v3" />
     <script>
       (() => {
         const currentBuild = document.documentElement.dataset.build;
@@ -238,40 +238,17 @@
               <button class="solution-scene solution-system" type="button" data-solution-scene aria-pressed="false" aria-label="Ver cómo una rutina se convierte en una regla automática">
                 <span class="solution-grid" aria-hidden="true"></span>
                 <span class="automation-composition" aria-hidden="true">
-                  <span class="automation-route"></span>
-                  <span class="automation-task automation-task-one">
-                    <i class="automation-task-icon">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <rect x="2.5" y="4" width="5" height="5" rx="1"></rect>
-                        <rect x="2.5" y="15" width="5" height="5" rx="1"></rect>
-                        <path d="M11 6.5h10M11 17.5h10"></path>
-                      </svg>
-                      <span>✓</span>
-                    </i>
-                    <span class="automation-task-lines"><i></i><i></i></span>
+                  <span class="automation-column automation-incoming">
+                    <span class="automation-task automation-incoming-one"></span>
+                    <span class="automation-task automation-incoming-two"></span>
+                    <span class="automation-task automation-incoming-three"></span>
+                    <span class="automation-task automation-incoming-new"></span>
                   </span>
-                  <span class="automation-task automation-task-two">
-                    <i class="automation-task-icon">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <rect x="2.5" y="4" width="5" height="5" rx="1"></rect>
-                        <rect x="2.5" y="15" width="5" height="5" rx="1"></rect>
-                        <path d="M11 6.5h10M11 17.5h10"></path>
-                      </svg>
-                      <span>✓</span>
-                    </i>
-                    <span class="automation-task-lines"><i></i><i></i></span>
+                  <span class="automation-column automation-completed">
+                    <span class="automation-task automation-completed-one"></span>
+                    <span class="automation-task automation-completed-two"></span>
                   </span>
-                  <span class="automation-task automation-task-three">
-                    <i class="automation-task-icon">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <rect x="2.5" y="4" width="5" height="5" rx="1"></rect>
-                        <rect x="2.5" y="15" width="5" height="5" rx="1"></rect>
-                        <path d="M11 6.5h10M11 17.5h10"></path>
-                      </svg>
-                      <span>✓</span>
-                    </i>
-                    <span class="automation-task-lines"><i></i><i></i></span>
-                  </span>
+                  <span class="automation-task automation-transfer"></span>
                 </span>
               </button>
               <div class="solution-copy">
