@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=__BUILD_VERSION__&amp;revision=global-scroll-motion-v1" />
+    <link rel="stylesheet" href="styles.css?v=__BUILD_VERSION__&amp;revision=automation-flow-v2" />
     <script>
       (() => {
         const currentBuild = document.documentElement.dataset.build;
@@ -238,26 +238,40 @@
               <button class="solution-scene solution-system" type="button" data-solution-scene aria-pressed="false" aria-label="Ver cómo una rutina se convierte en una regla automática">
                 <span class="solution-grid" aria-hidden="true"></span>
                 <span class="automation-composition" aria-hidden="true">
-                  <span class="automation-request-stack">
-                    <span class="automation-request"><i></i><b></b></span>
-                    <span class="automation-request"><i></i><b></b></span>
-                    <span class="automation-request"><i></i><b></b></span>
+                  <span class="automation-route"></span>
+                  <span class="automation-task automation-task-one">
+                    <i class="automation-task-icon">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="2.5" y="4" width="5" height="5" rx="1"></rect>
+                        <rect x="2.5" y="15" width="5" height="5" rx="1"></rect>
+                        <path d="M11 6.5h10M11 17.5h10"></path>
+                      </svg>
+                      <span>✓</span>
+                    </i>
+                    <span class="automation-task-lines"><i></i><i></i></span>
                   </span>
-                  <span class="automation-track"></span>
-                  <span class="automation-token"></span>
-                  <span class="automation-rule-core">
-                    <i class="automation-cycle-arrow"></i>
-                    <span class="automation-actions">REGISTRA · AVISA</span>
-                    <strong>REGLA</strong>
+                  <span class="automation-task automation-task-two">
+                    <i class="automation-task-icon">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="2.5" y="4" width="5" height="5" rx="1"></rect>
+                        <rect x="2.5" y="15" width="5" height="5" rx="1"></rect>
+                        <path d="M11 6.5h10M11 17.5h10"></path>
+                      </svg>
+                      <span>✓</span>
+                    </i>
+                    <span class="automation-task-lines"><i></i><i></i></span>
                   </span>
-                  <span class="automation-output-card">
-                    <span class="automation-output-line"><i></i><b></b></span>
-                    <span class="automation-output-line"><i></i><b></b></span>
-                    <span class="automation-output-line"><i></i><b></b></span>
+                  <span class="automation-task automation-task-three">
+                    <i class="automation-task-icon">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="2.5" y="4" width="5" height="5" rx="1"></rect>
+                        <rect x="2.5" y="15" width="5" height="5" rx="1"></rect>
+                        <path d="M11 6.5h10M11 17.5h10"></path>
+                      </svg>
+                      <span>✓</span>
+                    </i>
+                    <span class="automation-task-lines"><i></i><i></i></span>
                   </span>
-                  <span class="automation-exception-path"></span>
-                  <span class="automation-exception-label">EXCEPCIÓN</span>
-                  <span class="automation-person"></span>
                 </span>
               </button>
               <div class="solution-copy">
@@ -277,7 +291,6 @@
             <img src="assets/victor-retrato.png" alt="Retrato de Victor Alejandro Gallegos" loading="lazy" />
           </div>
           <div class="about-copy" data-reveal>
-            <p class="about-kicker">Sobre mí · Diseñar el sistema completo</p>
             <h2>Vengo del diseño de experiencias completas.</h2>
             <p>Estudié Diseño y Arte de Videojuegos. Esa formación me enseñó a pensar en interacción, interfaz, lógica, contenido y consistencia como partes de un mismo sistema. Hoy llevo esa forma de mirar a las herramientas internas, los prototipos y la automatización con IA.</p>
             <p>No presento esa formación como experiencia profesional en todas esas áreas. Es el contexto que explica por qué reviso referencias, cuido los detalles y no doy por buena la primera salida de una herramienta.</p>
