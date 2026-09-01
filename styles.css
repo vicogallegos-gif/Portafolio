@@ -149,6 +149,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .project-folder.is-opening .project-folder-page-2 { animation-delay: 71ms; }
 .project-folder.is-opening .project-folder-page-3 { animation-delay: 35ms; }
 .project-folder.is-opening .project-folder-page-4 { animation-delay: 0ms; }
+.project-folder.is-closing .project-folder-back { animation: folder-back-return .55s linear both; }
 .project-folder.is-closing .project-folder-page { height: var(--return-start-height, 190px); animation: folder-page-return .55s linear both; }
 .project-folder.is-closing .project-folder-page-1 { animation-delay: 0ms; }
 .project-folder.is-closing .project-folder-page-2 { animation-delay: 35ms; }
@@ -213,6 +214,13 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   82% { transform: translateY(calc(var(--closed-y) - 5px)); }
   90% { transform: translateY(calc(var(--closed-y) + 2px)); }
   100% { transform: translateY(var(--closed-y)); }
+}
+@keyframes folder-back-return {
+  0% { height: 395px; transform: translateY(-335px); }
+  70% { height: 150px; transform: translateY(10px); }
+  82% { height: 150px; transform: translateY(-5px); }
+  90% { height: 150px; transform: translateY(2px); }
+  100% { height: 150px; transform: translateY(0); }
 }
 .section-capabilities {
   position: relative;
