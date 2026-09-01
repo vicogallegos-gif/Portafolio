@@ -450,11 +450,17 @@ const initializeProjectFolder = (folder) => {
     });
   };
 
-  const runMotionState = (state, duration) => {
+  const runMotionState = (state, duration, startTransition) => {
     window.clearTimeout(motionTimer);
     folder.classList.remove('is-opening', 'is-closing');
-    void folder.offsetWidth;
-    folder.classList.add(state);
+    if (startTransition) {
+      folder.classList.add(state);
+      void folder.offsetWidth;
+      startTransition();
+    } else {
+      void folder.offsetWidth;
+      folder.classList.add(state);
+    }
     motionTimer = window.setTimeout(() => {
       folder.classList.remove(state);
       if (state === 'is-closing') clearClosingPositions();
@@ -470,8 +476,12 @@ const initializeProjectFolder = (folder) => {
     else captureClosingPositions();
 
     clearSelection();
-    folder.classList.toggle('is-open', isOpen);
-    runMotionState(isOpen ? 'is-opening' : 'is-closing', 740);
+    if (isOpen) {
+      folder.classList.add('is-open');
+      runMotionState('is-opening', 740);
+    } else {
+      runMotionState('is-closing', 740, () => folder.classList.remove('is-open'));
+    }
 
     trigger.setAttribute('aria-expanded', String(isOpen));
     trigger.setAttribute('aria-label', `${isOpen ? 'Cerrar' : 'Abrir'} carpeta MOGI`);
