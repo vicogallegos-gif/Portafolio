@@ -449,7 +449,7 @@ const initializeProjectFolder = (folder) => {
 
     clearSelection();
     folder.classList.toggle('is-open', isOpen);
-    runMotionState(isOpen ? 'is-opening' : 'is-closing', 984);
+    runMotionState(isOpen ? 'is-opening' : 'is-closing', 895);
 
     trigger.setAttribute('aria-expanded', String(isOpen));
     trigger.setAttribute('aria-label', `${isOpen ? 'Cerrar' : 'Abrir'} carpeta MOGI`);
@@ -548,8 +548,8 @@ if (projectCarousel) {
         nextFolder.classList.add('project-folder-current');
         isSwitching = false;
         setControlsDisabled(false);
-      }, 672);
-    }, currentIsOpen ? 984 : 0);
+      }, 584);
+    }, currentIsOpen ? 895 : 0);
   };
 
   previousButton?.addEventListener('click', () => switchProject(-1));
