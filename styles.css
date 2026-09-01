@@ -208,7 +208,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   100% { opacity: 1; transform: translate3d(-50%, 0, 0) rotate(0deg); }
 }
 @keyframes folder-page-return {
-  0% { transform: translateY(var(--open-y)); }
+  0% { transform: translateY(var(--return-start-y, var(--open-y))); }
   70% { transform: translateY(calc(var(--closed-y) + 10px)); }
   82% { transform: translateY(calc(var(--closed-y) - 5px)); }
   90% { transform: translateY(calc(var(--closed-y) + 2px)); }

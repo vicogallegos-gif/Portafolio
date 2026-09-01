@@ -434,18 +434,36 @@ const initializeProjectFolder = (folder) => {
     pageButtons.forEach((button) => button?.setAttribute('aria-pressed', 'false'));
   };
 
+  const clearClosingPositions = () => {
+    pageItems.forEach((page) => page.style.removeProperty('--return-start-y'));
+  };
+
+  const captureClosingPositions = () => {
+    pageItems.forEach((page) => {
+      const transform = window.getComputedStyle(page).transform;
+      const translateY = transform === 'none' ? 0 : new DOMMatrixReadOnly(transform).m42;
+      page.style.setProperty('--return-start-y', `${translateY}px`);
+    });
+  };
+
   const runMotionState = (state, duration) => {
     window.clearTimeout(motionTimer);
     folder.classList.remove('is-opening', 'is-closing');
     void folder.offsetWidth;
     folder.classList.add(state);
-    motionTimer = window.setTimeout(() => folder.classList.remove(state), duration);
+    motionTimer = window.setTimeout(() => {
+      folder.classList.remove(state);
+      if (state === 'is-closing') clearClosingPositions();
+    }, duration);
   };
 
   setPageAccess(false);
 
   trigger.addEventListener('click', () => {
     const isOpen = !folder.classList.contains('is-open');
+
+    if (isOpen) clearClosingPositions();
+    else captureClosingPositions();
 
     clearSelection();
     folder.classList.toggle('is-open', isOpen);
