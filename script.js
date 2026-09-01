@@ -435,7 +435,10 @@ const initializeProjectFolder = (folder) => {
   };
 
   const clearClosingPositions = () => {
-    pageItems.forEach((page) => page.style.removeProperty('--return-start-y'));
+    pageItems.forEach((page) => {
+      page.style.removeProperty('--return-start-y');
+      page.style.removeProperty('--return-start-height');
+    });
   };
 
   const captureClosingPositions = () => {
@@ -443,6 +446,7 @@ const initializeProjectFolder = (folder) => {
       const transform = window.getComputedStyle(page).transform;
       const translateY = transform === 'none' ? 0 : new DOMMatrixReadOnly(transform).m42;
       page.style.setProperty('--return-start-y', `${translateY}px`);
+      page.style.setProperty('--return-start-height', `${page.getBoundingClientRect().height}px`);
     });
   };
 
@@ -467,7 +471,7 @@ const initializeProjectFolder = (folder) => {
 
     clearSelection();
     folder.classList.toggle('is-open', isOpen);
-    runMotionState(isOpen ? 'is-opening' : 'is-closing', 895);
+    runMotionState(isOpen ? 'is-opening' : 'is-closing', 814);
 
     trigger.setAttribute('aria-expanded', String(isOpen));
     trigger.setAttribute('aria-label', `${isOpen ? 'Cerrar' : 'Abrir'} carpeta MOGI`);
@@ -566,8 +570,8 @@ if (projectCarousel) {
         nextFolder.classList.add('project-folder-current');
         isSwitching = false;
         setControlsDisabled(false);
-      }, 584);
-    }, currentIsOpen ? 895 : 0);
+      }, 531);
+    }, currentIsOpen ? 814 : 0);
   };
 
   previousButton?.addEventListener('click', () => switchProject(-1));
