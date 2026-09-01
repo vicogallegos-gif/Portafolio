@@ -22,7 +22,7 @@
   --radius-xl: 42px;
   --radius-lg: 30px;
   --radius-md: 20px;
-  --page-second-click-duration-normal: .675s;
+  --page-second-click-duration-normal: .614s;
 }
 
 * { box-sizing: border-box; }
@@ -107,7 +107,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .project-folder-carousel { position: relative; }
 .project-folder-stage { position: relative; z-index: 1; min-height: 720px; }
 .project-folder-stage > .project-folder { position: absolute; right: auto; bottom: 0; left: 50%; margin: 0; transform: translateX(-50%); }
-.project-carousel-control { position: absolute; top: 50%; z-index: 10; display: grid; width: 64px; height: 44px; place-items: center; padding: 0 0 4px; border: 1px solid rgba(22, 59, 100, .2); border-radius: 14px 8px 14px 8px; background: rgba(255, 254, 252, .74); box-shadow: 0 14px 30px rgba(22, 59, 100, .1); color: var(--navy); cursor: pointer; transform: translateY(-50%); transition: background .218s ease, border-color .218s ease, box-shadow .218s ease, color .218s ease, transform .218s ease; }
+.project-carousel-control { position: absolute; top: 50%; z-index: 10; display: grid; width: 64px; height: 44px; place-items: center; padding: 0 0 4px; border: 1px solid rgba(22, 59, 100, .2); border-radius: 14px 8px 14px 8px; background: rgba(255, 254, 252, .74); box-shadow: 0 14px 30px rgba(22, 59, 100, .1); color: var(--navy); cursor: pointer; transform: translateY(-50%); transition: background .198s ease, border-color .198s ease, box-shadow .198s ease, color .198s ease, transform .198s ease; }
 .project-carousel-control span { font-family: 'Inter', system-ui, sans-serif; font-size: 34px; font-weight: 400; line-height: 1; }
 .project-carousel-control-prev { left: clamp(-70px, -5.5vw, -27px); }
 .project-carousel-control-next { right: clamp(-70px, -5.5vw, -27px); }
@@ -116,10 +116,10 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .project-carousel-control:focus-visible { outline: 3px solid var(--blue-royal); outline-offset: 4px; }
 .project-folder { --front-stack-y: -45px; --folder-front: var(--navy); --folder-back: #38658f; --folder-edge: rgba(14, 41, 72, .32); --folder-shadow: rgba(22, 59, 100, .2); position: relative; width: min(1128px, 100%); height: 720px; isolation: isolate; }
 .project-folder[data-project-id="mogi"] { --folder-front: var(--mogi-purple); --folder-back: var(--mogi-purple-deep); --folder-edge: var(--mogi-purple-strong); --folder-shadow: rgba(76, 29, 149, .24); }
-.project-folder-back { position: absolute; top: 380px; right: 6%; left: 6%; z-index: 0; height: 150px; border: 1px solid var(--folder-edge); border-radius: 25px 20px 28px 20px; background: var(--folder-back); box-shadow: 0 14px 34px rgba(22, 59, 100, .1); transform: translateY(0); transition: height .605s cubic-bezier(.22, 1, .36, 1), transform .605s cubic-bezier(.22, 1, .36, 1), box-shadow .495s ease; will-change: height, transform; }
+.project-folder-back { position: absolute; top: 380px; right: 6%; left: 6%; z-index: 0; height: 150px; border: 1px solid var(--folder-edge); border-radius: 25px 20px 28px 20px; background: var(--folder-back); box-shadow: 0 14px 34px rgba(22, 59, 100, .1); transform: translateY(0); transition: height .55s cubic-bezier(.22, 1, .36, 1), transform .55s cubic-bezier(.22, 1, .36, 1), box-shadow .45s ease; will-change: height, transform; }
 .project-folder-back::before { position: absolute; top: -31px; left: calc(50% - 110px); width: 220px; height: 34px; border: 1px solid rgba(14, 41, 72, .32); border-bottom: 0; border-radius: 19px 19px 0 0; background: inherit; content: ''; }
-.project-folder-pages { position: absolute; inset: 0; z-index: 1; clip-path: inset(-520px 0 0); pointer-events: none; }
-.project-folder-page { --closed-y: 0px; --open-y: -360px; --max-y: -432px; --max-height: 452px; position: absolute; top: 420px; height: 190px; min-height: 0; padding: 19px 30px 22px; overflow: hidden; border: 1px solid rgba(22, 59, 100, .18); border-radius: 18px 18px 0 0; background: #fffefc; box-shadow: none; color: var(--ink); opacity: 1; transform: translateY(var(--closed-y)); transform-origin: center bottom; transition: transform .675s cubic-bezier(.22, 1, .36, 1), height .675s cubic-bezier(.22, 1, .36, 1), opacity .258s ease; will-change: transform, height; }
+.project-folder-pages { position: absolute; inset: 0; z-index: 1; clip-path: inset(-520px 0 25px); pointer-events: none; }
+.project-folder-page { --closed-y: 0px; --open-y: -360px; --max-y: -432px; --max-height: 512px; position: absolute; top: 420px; height: 190px; min-height: 0; padding: 19px 30px 22px; overflow: hidden; border: 1px solid rgba(22, 59, 100, .18); border-radius: 18px 18px 0 0; background: #fffefc; box-shadow: none; color: var(--ink); opacity: 1; transform: translateY(var(--closed-y)); transform-origin: center bottom; transition: transform .614s cubic-bezier(.22, 1, .36, 1), height .614s cubic-bezier(.22, 1, .36, 1), opacity .235s ease; will-change: transform, height; }
 .project-folder-page-1 { --closed-y: -36px; --open-y: -360px; --selected-y: -432px; right: 0; left: 0; z-index: 1; }
 .project-folder-page-2 { --closed-y: -24px; --open-y: -255px; --selected-y: -327px; right: 0; left: 0; z-index: 2; }
 .project-folder-page-3 { --closed-y: -12px; --open-y: -150px; --selected-y: -222px; right: 0; left: 0; z-index: 3; }
@@ -128,13 +128,13 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .project-folder-page-heading { margin-bottom: 12px; color: var(--blue-royal); }
 .project-folder-page-heading span:last-child { color: var(--ink-soft); }
 .project-folder-page-body { display: grid; grid-template-columns: minmax(210px, .72fr) 1.4fr; align-items: start; gap: 64px; }
-.project-folder-page-heading, .project-folder-page-body { transition: opacity .178s ease; }
+.project-folder-page-heading, .project-folder-page-body { transition: opacity .162s ease; }
 .project-folder-page h4 { margin: 0; font-family: 'Outfit', system-ui, sans-serif; font-size: 26px; line-height: 1; letter-spacing: -.05em; }
 .project-folder-page p { margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.5; }
 .project-folder-page-hit { position: absolute; inset: 0; z-index: 2; padding: 0; border: 0; background: transparent; cursor: pointer; }
 .project-folder-page-hit:focus-visible { outline: 3px solid var(--blue-royal); outline-offset: -6px; border-radius: inherit; }
 .project-folder-front-tab { position: absolute; top: 408px; left: calc(50% - 110px); z-index: 5; width: 220px; height: 40px; border: 0; border-radius: 19px 19px 0 0; background: var(--folder-front); content: ''; }
-.project-folder-front { position: absolute; top: 440px; right: -1.5%; bottom: 0; left: -1.5%; z-index: 5; padding: 38px 44px 32px; overflow: hidden; border: 0; border-radius: 42px 20px 42px 20px; background: var(--folder-front); color: #fff; box-shadow: 0 27px 58px var(--folder-shadow); transition: box-shadow .545s ease; }
+.project-folder-front { position: absolute; top: 440px; right: -1.5%; bottom: 0; left: -1.5%; z-index: 5; padding: 38px 44px 32px; overflow: hidden; border: 0; border-radius: 42px 20px 42px 20px; background: var(--folder-front); color: #fff; box-shadow: 0 27px 58px var(--folder-shadow); transition: box-shadow .495s ease; }
 .project-folder-front h3 { margin: 0 0 10px; font-size: clamp(3.5rem, 6vw, 5.2rem); line-height: .88; letter-spacing: -.08em; }
 .project-folder-front > p { max-width: 560px; margin: 0; color: #d4e2f1; font-size: 14px; line-height: 1.55; }
 .project-folder-trigger { position: absolute; top: 440px; right: -1.5%; bottom: 0; left: -1.5%; z-index: 7; padding: 0; border: 0; border-radius: 42px 20px 42px 20px; background: transparent; cursor: pointer; }
@@ -144,16 +144,16 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .project-folder.is-open .project-folder-page { transform: translateY(var(--open-y)); box-shadow: none; }
 .project-folder.is-open:not(.has-selection) .project-folder-page:hover,
 .project-folder.is-open:not(.has-selection) .project-folder-page:focus-within { transform: translateY(calc(var(--open-y) - 11px)); box-shadow: none; }
-.project-folder.is-opening .project-folder-page { animation: folder-page-rise .605s linear both; }
-.project-folder.is-opening .project-folder-page-1 { animation-delay: 117ms; }
-.project-folder.is-opening .project-folder-page-2 { animation-delay: 78ms; }
-.project-folder.is-opening .project-folder-page-3 { animation-delay: 39ms; }
+.project-folder.is-opening .project-folder-page { animation: folder-page-rise .55s linear both; }
+.project-folder.is-opening .project-folder-page-1 { animation-delay: 106ms; }
+.project-folder.is-opening .project-folder-page-2 { animation-delay: 71ms; }
+.project-folder.is-opening .project-folder-page-3 { animation-delay: 35ms; }
 .project-folder.is-opening .project-folder-page-4 { animation-delay: 0ms; }
-.project-folder.is-closing .project-folder-page { height: var(--return-start-height, 190px); animation: folder-page-return .605s linear both; }
+.project-folder.is-closing .project-folder-page { height: var(--return-start-height, 190px); animation: folder-page-return .55s linear both; }
 .project-folder.is-closing .project-folder-page-1 { animation-delay: 0ms; }
-.project-folder.is-closing .project-folder-page-2 { animation-delay: 39ms; }
-.project-folder.is-closing .project-folder-page-3 { animation-delay: 78ms; }
-.project-folder.is-closing .project-folder-page-4 { animation-delay: 117ms; }
+.project-folder.is-closing .project-folder-page-2 { animation-delay: 35ms; }
+.project-folder.is-closing .project-folder-page-3 { animation-delay: 71ms; }
+.project-folder.is-closing .project-folder-page-4 { animation-delay: 106ms; }
 .project-folder.has-selection .project-folder-page:not(.is-selected) { opacity: 1; transform: translateY(var(--open-y)); box-shadow: none; }
 .project-folder.has-selection .project-folder-page:not(.is-selected):hover,
 .project-folder.has-selection .project-folder-page:not(.is-selected):focus-within { transform: translateY(calc(var(--open-y) - 8px)); box-shadow: none; }
@@ -164,14 +164,14 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   min-height: 0;
   transform: translateY(var(--max-y));
   box-shadow: none;
-  transition: transform var(--page-second-click-duration-normal) cubic-bezier(.22, 1, .36, 1), height var(--page-second-click-duration-normal) cubic-bezier(.22, 1, .36, 1), opacity .284s ease;
+  transition: transform var(--page-second-click-duration-normal) cubic-bezier(.22, 1, .36, 1), height var(--page-second-click-duration-normal) cubic-bezier(.22, 1, .36, 1), opacity .258s ease;
 }
 .project-folder.is-open .project-folder-front { box-shadow: 0 32px 66px var(--folder-shadow); }
-.project-folder-exiting-left { animation: project-folder-out-left .531s linear both; pointer-events: none; }
-.project-folder-exiting-right { animation: project-folder-out-right .531s linear both; pointer-events: none; }
+.project-folder-exiting-left { animation: project-folder-out-left .483s linear both; pointer-events: none; }
+.project-folder-exiting-right { animation: project-folder-out-right .483s linear both; pointer-events: none; }
 .project-folder-entering { pointer-events: none; }
-.project-folder-entering.from-right { animation: project-folder-in-right .531s linear both; }
-.project-folder-entering.from-left { animation: project-folder-in-left .531s linear both; }
+.project-folder-entering.from-right { animation: project-folder-in-right .483s linear both; }
+.project-folder-entering.from-left { animation: project-folder-in-left .483s linear both; }
 @keyframes folder-page-rise {
   0% { transform: translateY(var(--closed-y)); }
   70% { transform: translateY(calc(var(--open-y) - 14px)); }
@@ -497,7 +497,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   .project-folder-back { top: 330px; right: 6%; left: 6%; }
   .project-folder-back::before { left: calc(50% - 78px); width: 156px; }
   .project-folder { --front-stack-y: -50px; }
-  .project-folder-page { top: 370px; height: 145px; min-height: 0; --max-y: -371px; --max-height: 392px; padding: 13px 16px 14px; }
+  .project-folder-page { top: 370px; height: 145px; min-height: 0; --max-y: -371px; --max-height: 452px; padding: 13px 16px 14px; }
   .project-folder-page-1 { --open-y: -320px; --selected-y: -371px; }
   .project-folder-page-2 { --open-y: -230px; --selected-y: -281px; }
   .project-folder-page-3 { --open-y: -140px; --selected-y: -191px; }
