@@ -408,14 +408,19 @@ if (imageModal) {
   });
 }
 
+let hasOpenedProjectFolder = false;
+
 const initializeProjectFolder = (folder) => {
   const trigger = folder.querySelector('.project-folder-trigger');
   const pages = folder.querySelector('.project-folder-pages');
+  const openHint = folder.querySelector('.project-folder-open-hint');
   const pageItems = [...folder.querySelectorAll('[data-folder-page]')];
   const pageButtons = pageItems.map((page) => page.querySelector('.project-folder-page-hit'));
   let motionTimer;
 
   if (!trigger || !pages) return;
+
+  if (hasOpenedProjectFolder && openHint) openHint.hidden = true;
 
   folder.querySelectorAll('[data-image-trigger]').forEach((button) => {
     button.addEventListener('click', (event) => {
@@ -484,6 +489,8 @@ const initializeProjectFolder = (folder) => {
 
     clearSelection();
     if (isOpen) {
+      hasOpenedProjectFolder = true;
+      if (openHint) openHint.hidden = true;
       folder.classList.add('is-open');
       runMotionState('is-opening', 666);
     } else {
