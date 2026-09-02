@@ -478,9 +478,9 @@ const initializeProjectFolder = (folder) => {
     clearSelection();
     if (isOpen) {
       folder.classList.add('is-open');
-      runMotionState('is-opening', 740);
+      runMotionState('is-opening', 666);
     } else {
-      runMotionState('is-closing', 740, () => folder.classList.remove('is-open'));
+      runMotionState('is-closing', 666, () => folder.classList.remove('is-open'));
     }
 
     trigger.setAttribute('aria-expanded', String(isOpen));
@@ -580,8 +580,8 @@ if (projectCarousel) {
         nextFolder.classList.add('project-folder-current');
         isSwitching = false;
         setControlsDisabled(false);
-      }, 483);
-    }, currentIsOpen ? 740 : 0);
+      }, 435);
+    }, currentIsOpen ? 666 : 0);
   };
 
   previousButton?.addEventListener('click', () => switchProject(-1));
