@@ -200,9 +200,9 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 .project-folder-web-link:hover, .project-folder-web-link:focus-visible { border-color: #fff; background: rgba(255, 255, 255, .22); transform: translateY(-3px); }
 .project-folder-web-link:focus-visible { outline: 3px solid var(--blue-royal); outline-offset: 4px; }
 .project-folder-web-link[hidden] { display: none; }
-.project-folder-open-hint { position: absolute; top: 232px; right: 92px; z-index: 9; width: 240px; color: #cb3f4d; pointer-events: none; transition: opacity .25s ease, transform .25s ease, visibility .25s ease; }
+.project-folder-open-hint { position: absolute; top: 286px; right: 92px; z-index: 9; width: 240px; color: #cb3f4d; pointer-events: none; transition: opacity .25s ease, transform .25s ease, visibility .25s ease; }
 .project-folder-open-hint > span { display: block; padding-right: 2px; font-family: 'Outfit', system-ui, sans-serif; font-size: 16px; font-weight: 600; line-height: 1.1; text-align: right; letter-spacing: -.01em; }
-.project-folder-open-hint svg { display: block; width: 62px; height: 86px; margin: 5px 36px 0 auto; overflow: visible; animation: project-folder-open-pulse 5.8s ease-in-out infinite; transform-origin: 50% 50%; }
+.project-folder-open-hint svg { display: block; width: 62px; height: 86px; margin: 5px 36px 0 auto; overflow: visible; animation: project-folder-open-pulse 3.2s ease-in-out infinite; transform-origin: 50% 50%; will-change: transform; }
 .project-folder-open-hint path { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
 .project-folder-open-hint[hidden] { display: none; }
 .project-folder.is-open .project-folder-open-hint { visibility: hidden; opacity: 0; transform: translateY(8px); }
@@ -551,7 +551,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
 [data-reveal].is-visible { opacity: 1; transform: none; }
 @keyframes float-shape { 0%, 100% { transform: translate3d(0, 0, 0) rotate(22deg); } 50% { transform: translate3d(-16px, 18px, 0) rotate(29deg); } }
 @keyframes float-shape-left { 0%, 100% { transform: translate3d(0, 0, 0) rotate(18deg); } 50% { transform: translate3d(14px, -12px, 0) rotate(25deg); } }
-@keyframes project-folder-open-pulse { 0%, 100% { transform: scale(.96); } 50% { transform: scale(1.04); } }
+@keyframes project-folder-open-pulse { 0%, 100% { transform: scale(.82); } 50% { transform: scale(1.18); } }
 
 @media (max-width: 980px) {
   .hero-grid { grid-template-columns: 1fr; gap: 52px; }
@@ -647,7 +647,7 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   .project-folder-brand { width: min(240px, 72%); margin-bottom: 20px; }
   .project-folder-front > p { max-width: 290px; font-size: 13px; }
   .project-folder-web-link { right: 24px; bottom: 24px; width: 40px; height: 40px; font-size: 23px; }
-  .project-folder-open-hint { top: 174px; right: 18px; width: 176px; }
+  .project-folder-open-hint { top: 214px; right: 18px; width: 176px; }
   .project-folder-open-hint > span { padding-right: 2px; font-size: 12px; }
   .project-folder-open-hint svg { width: 48px; height: 66px; margin-top: 4px; margin-right: 25px; }
   .project-folder-trigger { top: 390px; right: 0; left: 0; border-radius: 34px 16px 34px 16px; }
