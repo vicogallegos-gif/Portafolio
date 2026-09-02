@@ -271,56 +271,6 @@ solutionScenes.forEach((scene) => {
   });
 });
 
-const capabilityCurves = [...document.querySelectorAll('[data-capability-curve]')];
-
-if (capabilityCurves.length) {
-  const drawCapabilityCurve = (canvas) => {
-    const rect = canvas.getBoundingClientRect();
-    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
-    const width = Math.max(1, Math.round(rect.width * pixelRatio));
-    const height = Math.max(1, Math.round(rect.height * pixelRatio));
-
-    if (canvas.width !== width || canvas.height !== height) {
-      canvas.width = width;
-      canvas.height = height;
-    }
-
-    const context = canvas.getContext('2d');
-    if (!context) return;
-
-    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-    context.clearRect(0, 0, rect.width, rect.height);
-    context.lineCap = 'round';
-    context.lineJoin = 'round';
-
-    context.beginPath();
-    context.moveTo(rect.width * .64, -12);
-    context.bezierCurveTo(
-      rect.width * .63,
-      rect.height * .2,
-      rect.width * .79,
-      rect.height * .16,
-      rect.width * .84,
-      rect.height * .32,
-    );
-    context.bezierCurveTo(
-      rect.width * .9,
-      rect.height * .5,
-      rect.width * .96,
-      rect.height * .48,
-      rect.width + 12,
-      rect.height * .61,
-    );
-    context.strokeStyle = 'rgba(37, 99, 235, .13)';
-    context.lineWidth = 1;
-    context.stroke();
-  };
-
-  const drawCapabilityCurves = () => capabilityCurves.forEach(drawCapabilityCurve);
-  drawCapabilityCurves();
-  window.addEventListener('resize', drawCapabilityCurves, { passive: true });
-}
-
 const revealItems = document.querySelectorAll('[data-reveal]');
 if ('IntersectionObserver' in window) {
   const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -336,16 +286,16 @@ if ('IntersectionObserver' in window) {
   revealItems.forEach((item) => item.classList.add('is-visible'));
 }
 
-const projectCatalog = [
+const allProjectCatalog = [
   {
     id: 'mogi',
     title: 'MOGI',
-    description: 'Una herramienta para organizar prospección y operación comercial.',
+    description: 'Aplicación operativa para prospectar, organizar y contactar leads, además de generar contratos y recibos.',
     pages: [
-      ['01 / Problema', 'Operación comercial', 'Contenido pendiente de documentar.', 'Ver el problema que aborda MOGI'],
-      ['02 / Flujos', 'Proceso principal', 'Contenido pendiente de documentar.', 'Ver los flujos principales de MOGI'],
-      ['03 / Decisiones', 'Criterio de producto', 'Contenido pendiente de documentar.', 'Ver las decisiones de producto de MOGI'],
-      ['04 / Stack', 'Tecnologías', 'Contenido pendiente de documentar.', 'Ver las tecnologías utilizadas en MOGI'],
+      ['01 / Problema', 'Operación comercial', 'MOGI nació para reducir el tiempo que dedicaba a la <strong>prospección manual</strong>. Buscar leads, ordenar su información y preparar el contacto consumía horas que podía dedicar a la <strong>entrega de proyectos</strong> y al crecimiento del negocio.', 'Ver el problema que aborda MOGI'],
+      ['02 / Flujos', 'De la búsqueda a la operación', 'MOGI no se limita a encontrar leads. A partir de la <strong>información del negocio</strong>, genera consultas con <strong>IA local</strong>, recopila y organiza datos públicos, prepara mensajes y permite continuar la operación con propuestas, contratos y recibos. La persona revisa cada paso antes de usarlo.', 'Ver los flujos principales de MOGI'],
+      ['03 / Construcción', 'Alinear el ecosistema', 'El reto no era solo encontrar leads, sino hacer que el cliente local, la web, el servidor y los documentos hablaran entre sí. Decidí apoyarme en <strong>IA local</strong> y construir un flujo que funcionara sin depender de una API externa de extracción de leads.', 'Ver la construcción de MOGI'],
+      ['04 / Stack', 'Cliente, servidor y web', '<strong>Un sistema por capas.</strong> La web presenta MOGI y dirige al registro y la compra; el servidor valida la cuenta y la licencia; el cliente instalado ejecuta el trabajo con los datos y la IA local.', 'Ver cómo se comunican las capas de MOGI'],
     ],
   },
   {
@@ -372,6 +322,10 @@ const projectCatalog = [
   },
 ];
 
+const isLocalPreview = window.location.protocol === 'file:'
+  || ['localhost', '127.0.0.1'].includes(window.location.hostname);
+const projectCatalog = isLocalPreview ? allProjectCatalog : [allProjectCatalog[0]];
+
 const updateProjectFolder = (folder, project) => {
   const pages = folder.querySelector('.project-folder-pages');
   const trigger = folder.querySelector('.project-folder-trigger');
@@ -392,21 +346,67 @@ const updateProjectFolder = (folder, project) => {
       const bodyTitle = page.querySelector('.project-folder-page-body h4');
       const bodyText = page.querySelector('.project-folder-page-body p');
       const pageButton = page.querySelector('.project-folder-page-hit');
+      const visual = page.querySelector('[data-folder-visual]');
       if (heading) {
         heading.children[0].textContent = content[0];
-        heading.children[1].textContent = 'Placeholder';
       }
       if (bodyTitle) bodyTitle.textContent = content[1];
-      if (bodyText) bodyText.textContent = content[2];
+      if (bodyText) bodyText.innerHTML = content[2];
       if (pageButton) pageButton.setAttribute('aria-label', content[3]);
+      if (visual) {
+        const shouldShowVisual = project.id === 'mogi';
+        visual.hidden = !shouldShowVisual;
+        page.classList.toggle('has-visual', shouldShowVisual);
+      }
     });
   }
+
+  folder.querySelectorAll('[data-mogi-only]').forEach((element) => {
+    element.hidden = project.id !== 'mogi';
+  });
 
   if (trigger) {
     trigger.setAttribute('aria-controls', pages?.id || `${project.id}-folder-pages`);
     trigger.setAttribute('aria-label', `Abrir carpeta ${project.title}`);
   }
 };
+
+const imageModal = document.querySelector('[data-image-modal]');
+const imageModalImage = imageModal?.querySelector('[data-image-modal-image]');
+const imageModalCaption = imageModal?.querySelector('[data-image-modal-caption]');
+const imageModalClose = imageModal?.querySelector('[data-image-modal-close]');
+let lastImageTrigger = null;
+
+const closeImageModal = () => {
+  if (!imageModal) return;
+  if (imageModal.open && typeof imageModal.close === 'function') imageModal.close();
+  else imageModal.removeAttribute('open');
+};
+
+const openImageModal = (trigger) => {
+  if (!imageModal || !imageModalImage) return;
+  const image = trigger.querySelector('img');
+  if (!image) return;
+
+  lastImageTrigger = trigger;
+  imageModalImage.src = image.currentSrc || image.src;
+  imageModalImage.alt = image.alt;
+  imageModal?.classList.toggle('is-cropped', trigger.dataset.imageCrop === 'zoom-left');
+  if (imageModalCaption) imageModalCaption.textContent = trigger.dataset.imageCaption || image.alt;
+  if (typeof imageModal.showModal === 'function') imageModal.showModal();
+  else imageModal.setAttribute('open', '');
+  imageModalClose?.focus();
+};
+
+if (imageModal) {
+  imageModalClose?.addEventListener('click', closeImageModal);
+  imageModal.addEventListener('click', (event) => {
+    if (event.target === imageModal) closeImageModal();
+  });
+  imageModal.addEventListener('close', () => {
+    lastImageTrigger?.focus();
+  });
+}
 
 const initializeProjectFolder = (folder) => {
   const trigger = folder.querySelector('.project-folder-trigger');
@@ -416,6 +416,13 @@ const initializeProjectFolder = (folder) => {
   let motionTimer;
 
   if (!trigger || !pages) return;
+
+  folder.querySelectorAll('[data-image-trigger]').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.stopPropagation();
+      openImageModal(button);
+    });
+  });
 
   const setPageAccess = (isOpen) => {
     pageButtons.forEach((button) => {
@@ -494,7 +501,7 @@ const initializeProjectFolder = (folder) => {
     if (!button) return;
 
     button.setAttribute('aria-pressed', 'false');
-    button.addEventListener('click', (event) => {
+    const selectPage = (event) => {
       if (!folder.classList.contains('is-open')) return;
 
       const wasSelected = page.classList.contains('is-selected');
@@ -520,7 +527,9 @@ const initializeProjectFolder = (folder) => {
       folder.classList.add('has-selection');
       page.classList.add('is-selected');
       button.setAttribute('aria-pressed', 'true');
-    });
+    };
+
+    button.addEventListener('click', selectPage);
   });
 };
 
@@ -537,6 +546,10 @@ if (projectCarousel) {
   const nextButton = projectCarousel.querySelector('[data-project-next]');
   let isSwitching = false;
   let switchTimer;
+
+  if (projectCatalog.length < 2) {
+    [previousButton, nextButton].forEach((button) => button?.setAttribute('hidden', ''));
+  }
 
   const setControlsDisabled = (isDisabled) => {
     [previousButton, nextButton].forEach((button) => {
