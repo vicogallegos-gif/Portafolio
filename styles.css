@@ -228,7 +228,6 @@ h2 { max-width: 700px; margin: 0; font-size: clamp(2.4rem, 4.8vw, 4.5rem); line-
   18% { top: var(--folder-back-open-near-top); height: var(--folder-back-open-near-height); }
   42% { top: var(--folder-back-open-mid-top); height: var(--folder-back-open-mid-height); }
   70% { top: calc(var(--folder-back-open-floor) - var(--folder-back-closed-height)); height: var(--folder-back-closed-height); }
-  88% { top: calc(var(--folder-back-open-floor) - var(--folder-back-closed-height)); height: var(--folder-back-closed-height); }
   100% { top: var(--folder-back-closed-top); height: var(--folder-back-closed-height); }
 }
 .section-capabilities {
